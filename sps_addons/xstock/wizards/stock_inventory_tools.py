@@ -34,8 +34,8 @@ class ReportStockTools(models.TransientModel):
 	                pt.description AS x_product_type, 
                     -- Nhập mua trong kỳ: CHỈ tính theo phiếu nhập (type_1 nhập mua, type_2 nhập lại
                     -- vật tư chuẩn, type_8 thu hồi vật tư thừa). Lũy kế tới hết 31/12 năm báo cáo.
-                    -- Đã bỏ phần kiểm kê/move không phiếu (tồn đầu load qua điều chỉnh kiểm kê) vì
-                    -- không phải nhập mua — nó thuộc tồn đầu, tính riêng ở cột giá trị (inv_adj).
+                    -- Đã bỏ phần kiểm kê/move không phiếu vì không phải nhập mua. Điều chỉnh kiểm
+                    -- kê chỉ được dùng để tính tồn đầu, không được tính vào giá trị mua thêm.
                     coalesce(sum(case when (spt.x_type in ('type_1', 'type_2','type_8') and ((sm.date + interval '7 hours') ::date <= '{year}-12-31') and sl2.id in {stock} and
                                sm.picking_id is not null) THEN sml.qty_done END),0)
                     nhap_mua_trong_ki,
@@ -1050,18 +1050,12 @@ class ReportStockTools(models.TransientModel):
             ws.cell(row, 41).value, ws.cell(row, 41).style = dmg.get('dmg_t11', 0), highlight
             ws.cell(row, 42).value, ws.cell(row, 42).style = dmg.get('dmg_t12', 0), highlight
 
-            ws.cell(row, 43).value, ws.cell(row, 43).style = (r.get('supplier_qty_t1', 0) + (inv_adj.get('qty_t1') or 0)) * std_price, highlight
-            ws.cell(row, 44).value, ws.cell(row, 44).style = (r.get('supplier_qty_t2', 0) + (inv_adj.get('qty_t2') or 0)) * std_price, highlight
-            ws.cell(row, 45).value, ws.cell(row, 45).style = (r.get('supplier_qty_t3', 0) + (inv_adj.get('qty_t3') or 0)) * std_price, highlight
-            ws.cell(row, 46).value, ws.cell(row, 46).style = (r.get('supplier_qty_t4', 0) + (inv_adj.get('qty_t4') or 0)) * std_price, highlight
-            ws.cell(row, 47).value, ws.cell(row, 47).style = (r.get('supplier_qty_t5', 0) + (inv_adj.get('qty_t5') or 0)) * std_price, highlight
-            ws.cell(row, 48).value, ws.cell(row, 48).style = (r.get('supplier_qty_t6', 0) + (inv_adj.get('qty_t6') or 0)) * std_price, highlight
-            ws.cell(row, 49).value, ws.cell(row, 49).style = (r.get('supplier_qty_t7', 0) + (inv_adj.get('qty_t7') or 0)) * std_price, highlight
-            ws.cell(row, 50).value, ws.cell(row, 50).style = (r.get('supplier_qty_t8', 0) + (inv_adj.get('qty_t8') or 0)) * std_price, highlight
-            ws.cell(row, 51).value, ws.cell(row, 51).style = (r.get('supplier_qty_t9', 0) + (inv_adj.get('qty_t9') or 0)) * std_price, highlight
-            ws.cell(row, 52).value, ws.cell(row, 52).style = (r.get('supplier_qty_t10', 0) + (inv_adj.get('qty_t10') or 0)) * std_price, highlight
-            ws.cell(row, 53).value, ws.cell(row, 53).style = (r.get('supplier_qty_t11', 0) + (inv_adj.get('qty_t11') or 0)) * std_price, highlight
-            ws.cell(row, 54).value, ws.cell(row, 54).style = (r.get('supplier_qty_t12', 0) + (inv_adj.get('qty_t12') or 0)) * std_price, highlight
+            # Giá trị mua thêm chỉ lấy từ số lượng thực nhận từ nhà cung cấp. Nhập do
+            # kiểm kê (ví dụ nhân viên trả đồ bảo hộ) làm tăng tồn nhưng không phải mua mới.
+            for month in range(1, 13):
+                ws.cell(row, 42 + month).value = (
+                    r.get('supplier_qty_t%d' % month, 0) * std_price)
+                ws.cell(row, 42 + month).style = highlight
 
             ws.cell(row, 55).value, ws.cell(row, 55).style = '=Sum(AQ%s:BB%s)' % (row, row), highlight
             ws.cell(row, 56).value, ws.cell(row, 56).style = r['amount_before'], highlight
