@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="hr_hr_employee_view_form2" model="ir.ui.view">
+            <field name="name">hr.employee.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr_contract.hr_hr_employee_view_form2"/>
+            <field name="arch" type="xml">
+                <field name="calendar_mismatch" position="before">
+                    <field name="x_calendar_type"/>
+                </field>
+
+                <label for="resource_calendar_id" position="attributes">
+                    <attribute name="required">0</attribute>
+                    <attribute name="invisible">1</attribute>
+                </label>
+
+                <field name="resource_calendar_id" position="attributes">
+                    <attribute name="required">0</attribute>
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+        #Chi phí khác
+        <record id="hr_other_expenses_view_tree" model="ir.ui.view">
+            <field name="name">Các khoản công ty chi trả ngoài lương khác</field>
+            <field name="model">other.expenses</field>
+            <field name="arch" type="xml">
+                <tree string="Các khoản công ty chi trả ngoài lương khác">
+                    <field name="type"/>
+                    <field name="detail"/>
+                    <field name="price"/>
+                    <field name="job_apply" string="Vị trí áp dụng"/>
+                    <field name="start_year" string="Từ năm"/>
+                    <field name="end_year" string="Đến năm"/>
+                    <field name="active" string="Trạng thái" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+        <record id="hr_other_expenses_form" model="ir.ui.view">
+            <field name="name">Các khoản công ty chi trả ngoài lương khác</field>
+            <field name="model">other.expenses</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="type"/>
+                                <field name="detail"/>
+                                <field name="price"/>
+                                <field name="active" string="Trạng thái" widget="boolean_toggle"/>
+                            </group>
+                            <group>
+                                <field name="job_apply" string="Vị trí áp dụng" widget="many2many_tags"
+                                       options="{'no_create_edit': True}"/>
+                                <field name="gender"/>
+                                <field name="start_year" string="Từ năm"/>
+                                <field name="end_year" string="Đến năm"/>
+
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_other_expenses_action" model="ir.actions.act_window">
+            <field name="name">Các khoản công ty chi trả ngoài lương khác</field>
+            <field name="res_model">other.expenses</field>
+            <field name="view_mode">tree,form</field>
+
+        </record>
+
+        <menuitem
+                id="hr_other_expenses_menu"
+                name="Các khoản chi khác"
+                action="hr_other_expenses_action"
+                parent="hr_payroll.menu_hr_salary_configuration"
+                sequence="200"/>
+    </data>
+
+</odoo>

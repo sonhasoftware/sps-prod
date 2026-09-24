@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <!-- Cash Flow Code Mapping Views -->
+        <record id="cash_flow_code_mapping_tree_view" model="ir.ui.view">
+            <field name="name">Bảng mã khoản tiền</field>
+            <field name="model">cash.flow.code.mapping</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="parent"/>
+                    <field name="parent_2"/>
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="cash_flow_code_mapping_form_view" model="ir.ui.view">
+            <field name="name">Bảng mã khoản tiền</field>
+            <field name="model">cash.flow.code.mapping</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="parent"/>
+                                <field name="parent_2"/>
+                                <field name="name"/>
+                                <field name="code"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="cash_flow_code_mapping_search_view" model="ir.ui.view">
+            <field name="name">Bảng mã khoản tiền</field>
+            <field name="model">cash.flow.code.mapping</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="parent"/>
+                    <field name="parent_2"/>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <group expand="0" string="Nhóm theo">
+                        <filter name="group_by_parent" string="Nhóm cha" context="{'group_by': 'parent'}"/>
+                        <filter name="group_by_parent_2" string="Loại" context="{'group_by': 'parent_2'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_cash_flow_code_mapping" model="ir.actions.act_window">
+            <field name="name">Bảng mã khoản tiền</field>
+            <field name="res_model">cash.flow.code.mapping</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+        <menuitem
+                id="menu_cash_flow_code_mapping"
+                name="Bảng mã khoản tiền"
+                action="action_cash_flow_code_mapping"
+                parent="xaccount.menu_account_payment"
+                sequence="5"/>
+    </data>
+</odoo> 

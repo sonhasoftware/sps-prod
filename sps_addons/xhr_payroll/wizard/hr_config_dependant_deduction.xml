@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_hr_config_dependant_deduction" model="ir.ui.view">
+            <field name="name">hr.config.dependant.deduction.form</field>
+            <field name="model">hr.config.dependant.deduction</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="x_dependent_deduction"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Save" name="process" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_hr_config_dependant_deduction" model="ir.actions.act_window">
+            <field name="name">Config dependant deduction</field>
+            <field name="res_model">hr.config.dependant.deduction</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_hr_config_dependant_deduction"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+            id="menu_action_hr_config_dependant_deduction"
+            name="Config dependant deduction"
+            action="action_hr_config_dependant_deduction"
+            parent="hr_payroll.menu_hr_salary_configuration"
+            sequence="55"/>
+    </data>
+</odoo>

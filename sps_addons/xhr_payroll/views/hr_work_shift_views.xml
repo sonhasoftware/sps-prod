@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Work shift config -->
+    <data>
+        <record id="view_hr_work_shift_config_tree" model="ir.ui.view">
+            <field name="name">hr.work.shift.config.tree</field>
+            <field name="model">hr.work.shift.config</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="is_leave"/>
+<!--                    <field name="is_leave_global"/>-->
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_hr_work_shift_config_form" model="ir.ui.view">
+            <field name="name">hr.work.shift.config.form</field>
+            <field name="model">hr.work.shift.config</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="code"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                            <group>
+                                <field name="is_leave"/>
+<!--                                <field name="is_leave_global"/>-->
+                            </group>
+                        </group>
+                        <group attrs="{'invisible': [('is_leave', '=', True)]}">
+                            <field name="line_ids">
+                                <tree editable="bottom">
+                                    <field name="time_from" widget="float_time"/>
+                                    <field name="time_to" widget="float_time"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="time_from" widget="float_time"/>
+                                        <field name="time_to" widget="float_time"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_hr_work_shift_config" model="ir.actions.act_window">
+            <field name="name">Work Shift Config</field>
+            <field name="res_model">hr.work.shift.config</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            id="menu_hr_work_shift_config"
+            name="Work Shift Config"
+            action="action_hr_work_shift_config"
+            parent="menu_hr_work_shift_settings"
+            sequence="1"/>
+
+    </data>
+
+    <!-- Work shift -->
+    <data>
+<!--        <record id="view_hr_work_shift_tree" model="ir.ui.view">-->
+<!--            <field name="name">hr.work.shift.tree</field>-->
+<!--            <field name="model">hr.work.shift</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <tree>-->
+<!--                    <field name="name"/>-->
+<!--                    <field name="date_from"/>-->
+<!--                    <field name="date_to"/>-->
+<!--                    <field name="work_days"/>-->
+<!--                    <field name="state"/>-->
+<!--                </tree>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        <record id="view_hr_work_shift_form" model="ir.ui.view">-->
+<!--            <field name="name">hr.work.shift.form</field>-->
+<!--            <field name="model">hr.work.shift</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <form>-->
+<!--                    <field name="day_start" invisible="1"/>-->
+<!--                    <field name="day_end" invisible="1"/>-->
+<!--                    <header>-->
+<!--&lt;!&ndash;                        <button name="action_confirm" string="Confirm" type="object" class="oe_highlight"&ndash;&gt;-->
+<!--&lt;!&ndash;                                attrs="{'invisible': [('state', '!=', 'draft')]}"/>&ndash;&gt;-->
+<!--                        <field name="state" widget="statusbar"/>-->
+<!--                    </header>-->
+<!--                    <sheet>-->
+<!--                        <div class="oe_title">-->
+<!--                            <label for="name" class="oe_edit_only"/>-->
+<!--                            <h1><field name="name" placeholder="e.g. PM Schedule august"/></h1>-->
+<!--                        </div>-->
+<!--                        <group>-->
+<!--                            <group>-->
+<!--                                <label for="date_from" string="Period"/>-->
+<!--                                <div>-->
+<!--                                    <field name="date_from" class="oe_inline"/>-->
+<!--                                    <span class="fa fa-arrow-right" style="padding: 0 6px 0 6px;" title="Period"/>-->
+<!--                                    <field name="date_to" class="oe_inline"/>-->
+<!--                                </div>-->
+<!--                                <field name="work_days"/>-->
+<!--                            </group>-->
+<!--                            <group>-->
+<!--                            </group>-->
+<!--                        </group>-->
+<!--                        <label for="line_ids"/>-->
+<!--                        <field name="line_ids">-->
+<!--                            <tree editable="bottom">-->
+<!--                                <field name="empty_field" invisible="1"/>-->
+<!--                                <field name="employee_id" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="employee_code" invisible="1"/>-->
+<!--                                <field name="project_id" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}" invisible="1"/>-->
+<!--                                <field name="shift_m01" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 1), ('parent.day_end', '&lt;', 1)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="shift_m02" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 2), ('parent.day_end', '&lt;', 2)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="shift_m03" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 3), ('parent.day_end', '&lt;', 3)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="shift_m04" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 4), ('parent.day_end', '&lt;', 4)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="shift_m05" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 5), ('parent.day_end', '&lt;', 5)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="shift_m06" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 6), ('parent.day_end', '&lt;', 6)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="shift_m07" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 7), ('parent.day_end', '&lt;', 7)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="shift_m08" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 8), ('parent.day_end', '&lt;', 8)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="shift_m09" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 9), ('parent.day_end', '&lt;', 9)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="shift_m10" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 10), ('parent.day_end', '&lt;', 10)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="shift_m11" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 11), ('parent.day_end', '&lt;', 11)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="shift_m12" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 12), ('parent.day_end', '&lt;', 12)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="shift_m13" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 13), ('parent.day_end', '&lt;', 13)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="shift_m14" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 14), ('parent.day_end', '&lt;', 14)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="shift_m15" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 15), ('parent.day_end', '&lt;', 15)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="shift_m16" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 16), ('parent.day_end', '&lt;', 16)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="shift_m17" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 17), ('parent.day_end', '&lt;', 17)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="shift_m18" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 18), ('parent.day_end', '&lt;', 18)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="shift_m19" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 19), ('parent.day_end', '&lt;', 19)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="shift_m20" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 20), ('parent.day_end', '&lt;', 20)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="shift_m21" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 21), ('parent.day_end', '&lt;', 21)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="shift_m22" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 22), ('parent.day_end', '&lt;', 22)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="shift_m23" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 23), ('parent.day_end', '&lt;', 23)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="shift_m24" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 24), ('parent.day_end', '&lt;', 24)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="shift_m25" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 25), ('parent.day_end', '&lt;', 25)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="shift_m26" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 26), ('parent.day_end', '&lt;', 26)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="shift_m27" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 27), ('parent.day_end', '&lt;', 27)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="shift_m28" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 28), ('parent.day_end', '&lt;', 28)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="shift_m29" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 29), ('parent.day_end', '&lt;', 29)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="shift_m30" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 30), ('parent.day_end', '&lt;', 30)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                                <field name="shift_m31" attrs="{'readonly': ['|', ('parent.day_start', '&gt;', 31), ('parent.day_end', '&lt;', 31)]}" options="{'no_open': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+<!--                            </tree>-->
+<!--                        </field>-->
+<!--                    </sheet>-->
+<!--                    <![CDATA[-->
+<!--                    <style>-->
+<!--                    .o_form_view > .o_form_sheet_bg > .o_form_sheet { width: 100% !important; max-width: 100% !important; }-->
+<!--                    </style>-->
+<!--                    ]]>-->
+<!--                </form>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        <record id="action_hr_work_shift" model="ir.actions.act_window">-->
+<!--            <field name="name">Work Shift</field>-->
+<!--            <field name="res_model">hr.work.shift</field>-->
+<!--            <field name="view_mode">tree,form</field>-->
+<!--            <field name="domain">[]</field>-->
+<!--        </record>-->
+
+<!--        <menuitem-->
+<!--            id="menu_hr_work_shift"-->
+<!--            name="Work Shifts"-->
+<!--            action="action_hr_work_shift"-->
+<!--            parent="hr_work_entry_contract.menu_hr_payroll_work_entries_root"-->
+<!--            sequence="10"/>-->
+
+<!--        <menuitem-->
+<!--            id="menu_hr_work_shift_employee"-->
+<!--            name="Work Shifts"-->
+<!--            action="action_hr_work_shift"-->
+<!--            parent="menu_xhr_work_entry_root"-->
+<!--            sequence="20"/>-->
+
+    </data>
+
+</odoo>

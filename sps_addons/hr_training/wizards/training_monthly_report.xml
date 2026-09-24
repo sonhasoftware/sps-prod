@@ -1,0 +1,60 @@
+<odoo>
+    <record id="view_training_monthly_report_wizard" model="ir.ui.view">
+        <field name="name">training.monthly.report.wizard.form</field>
+        <field name="model">training.monthly.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Hàng tháng" create="false" edit="false">
+                <sheet>
+                    <group>
+                        <field name="year"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button string="Xem báo cáo"
+                            type="object"
+                            name="action_open_report_monthly"
+                            class="btn-primary"/>
+                    <button string="Hủy" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_training_trainers_report_wizard" model="ir.ui.view">
+        <field name="name">training.monthly.report.wizard.form</field>
+        <field name="model">training.monthly.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Hàng tháng" create="false" edit="false">
+                <sheet>
+                    <group>
+                        <field name="year"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button string="Xem báo cáo"
+                            type="object"
+                            name="action_open_report_trainers"
+                            class="btn-primary"/>
+                    <button string="Hủy" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_training_monthly_report_wizard" model="ir.actions.act_window">
+        <field name="name">Hàng tháng</field>
+        <field name="res_model">training.monthly.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_training_monthly_report_wizard"/>
+        <field name="target">new</field>
+    </record>
+
+    <record id="action_training_trainers_report_wizard" model="ir.actions.act_window">
+        <field name="name">Người đào tạo</field>
+        <field name="res_model">training.monthly.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_training_trainers_report_wizard"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_employee_ethnic_tree_view" model="ir.ui.view">
+            <field name="name">hr_employee_ethnic_tree_view</field>
+            <field name="model">hr.employee.ethnic</field>
+            <field name="arch" type="xml">
+                <tree string="Danh sách dân tộc" editable="bottom">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hr_employee_ethnic_search_view" model="ir.ui.view">
+            <field name="name">hr.employee.ethnic.search</field>
+            <field name="model">hr.employee.ethnic</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="hr_employee_ethnic_act_window" model="ir.actions.act_window">
+            <field name="name">Dân tộc</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.employee.ethnic</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <menuitem name="Dân tộc" id="hr_employee_ethnic_menu"
+                  parent="hr.menu_human_resources_configuration" action="hr_employee_ethnic_act_window"
+                  sequence="99"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Sale request views -->
+    <data>
+        <record id="view_sale_request_tree" model="ir.ui.view">
+            <field name="name">sale.request.tree</field>
+            <field name="model">sale.request</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="partner_id"/>
+                    <field name="content"/>
+                    <field name="type"/>
+                    <field name="note"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_sale_request_search" model="ir.ui.view">
+            <field name="name">sale.request.search</field>
+            <field name="model">sale.request</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="partner_id"/>
+                    <field name="content"/>
+                    <field name="type"/>
+                    <group>
+                        <filter string="Phân loại" name="type" domain="[]" context="{'group_by': 'type'}"/>
+                        <filter string="Trạng thái" name="state" domain="[]" context="{'group_by': 'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_sale_request_form" model="ir.ui.view">
+            <field name="name">sale.request.form</field>
+            <field name="model">sale.request</field>
+            <field name="arch" type="xml">
+                <form>
+                    <field name="count_quotation" invisible="1"/>
+                    <field name="count_project" invisible="1"/>
+                    <header>
+                        <button name="button_create_quotation" string="Tạo báo giá" states="new,quotation" type="object" class="oe_highlight" />
+                        <button name="button_cancel" string="Huỷ yêu cầu" states="new" type="object"
+                                confirm="Xác nhận huỷ yêu cầu này?"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" name="button_view_quotation" string="Báo giá" type="object" icon="fa-bars"
+                                    attrs="{'invisible': ['|', ('state', 'in', ['new', 'cancel']), ('count_quotation', '=', 0)]}">
+                                (<field name="count_quotation"/>)
+                            </button>
+                            <button class="oe_stat_button" name="button_view_project" string="Dự án" type="object" icon="fa-bars"
+                                    attrs="{'invisible': ['|', ('state', 'in', ['new', 'cancel']), ('count_project', '=', 0)]}">
+                                (<field name="count_project"/>)
+                            </button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name" readonly="1"/>
+                                <field name="date" attrs="{'readonly': [('state', 'in', ['quotation', 'cancel'])]}"/>
+                                <field name="partner_id" attrs="{'readonly': [('state', 'in', ['quotation', 'cancel'])]}"
+                                       options="{'no_create': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>
+                                <field name="content" attrs="{'readonly': [('state', 'in', ['quotation', 'cancel'])]}"/>
+                                <field name="type" attrs="{'readonly': [('state', 'in', ['quotation', 'cancel'])]}" widget="radio" options="{'horizontal': true}"/>
+                                <field name="note" attrs="{'readonly': [('state', 'in', ['quotation', 'cancel'])]}"/>
+                            </group>
+                            <group></group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_sale_request" model="ir.actions.act_window">
+            <field name="name">Ghi nhận yêu cầu khách hàng</field>
+            <field name="res_model">sale.request</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            id="menu_sale_request"
+            name="Ghi nhận yêu cầu khách hàng"
+            action="action_sale_request"
+            parent="sale.sale_order_menu"
+            sequence="100"/>
+    </data>
+</odoo>

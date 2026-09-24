@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sale_quantity_tree" model="ir.ui.view">
+            <field name="name">sale_quantity_tree_view</field>
+            <field name="model">sale.quantity</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false" class="hide_o_list_record_selector">
+                    <field name="classification"/>
+                    <field name="t1"  widget="integer"/>
+                    <field name="t2" widget="integer"/>
+                    <field name="t3" widget="integer"/>
+                    <field name="t4" widget="integer"/>
+                    <field name="t5" widget="integer"/>
+                    <field name="t6" widget="integer"/>
+                    <field name="t7" widget="integer"/>
+                    <field name="t8" widget="integer"/>
+                    <field name="t9" widget="integer"/>
+                    <field name="t10" widget="integer"/>
+                    <field name="t11" widget="integer"/>
+                    <field name="t12" widget="integer"/>
+                    <field name="total" />
+                    <field name="master_key" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_sale_quantity_view" model="ir.actions.act_window">
+            <field name="name">Báo cáo khách hàng đang có hợp đồng</field>
+            <field name="res_model">sale.quantity</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+    </data>
+</odoo>

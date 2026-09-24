@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_wizard_customer_satisfaction_form" model="ir.ui.view">
+            <field name="name">wizard.customer.satisfaction.form</field>
+            <field name="model">wizard.customer.satisfaction</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="year"/>
+                                <field name="partner_id"/>
+                            </group>
+                            <group></group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Báo cáo" name="get_report_excel" type="object" class="btn-primary"/>
+                        <button string="Huỷ" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_customer_satisfaction" model="ir.actions.act_window">
+            <field name="name">Chỉ số hài lòng của khách hàng</field>
+            <field name="res_model">wizard.customer.satisfaction</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="domain">[]</field>
+        </record>
+
+<!--        <menuitem-->
+<!--            id="menu_wizard_customer_satisfaction"-->
+<!--            name="Chỉ số hài lòng của khách hàng"-->
+<!--            action="action_wizard_customer_satisfaction"-->
+<!--            parent="project.menu_project_report"-->
+<!--            sequence="10"/>-->
+    </data>
+    <data>
+        <record id="view_wizard_customer_satisfaction_detail_form" model="ir.ui.view">
+            <field name="name">wizard.customer.satisfaction.detail.form</field>
+            <field name="model">wizard.customer.satisfaction.detail</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="date_from"/>
+                                <field name="date_to"/>
+                            </group>
+                            <group></group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Báo cáo" name="get_report_excel" type="object" class="btn-primary"/>
+                        <button string="Huỷ" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_customer_satisfaction_detail" model="ir.actions.act_window">
+            <field name="name">Chi tiết chỉ số hài lòng của khách hàng</field>
+            <field name="res_model">wizard.customer.satisfaction.detail</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="domain">[]</field>
+        </record>
+
+<!--        <menuitem-->
+<!--            id="menu_wizard_customer_satisfaction_detail"-->
+<!--            name="Chi tiết chỉ số hài lòng của khách hàng"-->
+<!--            action="action_wizard_customer_satisfaction_detail"-->
+<!--            parent="project.menu_project_report"-->
+<!--            sequence="11"/>-->
+    </data>
+    <data>
+        <record id="view_wizard_customer_satisfaction_sum_form" model="ir.ui.view">
+            <field name="name">wizard.customer.satisfaction.sum.form</field>
+            <field name="model">wizard.customer.satisfaction.sum</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="year"/>
+                            </group>
+                            <group></group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Báo cáo" name="get_report_excel" type="object" class="btn-primary"/>
+                        <button string="Huỷ" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_customer_satisfaction_sum" model="ir.actions.act_window">
+            <field name="name">Tổng hợp chỉ số hài lòng của khách hàng</field>
+            <field name="res_model">wizard.customer.satisfaction.sum</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="domain">[]</field>
+        </record>
+
+<!--        <menuitem-->
+<!--            id="menu_wizard_customer_satisfaction_sum"-->
+<!--            name="Tổng hợp chỉ số hài lòng của khách hàng"-->
+<!--            action="action_wizard_customer_satisfaction_sum"-->
+<!--            parent="project.menu_project_report"-->
+<!--            sequence="12"/>-->
+    </data>
+
+    <data>
+        <record id="view_wizard_project_customer_satisfaction_form" model="ir.ui.view">
+            <field name="name">wizard.project.customer.satisfaction.form</field>
+            <field name="model">wizard.project.customer.satisfaction</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="year"/>
+                                <field name="partner_id"/>
+                            </group>
+<!--                            <group>-->
+<!--                                <field name="month"/>-->
+<!--                            </group>-->
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Báo cáo" name="get_report_excel" type="object" class="btn-primary"/>
+                        <button string="Huỷ" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_project_customer_satisfaction" model="ir.actions.act_window">
+            <field name="name">Chỉ số hài lòng của khách hàng theo dự án</field>
+            <field name="res_model">wizard.project.customer.satisfaction</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            id="menu_wizard_project_customer_satisfaction"
+            name="Chỉ số hài lòng của khách hàng theo dự án"
+            action="action_wizard_project_customer_satisfaction"
+            parent="project.menu_project_report"
+            sequence="10"/>
+    </data>
+</odoo>

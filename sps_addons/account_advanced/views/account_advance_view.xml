@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="account_advance_search_view">
+            <field name="name">account_advance_search_view</field>
+            <field name="model">account.advance</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="number"/>
+                    <field name="employee_id"/>
+                    <field name="supplier_id"/>
+                    <field name="approver_id"/>
+                    <field name="reason"/>
+                    <field name="state"/>
+                </search>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="account_advance_tree_view">
+            <field name="name">account_advance_tree_view</field>
+            <field name="model">account.advance</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="number"/>
+                    <field name="type"/>
+                    <field name="employee_id"/>
+                    <field name="supplier_id"/>
+                    <field name="po_id"/>
+                    <field name="amount_total"/>
+                    <field name="reason"/>
+                    <field name="state"/>
+                    <field name="x_state" optional="hide"/>
+                    <field name="currency_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="account_advance_form_view">
+            <field name="name">account_advance_form_view</field>
+            <field name="model">account.advance</field>
+            <field name="arch" type="xml">
+                <form class="custom_sheet">
+                    <header>
+                        <button name="action_sent_approve" string="Gửi duyệt" type="object" class="oe_highlight"
+                                states = "draft"/>
+                        <button name="action_manager_approve" string="Quản lý duyệt" type="object" class="oe_highlight"
+                                states="wait_manager"/>
+                        <button name="action_approve" string="Kế toán duyệt" type="object" class="oe_highlight"
+                                states="pending"/>
+                        <button name="action_cancel" string="Từ chối" type="object" class="o_sale_print"
+                                attrs="{'invisible':[('state','not in',['wait_manager','wait_bod','pending'])]}"
+                                confirm="Bạn chắc chắn muốn huỷ phiếu tạm ứng này?"/>
+                        <button name="action_cancel" string="HỦy" type="object" class="o_sale_print"
+                                attrs="{'invisible':[('state','not in',['bod_approved', 'payment'])]}"
+                                confirm="Bạn chắc chắn muốn huỷ phiếu tạm ứng này?"/>
+                        <button name="action_payment" string="Thanh toán" type="object" class="oe_highlight"
+                                confirm="Xác nhận thanh toán phiếu tạm ứng"
+                                states="approved" group="account.group_account_manager"/>
+                        <button name="action_bod_approve" string="BOD phê duyệt" type="object" group="base.group_erp_manager" class="oe_highlight"
+                                states="wait_bod"/>
+                        <button name="action_to_draft" string="Chuyển về nháp" type="object" class="o_sale_print"
+                                attrs="{'invisible':[('state','not in',['pending','wait_manager','cancel'])]}"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <link rel="stylesheet" href="/account_advanced/static/src/custom.css"/>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="type"
+                                       attrs="{'readonly': [('state', 'not in', ('draft','wait_manager','pending','approved'))]}"/>
+                                <field name="employee_id"
+                                       attrs="{'required' : [('type', '=', 'internal')],'invisible':[('type', '!=', 'internal')], 'readonly':[('state', 'not in', ('draft','wait_manager','pending','approved'))]}"/>
+                                <field name="supplier_id"
+                                       attrs="{'required' : [('type', '=', 'supplier')],'invisible':[('type', '=', 'internal')], 'readonly':[('state', 'not in', ('draft','wait_manager','pending','approved'))]}"
+                                       domain="[('parent_id', '=', False), ('supplier_rank', '!=', 0)]"
+                                />
+                                <field name="po_id" attrs="{'invisible':[('type', '=', 'internal')],
+                                        'readonly':[('state', 'not in', ('draft','wait_manager','pending','approved'))]}"
+                                       domain="[('x_state', 'not in', ('draft', 'cancel')), ('partner_id', '=', supplier_id)]"/>
+                                <field name="approver_id" force_save="1"/>
+                                <field name="partner_bank_id"
+                                       attrs="{'readonly':[('state', 'not in', ('draft','wait_manager','pending','approved'))]}"
+                                       context="{'advance_type': type, 'employee_id': employee_id, 'supplier_id': supplier_id}"/>
+                                <field name="reason"
+                                       attrs="{'readonly': [('state', 'not in', ('draft','wait_manager','pending','approved'))]}"/>
+                                <field name="is_allowed_license_type" invisible="1"/>
+                                <field name="license_type"
+                                       attrs="{'readonly': ['&amp;', ('state', 'not in', ('draft','wait_manager','pending', 'approved')), ('is_allowed_license_type', '=', False)]}"/>
+                            </group>
+                            <group>
+                                <field name="number"/>
+                                <field name="date_suggest" attrs="{'readonly': [('state', 'not in', ('draft','wait_manager','pending','approved'))]}"/>
+                                <field name="date_advance"/>
+                                <field name="date_repay"/>
+                                <field name="currency_id" invisible="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string='Chi tiết' >
+<!--                                attrs="{'invisible':[('type', '=', 'supplier')]}"-->
+                                <field name="advance_line_ids" attrs="{'readonly': [('state', 'not in', ('draft','wait_manager','pending','approved'))],
+                                        }">
+                                    <tree string="Sales Order Lines" editable="bottom" style="max-width:none">
+                                        <control>
+                                            <create string="Thêm dự án"/>
+                                        </control>
+                                        <field name="project_id"/>
+                                        <field name="project_name" force_save="1"/>
+                                        <field name="description" force_save="1"/>
+                                        <field name="amount"/>
+                                        <field name="currency_id" invisible="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                        <group>
+                            <field name="amount_total" force_save="1"
+                                       attrs="{'readonly': ['|',('state', 'not in', ('draft','wait_manager','pending','approved')),('type', '=', 'internal')]}"/>
+                        </group>
+                        <group string="Phần dành cho kế toán">
+                            <group>
+                                <field name="account_id"
+                                       attrs="{'readonly': [('state', 'not in', ('draft','wait_manager','pending','approved'))]}"/>
+                                <field name="diary_id" domain="[('type', 'in', ('cash','bank'))]"
+                                       attrs="{'readonly': [('state', 'not in', ('draft','wait_manager','pending','approved'))]}"/>
+                                <field name="code_money_id"
+                                       attrs="{'readonly': [('state', 'not in', ('draft','wait_manager','pending','approved'))]}"/>
+                                <field name="payment_id" attrs="{'invisible': [('payment_id', '=', False)]}"
+                                       readonly="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <sheet>
+                        <div class="oe_chatter">
+                            <field name="message_follower_ids"/>
+                            <field name="activity_ids"/>
+                            <field name="message_ids"/>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="action_advance_supplier_type" model="ir.actions.act_window">
+            <field name="name">Phiếu tạm ứng</field>
+            <field name="res_model">account.advance</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="account_advance_tree_view"/>
+            <field name="search_view_id" ref="account_advance_search_view"/>
+            <field name="domain">[('type', '=', 'supplier')]</field>
+            <field name="context">{'default_type': 'supplier'}</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Tạo phiếu Tạm ứng cho đơn mua hàng
+              </p><p>
+               Tạo phiếu tạm ứng cho các đơn mua hàng của bạn
+              </p>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="account_advance_register_view">
+            <field name="name">account_advance_register_view</field>
+            <field name="model">account.advance.register</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="ref" required="1"/>
+                            <field name="amount_advanced" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <field name="line_ids">
+                                <tree create="0" readonly="1">
+                                    <field name="register_id" invisible="1"/>
+                                    <field name="project_id"/>
+                                    <field name="total_cost"/>
+                                    <field name="percentage"/>
+                                    <field name="advance_detail"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="project_id" readonly="1"/>
+                                        <field name="total_cost" readonly="1"/>
+                                    </group>
+                                    <group>
+                                        <field name="percentage" readonly="1"/>
+                                        <field name="advance_detail" readonly="1"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </group>
+                        <field name="supplier_id" invisible="1"/>
+                        <field name="po_id" invisible="1"/>
+                        <field name="amount_purchase" invisible="1" widget="monetary"
+                               options="{'currency_field': 'currency_id'}"/>
+                        <field name="currency_id" invisible="1"/>
+                        <field name="account_id" invisible="1"/>
+                    </group>
+                    <footer>
+                        <button string="Tạm ứng" name="action_create_advanced" type="object" class="oe_highlight"/>
+                        <button string="Hủy" class="btn btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="account_advance_action_window">
+            <field name="name">Phiếu tạm ứng</field>
+            <field name="res_model">account.advance</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="account_advance_action_window">
+            <field name="name">Phiếu tạm ứng</field>
+            <field name="res_model">account.advance</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem name="Tạm ứng, Hoàn ứng" id="menu_advance" parent="account_accountant.menu_accounting" sequence="1"/>
+        <menuitem name="Phiếu Tạm ứng" id="account_advanced" parent="menu_advance"
+                  action="account_advance_action_window" sequence="2"/>
+
+    </data>
+</odoo>

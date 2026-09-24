@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="sale_target_view_tree" model="ir.ui.view">
+        <field name="name">sale.target.view.tree</field>
+        <field name="model">sale.target</field>
+        <field name="arch" type="xml">
+            <tree string="Sale Target" editable="bottom">
+                <field name="target_year"/>
+                <field name="target_month"/>
+                <field name="sale_target"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="sale_target_action" model="ir.actions.act_window">
+        <field name="name">Sale Target</field>
+        <field name="res_model">sale.target</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem
+            id="sale_target_menu"
+            name="Sale Targets"
+            action="sale_target_action"
+            groups="sales_team.group_sale_manager"
+            parent="sale.sale_order_menu"
+            sequence="99"/>
+    # Tần xuất
+
+    <record id="sale_frequency_view_tree" model="ir.ui.view">
+        <field name="name">Tần Suất</field>
+        <field name="model">sale.frequency</field>
+        <field name="arch" type="xml">
+            <tree string="Sale Frequency">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="timeline" string="Khoảng thời gian"/>
+                <field name="type" string="Loại"/>
+            </tree>
+        </field>
+    </record>
+    <record id="sale_frequency_view_form" model="ir.ui.view">
+        <field name="name">Tần Suất</field>
+        <field name="model">sale.frequency</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <label for="timeline" string="Khoảng thời gian"/>
+                        <div>
+                            <field name="timeline" class="oe_inline"/>
+                            -
+                            <field name="type" class="oe_inline"/>
+                        </div>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="sale_frequency_action" model="ir.actions.act_window">
+        <field name="name">Tần Suất</field>
+        <field name="res_model">sale.frequency</field>
+        <field name="view_mode">tree,form</field>
+
+    </record>
+
+    <menuitem
+            id="sale_frequency_menu"
+            name="Tần suất"
+            action="sale_frequency_action"
+            parent="sale.prod_config_main"
+            sequence="9"/>
+
+</odoo>

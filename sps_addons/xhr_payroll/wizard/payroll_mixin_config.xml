@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_payroll_mixin_config_form" model="ir.ui.view">
+            <field name="name">hr.payroll.mixin_config.form</field>
+            <field name="model">hr.payroll.mixin_config</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group string="Tax deduction">
+                                <field name="deduction_self" required="1"/>
+                                <field name="deduction_dependent" required="1"/>
+                            </group>
+                            <group></group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Save" name="process" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_payroll_mixin_config" model="ir.actions.act_window">
+            <field name="name">Config dependant deduction</field>
+            <field name="res_model">hr.payroll.mixin_config</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_payroll_mixin_config_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+            id="menu_payroll_mixin_config"
+            name="Dependant Deduction"
+            action="action_payroll_mixin_config"
+            parent="hr_payroll.menu_hr_salary_configuration"
+            sequence="55"/>
+    </data>
+</odoo>

@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+        <record id="wizard_manhour_rate_report" model="ir.ui.view">
+            <field name="name">Lương chi tiết nhân viên</field>
+            <field name="model">manhour.rate</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Lương chi tiết nhân viên">
+                    <group>
+                        <field name="year"/>
+                    </group>
+
+                    <footer>
+                        <button string="Báo cáo" name="print_reports" type="object" class="btn-primary"/>
+                        <button string="Huỷ" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_manhour_rate_report" model="ir.actions.act_window">
+            <field name="name">Lương chi tiết nhân viên</field>
+            <field name="res_model">manhour.rate</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="domain">[]</field>
+        </record>
+        <menuitem action="action_manhour_rate_report"
+                  name="Lương chi tiết nhân viên"
+                  parent="hr_payroll.menu_hr_payroll_report"
+                  id="menu_manhour_rate_report"
+                  sequence="13"/>
+
+    </data>
+</odoo>

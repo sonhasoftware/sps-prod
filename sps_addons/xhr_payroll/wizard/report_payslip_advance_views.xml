@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_wizard_report_payslip_advance" model="ir.ui.view">
+            <field name="name">wizard.report.payslip.advance.form</field>
+            <field name="model">wizard.report.payslip.advance</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field string="Từ ngày" name="date_from"/>
+                            <field string="Đến ngày" name="date_to"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Ok" name="process" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_report_payslip_advance" model="ir.actions.act_window">
+            <field name="name">Report payslip advance</field>
+            <field name="res_model">wizard.report.payslip.advance</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_wizard_report_payslip_advance"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+            id="menu_wizard_report_payslip_advance"
+            name="Report payslip advance"
+            action="action_report_payslip_advance"
+            parent="hr_payroll.menu_hr_payroll_report"
+            sequence="103"/>
+<!--            parent="hr_payroll.menu_hr_salary_configuration"-->
+
+
+    </data>
+</odoo>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Bộ lọc "Sản phẩm rác" trên màn Products (product.template) -->
+        <record id="view_product_template_filter_junk" model="ir.ui.view">
+            <field name="name">product.template.search.junk</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_search_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="inside">
+                    <separator/>
+                    <filter name="x_is_junk" string="Sản phẩm rác"
+                            domain="[('x_is_junk', '=', True)]"
+                            help="Chưa mua, chưa bán, chưa nhập/xuất kho, không phát sinh dữ liệu nào"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Bộ lọc "Sản phẩm rác" trên màn Product Variants (product.product) -->
+        <record id="view_product_product_filter_junk" model="ir.ui.view">
+            <field name="name">product.product.search.junk</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_search_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="inside">
+                    <separator/>
+                    <filter name="x_is_junk" string="Sản phẩm rác"
+                            domain="[('x_is_junk', '=', True)]"
+                            help="Biến thể chưa được dùng ở đâu"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

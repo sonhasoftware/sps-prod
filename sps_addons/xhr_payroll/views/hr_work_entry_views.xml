@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="payroll_leave_hr_work_entry_type_view_form_inherit" model="ir.ui.view">
+            <field name="name">hr.work.entry.type.form</field>
+            <field name="model">hr.work.entry.type</field>
+            <field name="inherit_id" ref="hr_work_entry_holidays.payroll_leave_hr_work_entry_type_view_form_inherit"/>
+            <field name="arch" type="xml">
+                <field name="leave_type_ids" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="hr_work_entry_view_search" model="ir.ui.view">
+            <field name="name">hr.work.entry.search</field>
+            <field name="model">hr.work.entry</field>
+            <field name="inherit_id" ref="hr_work_entry.hr_work_entry_view_search"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="employee_department_id"/>
+                    <field name="employee_project_id"/>
+                    <field name="is_timekeeping_status"/>
+                    <filter name="is_timekeeping_status" string="Chấm công muộn" domain="[('is_timekeeping_status', '=', True)]"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="hr_work_entry_view_tree" model="ir.ui.view">
+            <field name="name">hr.work.entry.tree</field>
+            <field name="model">hr.work.entry</field>
+            <field name="inherit_id" ref="hr_work_entry.hr_work_entry_view_tree"/>
+            <field name="arch" type="xml">
+                <field name="duration" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="date_start" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="name" position="before">
+                    <field name="x_date"/>
+                </field>
+                <field name="name" position="after">
+                    <field name="employee_id"/>
+                    <field name="x_manager_user_id"/>
+                    <field name="x_total_allowance"/>
+                    <field name="x_total_hours"/>
+                    <field name="x_total_hours_convert"/>
+                    <field name="x_total_fee"/>
+                    <field name="state" position="move"/>
+                    <field name="timekeeping_status"
+                           decoration-warning="timekeeping_status == 'late_timekeeping'"
+                           optional="show" widget="badge" class="text-dark"/>
+                    <field name="work_entry_type_id" position="move"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="hr_work_entry_gantt" model="ir.ui.view">
+            <field name="name">hr.work.entry.gantt</field>
+            <field name="model">hr.work.entry</field>
+            <field name="inherit_id" ref="hr_work_entry_contract.hr_work_entry_gantt"/>
+            <field name="arch" type="xml">
+                <field name="employee_id" position="after">
+                    <field name="x_employee_code"/>
+                    <field name="timekeeping_status"/>
+                </field>
+                <xpath expr="//gantt" position="attributes">
+                    <attribute name="default_group_by">x_employee_code</attribute>
+                    <attribute name="disable_drag_drop">1</attribute>
+                    <attribute name="color">color</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="payroll_hr_work_entry_view_form_inherit" model="ir.ui.view">
+            <field name="name">hr.work.entry.form</field>
+            <field name="model">hr.work.entry</field>
+            <field name="inherit_id" ref="hr_work_entry_holidays.payroll_hr_work_entry_view_form_inherit"/>
+            <field name="arch" type="xml">
+                <field name="leave_id" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="hr_work_entry_view_form" model="ir.ui.view">
+            <field name="name">hr.work.entry.form</field>
+            <field name="model">hr.work.entry</field>
+            <field name="inherit_id" ref="hr_work_entry.hr_work_entry_view_form"/>
+            <field name="arch" type="xml">
+                <field name="state" position="attributes">
+                    <attribute name="options">{'clickable': 0}</attribute>
+                </field>
+
+                <field name="state" position="before">
+                    <button name="button_submit" type="object" string="Submit" class="oe_highlight" states="draft"/>
+                    <button name="button_manager_approve" type="object" string="Manager Approve" class="oe_highlight"
+                        attrs="{'invisible': ['|', ('state', '!=', 'manager_approve'), ('x_is_manager', '=', False)]}"/>
+                    <button name="delete_submit" type="object" string="Xoá Phiếu"
+                            attrs="{'invisible': [('state', 'not in', ('manager_approve', 'draft'))]}"/>
+                    <button name="button_reject" type="object" string="Reject" attrs="{'invisible': [('x_rejectable', '=', False)]}"/>
+                    <field name="x_is_manager" invisible="1"/>
+                    <field name="x_is_hr" invisible="1"/>
+                    <field name="x_rejectable" invisible="1"/>
+                    <field name="x_shift_leave" invisible="1"/>
+                </field>
+                
+                <field name="state" position="attributes">
+                </field>
+
+                <field name="date_start" position="attributes">
+                    <attribute name="force_save">1</attribute>
+                    <attribute name="invisible">1</attribute>
+                </field>
+
+                <field name="date_stop" position="attributes">
+                    <attribute name="force_save">1</attribute>
+                    <attribute name="invisible">1</attribute>
+                </field>
+
+                <label for="duration" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </label>
+
+                <label for="duration" position="after">
+                    <field name="x_leave" readonly="1" attrs="{'invisible': [('x_leave', '=', False)]}"/>
+                    <field name="x_leave_type_id" readonly="1" attrs="{'invisible': [('x_leave', '=', False)]}"/>
+                    <field name="x_hour" readonly="1" attrs="{'invisible': [('x_leave', '=', False)]}"/>
+                    <field name="x_leave_note" readonly="1" attrs="{'invisible': [('x_leave', '=', False)]}"/>
+                </label>
+
+                <xpath expr="//field[@name='duration']/.." position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <field name="employee_id" position="after">
+                    <field name="x_date" required="1" attrs="{'readonly': ['|', ('x_leave', '=', True), ('state', '!=', 'draft')]}"/>
+                    <field name="x_shift_id" attrs="{'invisible': ['|', ('x_calendar_type', '!=', 'plan'), ('x_leave', '=', True)], 'readonly': ['|', ('x_leave', '=', True), ('state', '!=', 'draft')]}"/>
+                    <field name="x_manager_user_id" attrs="{'invisible': [('x_leave', '=', True)], 'readonly': ['|', ('x_leave', '=', True), ('state', '!=', 'draft')]}"/>
+                </field>
+
+                <field name="employee_id" position="after">
+                    <field name="x_weekend" widget="boolean_toggle"
+                           attrs="{
+                           'invisible': ['|', ('x_calendar_type', 'not in', ['dynamic', 'plan']), ('x_leave', '=', True)],
+                           'readonly': ['|', ('x_leave', '=', True), ('state', '!=', 'draft')]}"/>
+                    <field name="x_time_invalid" invisible="1"/>
+                    <field name="x_ot_allow" invisible="1"/>
+                    <field name="x_calendar_type" invisible="1"/>
+                </field>
+
+                <field name="work_entry_type_id" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                    <attribute name="force_save">1</attribute>
+                </field>
+
+                <xpath expr="//div[hasclass('oe_title')]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//sheet" position="inside">
+                    <group attrs="{'invisible': ['|', '|', ('x_calendar_type', '=', False), ('x_leave', '=', True), ('x_shift_leave', '=', True)]}">
+                        <field name="x_line_ids" attrs="{'readonly': ['|', ('x_leave', '=', True), ('state', '!=', 'draft')]}">
+                            <tree editable="bottom" decoration-warning="is_next_day == True" decoration-danger="sequence >= 1000 or time_from == time_to">
+                                <field name="sequence" invisible="1"/>
+                                <field name="is_next_day" invisible="1"/>
+                                <field name="project_id" required="0"/>
+                                <field name="time_from_raw" widget="float_time"/>
+                                <field name="time_to_raw" widget="float_time"/>
+                                <field name="time_from" widget="float_time" invisible="1"/>
+                                <field name="time_to" widget="float_time" invisible="1"/>
+                                <field name="hour"/>
+                                <field name="hour_converted" force_save="1"/>
+                                <field name="costing_hours" force_save="1" invisible="1"/>
+                            </tree>
+                            <form>
+                                <group>
+                                    <group>
+                                        <field name="project_id"/>
+                                        <field name="time_from"/>
+                                        <field name="time_to"/>
+                                    </group>
+                                    <group>
+                                        <field name="hour"/>
+                                        <field name="hour_converted"/>
+                                        <field name="ratio"/>
+                                    </group>
+                                </group>
+                            </form>
+                        </field>
+
+                        <field name="x_allowance_ids" attrs="{'readonly': ['|', ('x_leave', '=', True), ('state', '!=', 'draft')]}">
+                            <tree editable="bottom">
+                                <field name="project_id" required="0"/>
+                                <field name="allowance_id"/>
+                                <field name="hour" readonly="1"/>
+                            </tree>
+                            <form>
+                                <group>
+                                    <group>
+                                        <field name="project_id"/>
+                                        <field name="allowance_id"/>
+                                        <field name="hour"/>
+                                    </group>
+                                    <group>
+                                    </group>
+                                </group>
+                            </form>
+                        </field>
+
+                        <field name="x_biz_fee_ids" attrs="{'readonly': ['|', ('x_leave', '=', True), ('state', '!=', 'draft')]}">
+                            <tree editable="bottom">
+                                <field name="project_id" required="0"/>
+                                <field name="config_id"/>
+                                <field name="amount" readonly="1"/>
+                            </tree>
+                            <form>
+                                <group>
+                                    <group>
+                                        <field name="project_id"/>
+                                        <field name="config_id"/>
+                                        <field name="amount"/>
+                                    </group>
+                                    <group>
+                                    </group>
+                                </group>
+                            </form>
+                        </field>
+
+                        <field name="x_note" attrs="{'readonly': ['|', ('x_leave', '=', True), ('state', '!=', 'draft')]}"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <menuitem
+            id="xhr_menu_work_entry"
+            name="Work Entries"
+            action="hr_work_entry.hr_work_entry_action"
+            parent="menu_xhr_work_entry_root"
+            sequence="10"/>
+    </data>
+
+    <!-- Work entry allowance config -->
+    <data>
+        <record id="view_hr_work_entry_allowance_config_tree" model="ir.ui.view">
+            <field name="name">hr.work.entry.allowance.config.tree</field>
+            <field name="model">hr.work.entry.allowance.config</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="hour"/>
+                    <field name="active" widget="boolean_toggle"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_hr_work_entry_allowance_config_form" model="ir.ui.view">
+            <field name="name">hr.work.entry.allowance.config.form</field>
+            <field name="model">hr.work.entry.allowance.config</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                      <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="hour"/>
+                        </group>
+                        <group>
+                            <field name="active" widget="boolean_toggle"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                      </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_hr_work_entry_allowance_config" model="ir.actions.act_window">
+            <field name="name">Work entry allowance config</field>
+            <field name="res_model">hr.work.entry.allowance.config</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            id="menu_hr_work_entry_allowance_config"
+            name="Work Entry Allowance"
+            action="action_hr_work_entry_allowance_config"
+            parent="hr_work_entry_contract.menu_hr_work_entry_confirguration"
+            sequence="10"/>
+
+    </data>
+
+    <!-- Work entry biz fee -->
+    <data>
+        <record id="view_hr_work_entry_biz_config_tree" model="ir.ui.view">
+            <field name="name">hr.work.entry.biz.config.tree</field>
+            <field name="model">hr.work.entry.biz.config</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="amount"/>
+                    <field name="active" widget="boolean_toggle"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_hr_work_entry_biz_config_form" model="ir.ui.view">
+            <field name="name">hr.work.entry.biz.config.form</field>
+            <field name="model">hr.work.entry.biz.config</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                      <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="amount"/>
+                        </group>
+                        <group>
+                            <field name="active" widget="boolean_toggle"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                      </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_hr_work_entry_biz_config" model="ir.actions.act_window">
+            <field name="name">Work entry bussiness fee</field>
+            <field name="res_model">hr.work.entry.biz.config</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            id="menu_hr_work_entry_biz_config"
+            name="Work Entry Bussiness Fee"
+            action="action_hr_work_entry_biz_config"
+            parent="hr_payroll.menu_hr_salary_configuration"
+            sequence="200"/>
+
+    </data>
+
+</odoo>

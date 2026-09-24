@@ -1,0 +1,40 @@
+<odoo>
+    <record id="report_hr_training_monthly_line" model="ir.ui.view">
+        <field name="name">report.hr.training.monthly.line</field>
+        <field name="model">report.training.monthly.line</field>
+        <field name="arch" type="xml">
+            <tree create="false" delete="false" edit="false" sample="1">
+                <field name="name"/>
+                <field name="m1"/>
+                <field name="m2"/>
+                <field name="m3"/>
+                <field name="m4"/>
+                <field name="m5"/>
+                <field name="m6"/>
+                <field name="m7"/>
+                <field name="m8"/>
+                <field name="m9"/>
+                <field name="m10"/>
+                <field name="m11"/>
+                <field name="m12"/>
+                <field name="total"/>
+                <field name="ratio"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_report_hr_training_monthly_line" model="ir.actions.act_window">
+        <field name="name">Monthly</field>
+        <field name="res_model">report.training.monthly.line</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="report_hr_training_monthly_line"/>
+        <field name="context">{'group_by': 'group_type'}</field>
+    </record>
+
+    <menuitem
+            id="menu_report_hr_training_monthly"
+            name="Monthly"
+            action="action_training_monthly_report_wizard"
+            parent="menu_report_training_root"
+            sequence="6"/>
+</odoo>

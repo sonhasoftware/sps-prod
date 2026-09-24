@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_employee_form" model="ir.ui.view">
+            <field name="name">hr.employee.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="xhr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <field name="x_employee_type" position="after">
+                    <field name="x_resource_type"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_hr_job_form" model="ir.ui.view">
+            <field name="name">hr.job.form</field>
+            <field name="model">hr.job</field>
+            <field name="inherit_id" ref="xhr.view_hr_job_form"/>
+            <field name="arch" type="xml">
+                <field name="x_work_location" position="after">
+                    <field name="x_labor_efficiency"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+        <record model="ir.ui.view" id="purchase_order_view_tree">
+            <field name="name">Đơn mua hàng</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_kpis_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <xpath expr="//field[@name='partner_ref']" position="move"/>
+                    <field name="date_order" widget="date" position="move"/>
+                </xpath>
+                <xpath expr="//field[@name='date_approve']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='activity_ids']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='activity_ids']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='origin']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='amount_untaxed']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='amount_total']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='currency_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='state']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='invoice_status']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='date_order']" position="attributes">
+                    <attribute name="widget"></attribute>
+                    <attribute name="invisible"></attribute>
+                    <attribute name="attrs">{}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='state']" position="after">
+                    <field name="x_advanced_count" string="Số phiếu tạm ứng"/>
+                    <field name="invoice_count" string="Số phiếu công nợ"/>
+                </xpath>
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="payment_term_id"/>
+                    <field name="amount_total" sum="Total amount" widget="monetary" decoration-bf="1"/>
+                    <field name="x_license"/>
+                </xpath>
+
+            </field>
+        </record>
+        <record model="ir.ui.view" id="purchase_order_view_form">
+            <field name="name">Đơn mua hàng</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_planned']" position="attributes">
+                    <attribute name="default">0</attribute>
+                </xpath>
+                <xpath expr="//field[@name='date_planned']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+                <xpath expr="//sheet" position="before">
+                    <link rel="stylesheet" href="/xpurchase/static/src/custom.css"/>
+                </xpath>
+                <xpath expr="//form[@class='o_purchase_order']" position="attributes">
+                    <attribute name="class">custom_sheet</attribute>
+                    <attribute name="groups">purchase.group_purchase_manager</attribute>
+                </xpath>
+                <xpath expr="//header" position="replace">
+                    <header>
+                        <button name="action_confirm" type="object" states="draft" string="Xác nhận"
+                                class="oe_highlight"
+                                id="draft_confirm"/>
+                        <button name="button_draft" type="object" string="Chuyển về nháp"
+                                id="to_draft" attrs="{'invisible': [('x_state','in',('draft'))]}"/>
+                        <button name="action_create_picking" states="purchase" string="Tạo PNK" type="object"
+                                class="oe_highlight"
+                                attrs="{'invisible': ['|','|',('x_invisible_button','in',('type_1','type_2')),('x_state','not in',('out_date','doing'))]}"/>
+                        <button name="action_delay"
+                                attrs="{'invisible': [('x_state','not in',('doing','out_date'))]}"
+                                string="Tạm hoãn"
+                                type="object"
+                                context="{'turn_view_readonly': True}"/>
+                        <button name="action_continute" attrs="{'invisible': [('x_state','not in',('delay'))]}"
+                                string="Tiếp tục" type="object"/>
+                        <button name="action_create_invoice" string="Ghi nhận công nợ" type="object" class="oe_highlight"
+                                context="{'create_bill':True}"
+                                attrs="{'invisible': ['|', ('state', 'not in', ('purchase', 'done')), ('invoice_status', 'in', ('no', 'invoiced'))]}"/>
+                        <button name="action_advanced" string="Tạm ứng" type="object"
+                                attrs="{'invisible': [('x_state', 'in',['draft','cancel'])]}"/>
+                        <button name="action_create_invoice" string="Ghi nhận công nợ" type="object" context="{'create_bill':True}" attrs="{'invisible': ['|', ('state', 'not in', ('purchase', 'done')), ('invoice_status', 'not in', ('no', 'invoiced'))]}"/>
+                        <button name="button_cancel" attrs="{'invisible': [('x_state','not in',('draft','doing','out_date'))]}"
+                                string="Hủy" type="object"/>
+                        <button name="button_draft_skip_check" type="object" string="Draft Skip Check" invisible="1"/>
+                        <field name="x_state" widget="statusbar" statusbar_visible="draft,doing,out_date,delay,done"
+                               readonly="1"/> <!---options="{'clickable': '1'}"-->
+                        <field name="state" widget="statusbar" invisible="1" readonly="1"/>
+                    </header>
+                </xpath>
+                <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                    <button type="object" name="action_view_advance" class="oe_stat_button" icon="fa-file-text" attrs="{'invisible':[('x_advanced_count','=',0)]}">
+                        <field name="x_advanced_count" widget="statinfo" string="Tạm ứng" help="Phiếu tạm ứng cho đơn mua này"/>
+                    </button>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                     <attribute name="context">{'search_default_supplier': 1,'res_partner_search_mode': 'supplier', 'show_vat': True}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="x_partner_contact" domain="[('parent_id', '=','partner_id')]"/>
+                    <field name="x_partner_bank" domain="[('partner_id', '=','partner_id')]"/>
+                </xpath>
+                <xpath expr="//field[@name='requisition_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='invoice_status']" position="attributes">
+                    <attribute name="force_save">1</attribute>
+                </xpath>
+                <xpath expr="//div[@class='oe_title']" position="replace">
+                    <div class="oe_title">
+                        <span class="o_form_label">Số đơn hàng</span>
+                        <h2>
+                            <field name="priority" widget="priority" class="mr-3"/>
+                            <field name="name" readonly="1"/>
+                        </h2>
+                    </div>
+                </xpath>
+                <xpath expr="//div[@name='date_approve']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//page[@name='purchase_delivery_invoice']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//label[@for='date_approve']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='partner_ref']" position="after">
+                    <field name="x_license" groups="purchase.group_purchase_manager"/>
+                    <field name="x_invisible_button" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='date_order']" position="replace">
+                    <field name="date_order"/>
+                </xpath>
+                <xpath expr="//div[@name='reminder']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='effective_date']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']" position="attributes">
+                    <attribute name="attrs">{'readonly':['|',('x_state', 'in', ('done', 'to_late','delay')),('state', 'in', ('done', 'cancel'))]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='partner_ref']" position="attributes">
+                     <attribute name="attrs">{'readonly':['|',('x_state', 'in', ('done', 'to_late','delay')),('state', 'in', ('done', 'cancel'))]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='payment_term_id']" position="attributes">
+                   <attribute name="attrs">{'readonly':['|',('x_state', 'in', ('done', 'to_late','delay')),('state', 'in', ('done', 'cancel'))]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='date_planned']" position="replace">
+                   <field name ="date_planned" attrs="{'readonly':['|',('x_state', 'in',('done','to_late','delay')),('state', 'not in', ('draft', 'sent', 'to approve', 'purchase'))]}"/>
+                </xpath>
+                <xpath expr="//field[@name='origin']" position="before">
+                    <field name="user_id"/>
+                    <xpath expr="//group[@name='invoice_info']/field[@name='payment_term_id']" position="move"/>
+
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom']" position="replace">
+                    <field name="product_uom" readonly="1" force_save="1"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="attributes">
+                    <attribute name="string">Đơn giá thực tế</attribute>
+                    <attribute name="widget">monetary</attribute>
+                    <attribute name="options">{'currency_field': 'currency_id'}</attribute>
+                    <attribute name="force_save">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_qty']" position="attributes">
+                    <attribute name="string">SL đặt hàng</attribute>
+                    <attribute name="force_save">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='account_analytic_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='analytic_tag_ids']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='date_planned']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='qty_received']" position="attributes">
+<!--                    <field name="qty_received" string="SL đã nhận" force_save="1" attrs="{'readonly':[('product_id.x_type', 'not in',('service'))]}"/>-->
+                        <attribute name="string">SL đã nhận</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='qty_invoiced']" position="replace">
+                    <field name="qty_invoiced" string="SL đã lên HĐ" readonly="1" force_save="1"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="replace">
+                    <field name="product_id" force_save="1"/>
+                    <field name="x_cost_type_id" options="{'no_create': True}" optional="show" force_save="1"/>
+                    <field name="x_default_code" optional="show" force_save="1" attrs="{'readonly': [('x_requisition_id', '!=', False)]}"/>
+                    <field name="x_brand" optional="show"/>
+                    <field name="x_origin" optional="show"/>
+                    <field name="x_note" optional="show"/>
+                    <xpath expr="//field[@name='product_uom']" position="move"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom']" position="after">
+                    <field name="x_qty_requisition" readonly="1" force_save="1"/>
+                    <field name="x_requisition_id" force_save="1"/>
+                    <field name="x_users_id" attrs="{'readonly': [('x_requisition_id', '!=', False)]}" optional="show" force_save="1"/>
+                    <field name="x_purpose" attrs="{'readonly': [('x_requisition_id', '!=', False)]}" optional="show" force_save="1"/>
+                    <field name="x_project_id" attrs="{'readonly': [('x_requisition_id', '!=', False)]}" optional="show" force_save="1"/>
+                    <field name="x_project_name" attrs="{'readonly': [('x_requisition_id', '!=', False)]}" optional="show" force_save="1"/>
+                    <field name="x_date_order" attrs="{'readonly': [('x_requisition_id', '!=', False)]}" optional="show" force_save="1"/>
+                    <field name="x_schedule_date" optional="show"/>
+                    <field name="x_source" attrs="{'readonly': [('x_requisition_id', '!=', False)]}" optional="show" force_save="1"/>
+                    <field name="x_budget_price" widget="monetary" options="{'currency_field': 'currency_id'}"
+                           attrs="{'readonly': [('x_requisition_id', '!=', False)]}" force_save="1"/>
+                    <xpath expr="//field[@name='product_qty']" position="move"/>
+                    <xpath expr="//field[@name='qty_received']" position="move"/>
+                    <xpath expr="//field[@name='qty_invoiced']" position="move"/>
+                    <field name="x_pa_lines" invisible="1"/>
+
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="after">
+                    <field name="x_payment_subtotal" force_save="1" readonly="1" widget="monetary"
+                           options="{'currency_field': 'currency_id'}"/>
+                    <field name="x_payment_ratio" force_save="1" readonly="1"/>
+                </xpath>
+
+                <xpath expr="//div[@class='oe_chatter']" position="replace">
+                    <sheet>
+                        <div class="oe_chatter">
+                            <field name="message_follower_ids"/>
+                            <field name="activity_ids"/>
+                            <field name="message_ids"/>
+                        </div>
+                    </sheet>
+                </xpath>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="purchase_order_view_form_tree">
+            <field name="name">Đơn mua hàng</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_kpis_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='state']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='state']" position="after">
+                    <field name="x_state" string="Trạng thái" optional="show" widget="badge"
+                           decoration-info="x_state == 'doing'"
+                           decoration-primary="x_state == 'wait_license'"
+                           decoration-warning="x_state == 'to_late'or x_state == 'delay'"
+                           decoration-danger="x_state == 'out_date'"
+                           decoration-success="x_state == 'done'"
+                    />
+                </xpath>
+            </field>
+        </record>
+        <record id="purchase.menu_purchase_form_action" model="ir.ui.menu">
+            <field name="active" eval="False"/>
+        </record>
+
+        <record id="purchase_order_search_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.list.select.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='draft']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//filter[@name='approved']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//filter[@name='to_approve']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//filter[@name='draft_rfqs']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//filter[@name='waiting_rfqs']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//filter[@name='late_rfqs']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//filter[@name='activities_exception']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//filter[@name='requisition']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

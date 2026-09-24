@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="account_advance_sequence_advance" model="ir.sequence">
+            <field name="name">Advance </field>
+            <field name="code">account_advance</field>
+            <field name="prefix">TUNB/%(y)s/</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="False" name="use_date_range"/>
+            <field eval="False" name="company_id"/>
+            <field name="padding">5</field>
+        </record>
+
+        <record id="account_advance_sequence_supplies" model="ir.sequence">
+            <field name="name">Advance Supplies</field>
+            <field name="code">account_advance_supplies</field>
+            <field name="prefix">TUNCC/%(y)s/</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="False" name="use_date_range"/>
+            <field eval="False" name="company_id"/>
+            <field name="padding">5</field>
+        </record>
+        <record id="account_advance_repay_sequence" model="ir.sequence">
+            <field name="name">Advance Repay</field>
+            <field name="code">account_advance_repay</field>
+            <field name="prefix">HUNB/%(y)s/</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="False" name="use_date_range"/>
+            <field eval="False" name="company_id"/>
+            <field name="padding">5</field>
+        </record>
+    </data>
+</odoo>

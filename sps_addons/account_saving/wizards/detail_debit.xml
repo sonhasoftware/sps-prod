@@ -1,0 +1,37 @@
+<odoo>
+    <data>
+        <record id="wizard_detail_debit_popup" model="ir.ui.view">
+            <field name="name">Báo cáo chi tiết công nợ khách hàng / nhà cung cấp</field>
+            <field name="model">detail.debit.popup</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Báo cáo chi tiết công nợ khách hàng / nhà cung cấp">
+                    <group>
+                        <field name="partner_id" string = "Tên khách hàng/NCC"/>
+                    </group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <footer>
+                        <button string="Xác nhận" name="action_detail_debit_popup" type="object" class="btn-primary"/>
+                        <button string="Huỷ" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_detail_debit_popup" model="ir.actions.act_window">
+            <field name="name">Báo cáo chi tiết công nợ khách hàng / nhà cung cấp</field>
+            <field name="res_model">detail.debit.popup</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="domain">[]</field>
+        </record>
+        <menuitem action="action_detail_debit_popup"
+                  name="Báo cáo chi tiết công nợ khách hàng / nhà cung cấp"
+                  parent="account.menu_finance_reports"
+                  id="menu_detail_debit_popup"
+                  sequence="26"/>
+    </data>
+</odoo>

@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_deposit_stracking,account_deposit_stracking,model_account_deposit_tracking,base.group_user,1,1,1,1
+access_account_payment_line,account_payment_line,model_payment_line,base.group_user,1,1,1,1
+access_project_detail,project_detail,model_project_detail,base.group_user,1,1,1,1
+access_project_repay_detail,project_repay_detail,model_project_repay_detail,base.group_user,1,1,1,1
+access_sale_payment_deposit,sale_payment_deposit,model_sale_payment_deposit,base.group_user,1,1,1,1
+access_tndn_tax_rate_user,tndn_tax_rate_user,model_tndn_tax_rate,base.group_user,1,0,0,0
+access_tndn_tax_rate_manager,tndn_tax_rate_manager,model_tndn_tax_rate,account.group_account_manager,1,1,1,1
+

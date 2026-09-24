@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="purchase_picking_status_tree" model="ir.ui.view">
+            <field name="name">purchase_picking_status_tree_view</field>
+            <field name="model">purchase.picking.status</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false" class="hide_o_list_record_selector">
+                    <field name="classification"/>
+                    <field name="t1"/>
+                    <field name="t2"/>
+                    <field name="t3"/>
+                    <field name="t4"/>
+                    <field name="t5"/>
+                    <field name="t6"/>
+                    <field name="t7"/>
+                    <field name="t8"/>
+                    <field name="t9"/>
+                    <field name="t10"/>
+                    <field name="t11"/>
+                    <field name="t12"/>
+                    <field name="total"/>
+                    <field name="rate"/>
+                    <field name="master_key" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_purchase_picking_status_view" model="ir.actions.act_window">
+            <field name="name">Báo cáo tình trạng giao hàng</field>
+            <field name="res_model">purchase.picking.status</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,62 @@
+<odoo>
+    <data>
+        <record id="wizard_manpower_efficiency_report" model="ir.ui.view">
+            <field name="name">Báo cáo hiệu quả nhân lực</field>
+            <field name="model">manpower.efficiency</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Báo cáo hiệu quả nhân lực">
+                    <group>
+                        <field name="year"/>
+                        <field name="x_block_department" widget="selection"/>
+                    </group>
+                    <footer>
+                        <button string=" Xuất báo cáo" name="print_reports" type="object" class="btn-primary"/>
+                        <button string="Huỷ" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_manpower_efficiency_report" model="ir.actions.act_window">
+            <field name="name">Báo cáo hiệu quả nhân lực</field>
+            <field name="res_model">manpower.efficiency</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="domain">[]</field>
+        </record>
+        <menuitem action="action_manpower_efficiency_report"
+                  name="Báo cáo hiệu quả nhân lực"
+                  parent="project.menu_project_report"
+                  id="menu_manpower_efficiency_report"
+                  groups="project.group_project_manager,xproject.group_project_accountant"
+                  sequence="14"/>
+
+        <!-- Cho nhóm "Kế toán dự án" thấy nhánh Reporting để xuất riêng báo cáo
+             hiệu quả nhân lực. Mở menu cha cho accountant, KHOÁ các báo cáo anh em
+             về manager (giữ hiện trạng). Dùng <record> để chỉ đổi groups_id +
+             giữ/khôi phục parent_id — KHÔNG dùng <menuitem> thiếu parent vì nó
+             sẽ reset parent_id về root (menu nhảy ra màn hình chính). -->
+        <record id="project.menu_project_report" model="ir.ui.menu">
+            <field name="parent_id" ref="project.menu_main_pm"/>
+            <field name="groups_id" eval="[(6, 0, [ref('project.group_project_manager'), ref('xproject.group_project_accountant')])]"/>
+        </record>
+        <record id="project.menu_project_report_task_analysis" model="ir.ui.menu">
+            <field name="parent_id" ref="project.menu_project_report"/>
+            <field name="groups_id" eval="[(6, 0, [ref('project.group_project_manager')])]"/>
+        </record>
+        <record id="menu_wizard_project_customer_satisfaction" model="ir.ui.menu">
+            <field name="parent_id" ref="project.menu_project_report"/>
+            <field name="groups_id" eval="[(6, 0, [ref('project.group_project_manager')])]"/>
+        </record>
+        <record id="menu_manpower_weekly_report" model="ir.ui.menu">
+            <field name="parent_id" ref="project.menu_project_report"/>
+            <field name="groups_id" eval="[(6, 0, [ref('project.group_project_manager')])]"/>
+        </record>
+        <record id="menu_manpower_yearly_report" model="ir.ui.menu">
+            <field name="parent_id" ref="project.menu_project_report"/>
+            <field name="groups_id" eval="[(6, 0, [ref('project.group_project_manager')])]"/>
+        </record>
+
+    </data>
+</odoo>

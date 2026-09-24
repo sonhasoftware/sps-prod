@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="wizard_stock_report_tools" model="ir.ui.view">
+            <field name="name">Báo cáo tồn kho công cụ dụng cụ</field>
+            <field name="model">stock.report.tools</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Báo cáo tồn kho công cụ dụng cụ">
+                    <group>
+                        <field name="year"/>
+                        <field name="stock" widget="selection" string="Kho"/>
+                    </group>
+                    <footer>
+                        <button string=" Xuất báo cáo" name="action_report_stock_tools" type="object" class="btn-primary"/>
+                        <button string="Huỷ" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_stock_report_tools" model="ir.actions.act_window">
+            <field name="name">Báo cáo tồn kho công cụ dụng cụ</field>
+            <field name="res_model">stock.report.tools</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="domain">[]</field>
+        </record>
+        <menuitem action="action_stock_report_tools"
+                  name="Báo cáo tồn kho công cụ dụng cụ"
+                  parent="stock.menu_warehouse_report"
+                  id="menu_stock_report_tools"
+                  sequence="21"/>
+    </data>
+</odoo>

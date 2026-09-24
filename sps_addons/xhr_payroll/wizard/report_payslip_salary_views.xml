@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_wizard_report_payslip_salary" model="ir.ui.view">
+            <field name="name">wizard.report.payslip.salary.form</field>
+            <field name="model">wizard.report.payslip.salary</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <label for="month" string= "Từ" class="oe_edit_only"/>
+                                <div class="o_row">
+                                    <field name="month" required="1"/>
+                                    <span style="margin: 0 5px;">-</span>
+                                    <field name="year" required="1"/>
+                                </div>
+                                <label for="month_to" string= "Đến" class="oe_edit_only" />
+                                    <div class="o_row">
+                                        <field name="month_to" required="1"/>
+                                        <span style="margin: 0 5px;">-</span>
+                                        <field name="year_to" required="1"/>
+                                    </div>
+                                <field name="show_draft_payslip"/>
+                            </group>
+                            <group></group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Ok" name="process" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_report_payslip_salary" model="ir.actions.act_window">
+            <field name="name">Report payslip salary</field>
+            <field name="res_model">wizard.report.payslip.salary</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_wizard_report_payslip_salary"/>
+            <field name="target">new</field>
+            <field name="context">{'view': 'view_wizard_report_payslip_salary'}</field>
+        </record>
+
+
+        <menuitem
+            id="menu_wizard_report_payslip_salary"
+            name="Report payslip salary"
+            action="action_report_payslip_salary"
+            parent="hr_payroll.menu_hr_payroll_report"
+            sequence="55"/>
+<!--            parent="hr_payroll.menu_hr_salary_configuration"-->
+
+        <record id="view_wizard_report_payslip_salary_new" model="ir.ui.view">
+            <field name="name">wizard.report.payslip.salary.form.new</field>
+            <field name="model">wizard.report.payslip.salary</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="month" required="1"/>
+                                <field name="year" widget="char" required="1"/>
+                                <field name="show_draft_payslip"/>
+                            </group>
+                            <group></group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Ok" name="process_new" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_report_payslip_salary_new" model="ir.actions.act_window">
+            <field name="name">Bảng chi phí nhân công</field>
+            <field name="res_model">wizard.report.payslip.salary</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_wizard_report_payslip_salary_new"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+            id="menu_wizard_report_payslip_salary_new"
+            name="Bảng chi phí nhân công"
+            action="action_report_payslip_salary_new"
+            parent="hr_payroll.menu_hr_payroll_report"
+            sequence="57"/>
+
+        <!-- Báo cáo KPI -->
+        <record id="view_wizard_report_payslip_kpi" model="ir.ui.view">
+            <field name="name">wizard.report.payslip.salary.form.kpi</field>
+            <field name="model">wizard.report.payslip.salary</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="month" required="1"/>
+                                <field name="year" widget="char" required="1"/>
+                                <field name="show_draft_payslip"/>
+                            </group>
+                            <group></group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Xuất Excel" name="process_kpi" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_report_payslip_kpi" model="ir.actions.act_window">
+            <field name="name">Báo cáo KPI</field>
+            <field name="res_model">wizard.report.payslip.salary</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_wizard_report_payslip_kpi"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+            id="menu_wizard_report_payslip_kpi"
+            name="Báo cáo KPI"
+            action="action_report_payslip_kpi"
+            parent="hr_payroll.menu_hr_payroll_report"
+            sequence="59"/>
+
+        <!-- Báo cáo hỗ trợ ăn trưa -->
+        <record id="view_wizard_report_payslip_meal" model="ir.ui.view">
+            <field name="name">wizard.report.payslip.salary.form.meal</field>
+            <field name="model">wizard.report.payslip.salary</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="month" required="1"/>
+                                <field name="year" widget="char" required="1"/>
+                                <field name="show_draft_payslip"/>
+                            </group>
+                            <group></group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Xuất Excel" name="process_meal" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_report_payslip_meal" model="ir.actions.act_window">
+            <field name="name">Báo cáo hỗ trợ ăn trưa</field>
+            <field name="res_model">wizard.report.payslip.salary</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_wizard_report_payslip_meal"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+            id="menu_wizard_report_payslip_meal"
+            name="Báo cáo hỗ trợ ăn trưa"
+            action="action_report_payslip_meal"
+            parent="hr_payroll.menu_hr_payroll_report"
+            sequence="60"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_employee_effective_wizards" model="ir.ui.view">
+            <field name="name">Báo cáo hiệu quả nhân viên</field>
+            <field name="model">employee.effective.wizards</field>
+            <field name="arch" type="xml">
+                <form string="Báo cáo hiệu quả nhân viên">
+                    <group>
+                        <field name="year"/>
+                        <field name="employee_id" widget="many2many_tags" options="{'no_create': True}"/>
+                    </group>
+                    <footer>
+                        <button name="action_report" string="Xem báo cáo" type="object" class="btn-primary"/>
+                        <button string="Đóng" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_employee_effective_wizards" model="ir.actions.act_window">
+            <field name="name">Báo cáo hiệu quả nhân viên</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">employee.effective.wizards</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="effective_employee"
+                  name="Hiệu quả nhân viên"
+                  action="action_employee_effective_wizards"
+                  parent="effective_management.effective_menu_root"
+                  groups="effective_management.group_effective_employee"
+                  sequence="5"
+        />
+    </data>
+</odoo>

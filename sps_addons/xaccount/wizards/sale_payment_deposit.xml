@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_sale_payment_deposit" model="ir.ui.view">
+            <field name="name">Tạm ứng/Đặt cọc</field>
+            <field name="model">sale.payment.deposit</field>
+            <field name="arch" type="xml">
+                <form string="Tạm ứng/Đặt cọc">
+                    <p class="oe_grey">
+                        Một phiếu thanh toán nháp sẽ được tạo ra, bạn có thể xem trước khi xác nhận.
+                    </p>
+                    <group>
+                        <group>
+                            <field name="advance_payment_method" widget="radio" options="{'horizontal': true}"/>
+                            <field name="deposit_time"/>
+                            <label for="fixed_amount"
+                                   attrs="{'invisible': [('advance_payment_method', 'not in', ('fixed'))]}"/>
+                            <div id="fixed_method_details">
+                                <field name="currency_id" invisible="1"/>
+                                <field name="fixed_amount"
+                                       attrs="{'required': [('advance_payment_method', '=', 'fixed')], 'invisible': [('advance_payment_method', '!=','fixed')]}"
+                                       class="oe_inline"/>
+                            </div>
+                            <label for="percentage"
+                                   attrs="{'invisible': [('advance_payment_method', 'not in', ('percentage'))]}"/>
+                            <div id="percentage_method_details">
+                                <field name="percentage"
+                                       attrs="{'required': [('advance_payment_method', '=', 'percentage')], 'invisible': [('advance_payment_method', '!=', 'percentage')]}"
+                                       class="oe_inline"/>
+                                <span
+                                        attrs="{'invisible': [('advance_payment_method', '!=', 'percentage')]}"
+                                        class="oe_inline">%
+                                </span>
+                            </div>
+                            <field name="percentage_amount"
+                                   attrs="{'invisible': [('advance_payment_method', '!=', 'percentage')]}" class="oe_inline"/>
+                        </group>
+                        <group>
+                            <field name="so_id"/>
+                            <field name="journal_id" options="{'no_create': True}"/>
+                            <field name="date"/>
+                            <field name="note"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="create_payment" id="create_invoice_open" string="Tạo và xem TT" type="object"
+                                context="{'open_payment': True}" class="btn-primary"/>
+                        <button name="create_payment" id="create_invoice" string="Tạo thanh toán" type="object"/>
+                        <button string="Đóng" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_view_sale_payment_deposit" model="ir.actions.act_window">
+            <field name="name">Tạm ứng/Đặt cọc</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.payment.deposit</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <!-- TODO: check if we need this -->
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <field name="binding_view_types">list</field>
+        </record>
+    </data>
+</odoo>

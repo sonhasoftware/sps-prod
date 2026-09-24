@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="employee_tools_value_report_tree" model="ir.ui.view">
+            <field name="name">employee_tools_value_report_tree</field>
+            <field name="model">employee.tools.value.report</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <tree string="Báo cáo giá trị công cụ dụng cụ nhân viên đang quản lý" create="false" edit="false" delete="false"
+                      class="hide_o_list_record_selector">
+                    <field name="index"/>
+                    <field name="login"/>
+                    <field name="name"/>
+                    <field name="amount_bf" sum="Tổng cộng"/>
+                    <field name="t1" sum="Tổng cộng"/>
+                    <field name="t2" sum="Tổng cộng"/>
+                    <field name="t3" sum="Tổng cộng"/>
+                    <field name="t4" sum="Tổng cộng"/>
+                    <field name="t5" sum="Tổng cộng"/>
+                    <field name="t6" sum="Tổng cộng"/>
+                    <field name="t7" sum="Tổng cộng"/>
+                    <field name="t8" sum="Tổng cộng"/>
+                    <field name="t9" sum="Tổng cộng"/>
+                    <field name="t10" sum="Tổng cộng"/>
+                    <field name="t11" sum="Tổng cộng"/>
+                    <field name="t12" sum="Tổng cộng"/>
+                    <field name="this_year" sum="Tổng cộng"/>
+                    <field name="total" sum="Tổng cộng"/>
+                    <field name="remark"/>
+                    <field name="master_key" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_employee_tools_value_report_view" model="ir.actions.act_window">
+            <field name="name">Báo cáo giá trị công cụ dụng cụ nhân viên đang quản lý</field>
+            <field name="res_model">employee.tools.value.report</field>
+            <field name="view_mode">tree</field>
+            <field name="context">{'view': 'employee_damage_value_report_tree'}</field>
+        </record>
+
+    </data>
+</odoo>

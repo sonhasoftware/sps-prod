@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--phân loại nhà cung cấp-->
+        <record id="action_category_list_tree" model="ir.ui.view">
+            <field name="name">Phân loại NCC</field>
+            <field name="model">category.supplier</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_category_list" model="ir.actions.act_window">
+            <field name="name">Phân loại NCC</field>
+            <field name="res_model">category.supplier</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+                id="CA_menu_list"
+                name="Phân loại NCC"
+                action="action_category_list"
+                parent="purchase.menu_purchase_config"
+                sequence="15"/>
+
+        <!--Nhóm mặt hàng-->
+        <record id="action_product_group_tree" model="ir.ui.view">
+            <field name="name">Nhóm mặt hàng</field>
+            <field name="model">product.group</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_product_group" model="ir.actions.act_window">
+            <field name="name">Nhóm mặt hàng</field>
+            <field name="res_model">product.group</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+                id="CA1_menu_list"
+                name="Nhóm mặt hàng"
+                action="action_product_group"
+                parent="purchase.menu_purchase_config"
+                sequence="9"/>
+
+        <!--Tần suất mua-->
+        <record id="action_buying_frequency_tree" model="ir.ui.view">
+            <field name="name">Tần suất mua</field>
+            <field name="model">buying.frequency</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_buying_frequency" model="ir.actions.act_window">
+            <field name="name">Tần suất mua</field>
+            <field name="res_model">buying.frequency</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+                id="CA2_menu_list"
+                name="Tần suất mua"
+                action="action_buying_frequency"
+                parent="purchase.menu_purchase_config"
+                sequence="10"/>
+
+        <!--Hình thức mua-->
+        <record id="action_purchase_form_tree" model="ir.ui.view">
+            <field name="name">Hình thức mua</field>
+            <field name="model">purchase.form</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_purchase_form" model="ir.actions.act_window">
+            <field name="name">Hình thức mua</field>
+            <field name="res_model">purchase.form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+                id="CA3_menu_list"
+                name="Hình thức mua"
+                action="action_purchase_form"
+                parent="purchase.menu_purchase_config"
+                sequence="11"/>
+        <!--Hình thức giao hàng-->
+        <record id="action_delivery_form_tree" model="ir.ui.view">
+            <field name="name">Hình thức giao hàng</field>
+            <field name="model">delivery.form</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_delivery_form" model="ir.actions.act_window">
+            <field name="name">Hình thức giao hàng</field>
+            <field name="res_model">delivery.form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+                id="CA4_menu_list"
+                name="Hình thức giao hàng"
+                action="action_delivery_form"
+                parent="purchase.menu_purchase_config"
+                sequence="12"/>
+    </data>
+
+</odoo>

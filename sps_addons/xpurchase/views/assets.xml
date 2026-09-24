@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="assets_backends" name="purchase assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/xpurchase/static/js/list_editable_renderer.js" />
+                <link rel="stylesheet" type="text/css"  href="/xpurchase/static/src/custom.css"/>
+            </xpath>
+        </template>
+    </data>
+</odoo>

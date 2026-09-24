@@ -1,0 +1,30 @@
+<odoo>
+    <data>
+        <record id="action_print_job_description" model="ir.actions.server">
+            <field name="name">In đơn bán hàng(Excel)</field>
+            <field name="model_id" ref="xpurchase.model_purchase_order"/>
+            <field name="binding_model_id" ref="xpurchase.model_purchase_order"/>
+            <field name="x_print_menu" eval="True"/>
+            <field name="state">code</field>
+            <field name="code">
+                if records:
+                attachment_id = records.get_job_description()
+                action = {
+                'type': 'ir.actions.act_url',
+                'url': '/web/content/' + str(attachment_id.id) + '?download=true',
+                'url': "web/content/?model=ir.attachment&amp;id=" + str(attachment_id.id) + "&amp;filename_field=name&amp;field=datas&amp;download=true&amp;name="
+                + attachment_id.name,
+                'target': 'new',
+                }
+            </field>
+        </record>
+
+        <record id="purchase.report_purchase_quotation" model="ir.actions.report">
+            <field name="binding_model_id" eval="False" />
+        </record>
+
+        <record id="purchase.action_report_purchase_order" model="ir.actions.report">
+            <field name="binding_model_id" eval="False" />
+        </record>
+    </data>
+</odoo>

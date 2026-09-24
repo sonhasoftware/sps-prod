@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="account.account_reports_legal_statements_menu" model="ir.ui.menu">
+              <field name="active" eval="False"/>
+        </record>
+        <record id="account_reports.account_reports_partners_reports_menu" model="ir.ui.menu">
+              <field name="active" eval="True"/>
+        </record>
+        <record id="account_reports.account_reports_audit_reports_menu" model="ir.ui.menu">
+              <field name="active" eval="False"/>
+        </record>
+        <record id="account.account_reports_management_menu" model="ir.ui.menu">
+              <field name="active" eval="False"/>
+        </record>
+    </data>
+</odoo>

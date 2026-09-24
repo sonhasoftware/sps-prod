@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_wizard_report_payslip_gasoline" model="ir.ui.view">
+            <field name="name">wizard.report.payslip.gasoline.form</field>
+            <field name="model">wizard.report.payslip.gasoline</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="month"/>
+                            <field name="year"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Ok" name="process" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_report_payslip_gasoline" model="ir.actions.act_window">
+            <field name="name">Report payslip gasoline</field>
+            <field name="res_model">wizard.report.payslip.gasoline</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_wizard_report_payslip_gasoline"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+            id="menu_wizard_report_payslip_gasoline"
+            name="Report payslip gasoline"
+            action="action_report_payslip_gasoline"
+            parent="hr_payroll.menu_hr_payroll_report"
+            sequence="109"/>
+<!--            parent="hr_payroll.menu_hr_salary_configuration"-->
+
+
+    </data>
+</odoo>
+

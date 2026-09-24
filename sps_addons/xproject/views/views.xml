@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_customer_rate_tree" model="ir.ui.view">
+        <field name="name">customer.rate.tree</field>
+        <field name="model">customer.rate</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="rate"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_customer_rate_search" model="ir.ui.view">
+        <field name="name">customer.rate.search</field>
+        <field name="model">customer.rate</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="code"/>
+<!--                <group>-->
+<!--                    <filter string='Tình trạng hiệu lực' name="active" domain="[]" context="{'group_by': 'active'}"/>-->
+<!--                    <filter string='Có hiệu lực' name="active_1" domain="[('active', '=', True)]"/>-->
+<!--                    <filter string='Đã lưu trữ' name="active_0" domain="[('active', '=', False)]"/>-->
+<!--                </group>-->
+            </search>
+        </field>
+    </record>
+
+<!--    <record id="view_expertise_type_form" model="ir.ui.view">-->
+<!--        <field name="name">expertise.type.form</field>-->
+<!--        <field name="model">expertise.type</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form>-->
+<!--                <sheet>-->
+<!--                    <group>-->
+<!--                        <group>-->
+<!--                            <field name="name"/>-->
+<!--                            <field name="active" widget="boolean_toggle"/>-->
+<!--                        </group>-->
+<!--                        <group></group>-->
+<!--                    </group>-->
+<!--                </sheet>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
+
+    <record id="action_customer_rate" model="ir.actions.act_window">
+        <field name="name">Mức độ hài lòng</field>
+        <field name="res_model">customer.rate</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+    </record>
+
+    <menuitem
+        id="menu_customer_rate"
+        name="Mức độ hài lòng"
+        action="action_customer_rate"
+        parent="project.menu_project_config"
+        sequence="101"/>
+
+
+</odoo>

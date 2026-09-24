@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_hr_meal_rate_tree" model="ir.ui.view">
+        <field name="name">hr.meal.rate.tree</field>
+        <field name="model">hr.meal.rate</field>
+        <field name="arch" type="xml">
+            <tree string="Đơn giá hỗ trợ ăn ca" editable="bottom">
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="amount"/>
+                <field name="name" optional="show"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+                <field name="currency_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hr_meal_rate_form" model="ir.ui.view">
+        <field name="name">hr.meal.rate.form</field>
+        <field name="model">hr.meal.rate</field>
+        <field name="arch" type="xml">
+            <form string="Đơn giá hỗ trợ ăn ca">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="amount"/>
+                        </group>
+                        <group>
+                            <field name="name"/>
+                            <field name="active"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hr_meal_rate" model="ir.actions.act_window">
+        <field name="name">Đơn giá hỗ trợ ăn ca</field>
+        <field name="res_model">hr.meal.rate</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Tạo đơn giá hỗ trợ ăn ca theo khoảng thời gian</p>
+            <p>Mỗi dòng = đơn giá/suất áp dụng từ ngày đến ngày. Phiếu lương lấy đơn giá theo kỳ tính.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_hr_meal_rate"
+              name="Đơn giá hỗ trợ ăn ca"
+              parent="hr_payroll.menu_hr_salary_configuration"
+              action="action_hr_meal_rate"
+              sequence="90"/>
+
+</odoo>

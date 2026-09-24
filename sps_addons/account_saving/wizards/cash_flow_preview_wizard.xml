@@ -1,0 +1,30 @@
+<odoo>
+    <data>
+        <!-- Form view cho wizard -->
+        <record id="view_cash_flow_preview_wizard" model="ir.ui.view">
+            <field name="name">Cash Flow Preview Wizard</field>
+            <field name="model">cash.flow.preview.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Chọn năm cho báo cáo Cash Flow">
+                    <group>
+                        <field name="year" string="Năm báo cáo"/>
+                    </group>
+                    <footer>
+                        <button string="Tạo báo cáo" name="action_generate_report" type="object" class="btn-primary"/>
+                        <button string="Hủy" name="action_cancel" type="object" class="btn-default"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action để mở wizard -->
+        <record id="action_cash_flow_preview_wizard" model="ir.actions.act_window">
+            <field name="name">Chọn năm báo cáo</field>
+            <field name="res_model">cash.flow.preview.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="view_cash_flow_preview_wizard"/>
+        </record>
+    </data>
+</odoo> 

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_recruitment_monthly_wizards" model="ir.ui.view">
+            <field name="name">Báo cáo tình trạng tuyển dụng</field>
+            <field name="model">recruitment.monthly.wizards</field>
+            <field name="arch" type="xml">
+                <form string="Báo cáo tình trạng tuyển dụng">
+                    <group>
+                        <field name="year"/>
+                    </group>
+                    <footer>
+                        <button name="action_report" string="Xem báo cáo" type="object" class="btn-primary"/>
+                        <button string="Đóng" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_recruitment_monthly_wizards" model="ir.actions.act_window">
+            <field name="name">Báo cáo tình trạng tuyển dụng</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">recruitment.monthly.wizards</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="recruitment_monthly_menu"
+                  name="Báo cáo tình trạng tuyển dụng"
+                  action="action_recruitment_monthly_wizards"
+                  parent="effective_management.effective_hr"
+                  sequence="1"
+        />
+    </data>
+</odoo>

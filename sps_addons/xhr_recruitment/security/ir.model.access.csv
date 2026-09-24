@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_recruit_request_all,access_hr_recruit_request_all,model_hr_recruit_request,base.group_user,1,0,0,0
+access_hr_recruit_request_sa,access_hr_recruit_request_sa,model_hr_recruit_request,base.group_erp_manager,1,1,1,1
+access_report_recruitment_candidate_report,recruitment.candidate.report,model_recruitment_candidate_report,base.group_user,1,1,1,1
+access_recruitment_inquiry_position_report,recruitment.inquiry.position.report,model_recruitment_inquiry_position_report,base.group_user,1,1,1,1

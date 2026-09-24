@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="profit_formula_config_tree" model="ir.ui.view">
+        <field name="name">profit.formula.config.tree</field>
+        <field name="model">profit.formula.config</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="formula"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="profit_formula_config_form" model="ir.ui.view">
+        <field name="name">profit.formula.config.form</field>
+        <field name="model">profit.formula.config</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="sequence"/>
+                        </group>
+                        <group>
+                            <field name="formula" placeholder="(au - xae - au * oc * 0.01) * 0.8 - au * (cr + tp) * 0.01"/>
+                        </group>
+                    </group>
+                    <separator string="Hướng dẫn viết công thức"/>
+                    <div>
+                        <p><strong>Các biến viết tắt:</strong></p>
+                        <ul>
+                            <li><code>au</code> = Tổng giá trị trước thuế</li>
+                            <li><code>oc</code> = Chi phí quản lý chung %</li>
+                            <li><code>xae</code> = Tổng dự toán</li>
+                            <li><code>cr</code> = CR %</li>
+                            <li><code>tp</code> = TP %</li>
+                        </ul>
+                        <p><strong>Ví dụ:</strong></p>
+                        <p><code>(au - xae - au * oc * 0.01) * 0.8 - au * (cr + tp) * 0.01</code></p>
+                        <p><strong>Lưu ý:</strong></p>
+                        <ul>
+                            <li>Sử dụng các phép tính: <code>+</code> <code>-</code> <code>*</code> <code>/</code></li>
+                            <li>Sử dụng dấu ngoặc <code>()</code> để nhóm phép tính</li>
+                            <li>Hệ thống sẽ tự động kiểm tra công thức khi lưu</li>
+                        </ul>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="profit_formula_config_action" model="ir.actions.act_window">
+        <field name="name">Cấu hình Income taxes</field>
+        <field name="res_model">profit.formula.config</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_profit_formula_config"
+              name="Cấu hình Income taxes"
+              parent="sale.menu_sale_config"
+              action="profit_formula_config_action"
+              sequence="100"/>
+</odoo>

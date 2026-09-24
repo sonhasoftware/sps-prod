@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_partner_tree_inherit_sps_sale_target" model="ir.ui.view">
+        <field name="name">res.partner.view.tree.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='phone']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath expr="//field[@name='email']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath expr="//field[@name='city']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath expr="//field[@name='phone']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath expr="//field[@name='country_id']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath expr="//field[@name='company_id']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath expr="//field[@name='display_name']" position="after">
+                <field name="ref" />
+                <field name="contact_address" />
+                <field name="customer_source" />
+                <field name="customer_status" widget="many2many_tags" />
+                <field name="comment" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mail_res_partner_view_tree_inherit_sps_sale_target" model="ir.ui.view">
+        <field name="name">res.partner.view.tree.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="mail.res_partner_view_tree_inherit_mail"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='activity_ids']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_partner_form_inherit_sps_sale_target" model="ir.ui.view">
+        <field name="name">res.partner.view.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_title')]/h1" position="after">
+                <label for="ref" string="Customer code" class="oe_edit_only" />
+                <h2>
+                    <field name="ref" />
+                </h2>
+            </xpath>
+            <xpath expr="//sheet/group/group[1]" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </xpath>
+            <!--<xpath expr="//sheet/group/group[1]" position="after">
+                <group name="sps_sale_target" col="3">
+                    <span class="o_form_label o_td_label" colspan="1" name="address_name">
+                        <b attrs="{'invisible': ['|', ('parent_id', '=', False), ('type', '!=', 'contact')]}">Company Address</b>
+                        <b attrs="{'invisible': ['|', ('parent_id', '=', False), ('type', '!=', 'invoice')]}">Invoice Address</b>
+                        <b attrs="{'invisible': ['|', ('parent_id', '=', False), ('type', '!=', 'delivery')]}">Delivery Address</b>
+                        <b attrs="{'invisible': ['|', ('parent_id', '=', False), ('type', '!=', 'other')]}">Other Address</b>
+                        <b attrs="{'invisible': ['|', ('parent_id', '=', False), ('type', '!=', 'private')]}">Private Address</b>
+                        <b attrs="{'invisible': ['&amp;', ('parent_id', '!=', False), ('type', '!=', False)]}">Address</b>
+                    </span>
+                    <div colspan="2">
+                        <field name="street" nolabel="1" placeholder="(Địa chỉ)" />
+                        <div class="o_row">
+                            <field name="city" nolabel="1" style="{'width': 45%}" placeholder="(Quận/Huyện/Thị xã)" />
+                            <field name="state_id" nolabel="1" style="{'width': 45%}" placeholder="(Tỉnh/Thành phố)" />
+                        </div>
+                        <field name="country_id" nolabel="1" placeholder="(Quốc Gia)" />
+                    </div>
+                    <label for="vat" colspan="1" />
+                    <field name="vat" nolabel="1" colspan="2" />
+                </group>
+            </xpath>-->
+            <xpath expr="//div[@class='o_address_format']/field[@name='street2']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//div[@class='o_address_format']/field[@name='zip']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='category_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='website']" position="after">
+                <field name="customer_source" invisible="context.get('search_default_customer', 0) == 0" />
+                <field name="customer_status" widget="many2many_tags" invisible="context.get('search_default_customer', 0) == 0" />
+            </xpath>
+            <xpath expr="//label[@for='lang']" position="attributes">
+                <attribute name="attrs">{'invisible': [(1, '=', 1)]}</attribute>
+            </xpath>
+            <!-- <xpath expr="//sheet/group/group[2]/div[hasclass('o_row')]" position="attributes">
+                <attribute name="attrs">{'invisible': [(1, '=', 1)]}</attribute>
+            </xpath> -->
+            <xpath expr="//field[@name='lang']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[hasclass('fa-globe')]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//group[@name='misc']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_partner_property_form_inherit_sps_sale_target" model="ir.ui.view">
+        <field name="name">res.partner.view.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='fiscal_information']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="res_partner_view_team_inherit_sps_sale_target" model="ir.ui.view">
+        <field name="name">res.partner.view.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="sales_team.res_partner_view_team"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='team_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_partner_property_form_inherit_sps_sale_target" model="ir.ui.view">
+        <field name="name">res.partner.view.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="product.view_partner_property_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='property_product_pricelist']" position="attributes">
+                <attribute name="attrs">{'invisible': [(1, '=', 1)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

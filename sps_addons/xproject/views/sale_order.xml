@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <button name="action_view_invoice" position="after">
+                    <button name="action_view_projects" type="object" class="oe_stat_button" icon="fa-pencil-square-o" attrs="{'invisible': [('x_project_count', '=', 0)]}">
+                        <field name="x_project_count" widget="statinfo" string="Dự án"/>
+                    </button>
+                </button>
+                <xpath expr="//header" position="inside">
+                    <button name="action_update_project_code" type="object" string="Cập nhật mã dự án"
+                            groups="sales_team.group_sale_manager"
+                            attrs="{'invisible': ['|', ('state', 'not in', ('sale', 'done')), ('x_project_count', '=', 0)]}"
+                            confirm="Cập nhật mã dự án sẽ đổi tên TẤT CẢ dự án của báo giá này theo Số báo giá hiện tại. Hãy chắc chắn Số báo giá đã đúng. Tiếp tục?"/>
+                </xpath>
+
+<!--                <xpath expr="//page[@name='other_information']//group[@name='sales_person']//field[@name='user_id']"-->
+<!--                   position="after">-->
+<!--                    <field name="device"/>-->
+<!--                    <field name="model"/>-->
+<!--                    <field name="frequency"/>-->
+<!--                </xpath>-->
+            </field>
+        </record>
+    </data>
+</odoo>

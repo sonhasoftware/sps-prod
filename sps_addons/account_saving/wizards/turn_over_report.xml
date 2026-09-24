@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="turn_over_report" model="ir.ui.view">
+            <field name="name">Báo cáo xuất data cho file Turn over report</field>
+            <field name="model">turn.over.report</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Báo cáo xuất data cho file Turn over report">
+                    <footer>
+                        <button string="Báo cáo" name="turn_over_report" type="object" class="btn-primary"/>
+                        <button string="Huỷ" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_turn_over_report" model="ir.actions.act_window">
+            <field name="name">Báo cáo xuất data cho file Turn over report</field>
+            <field name="res_model">turn.over.report</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="domain">[]</field>
+        </record>
+        <menuitem action="action_turn_over_report"
+                  name="Báo cáo xuất data cho file Turn over report"
+                  parent="account.menu_finance_reports"
+                  id="menu_turn_over_report"
+                  sequence="13"/>
+    </data>
+</odoo>

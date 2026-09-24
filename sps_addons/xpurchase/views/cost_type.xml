@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+        <record model="ir.ui.view" id="cost_type_list">
+            <field name="name">Cost_type</field>
+            <field name="model">cost.type</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="cost_category"/>
+                    <field name="content"/>
+                    <field name="cost_type" readonly="1"/>
+                    <field name="cost_group"/>
+                    <field name="account_id"/>
+                    <field name="fixed_cost" widget="boolean_toggle"/>
+                    <field name="variation_cost" widget="boolean_toggle"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="cost_type_action_window">
+            <field name="name">Phân loại chi phí</field>
+            <field name="res_model">cost.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- actions -->
+        <menuitem name="Phân loại chi phí" id="cost_type_menu" parent="purchase.menu_purchase_config"
+                  action="cost_type_action_window" sequence="7"/>
+
+    </data>
+</odoo>

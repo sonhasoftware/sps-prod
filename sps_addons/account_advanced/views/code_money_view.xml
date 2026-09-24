@@ -1,0 +1,28 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+        <record model="ir.ui.view" id="cost_type_list">
+            <field name="name">Mã khoản tiền</field>
+            <field name="model">code.money</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="group_money"/>
+                    <field name="content"/>
+                    <field name="code_money"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="code_money_action_window">
+            <field name="name">Mã khoản tiền</field>
+            <field name="res_model">code.money</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- actions -->
+        <menuitem name="Mã khoản tiền" id="menu_code_money" parent="account.account_banks_menu"
+                  action="code_money_action_window" sequence="7"/>
+
+    </data>
+</odoo>

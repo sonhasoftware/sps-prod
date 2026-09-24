@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="wizard_stock_report_cost" model="ir.ui.view">
+            <field name="name">Báo cáo chi phí nhân viên về đồng phục</field>
+            <field name="model">stock.report.cost</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Báo cáo chi phí nhân viên về đồng phục">
+                    <group>
+                        <field name="year"/>
+                    </group>
+                    <footer>
+                        <button string="Xem báo cáo" name="action_report_stock_cost" type="object" class="btn-primary"/>
+                        <button string="Huỷ" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_stock_report_cost" model="ir.actions.act_window">
+            <field name="name">Báo cáo chi phí nhân viên về đồng phục</field>
+            <field name="res_model">stock.report.cost</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="domain">[]</field>
+        </record>
+        <menuitem action="action_stock_report_cost"
+                  name="Báo cáo chi phí nhân viên về đồng phục"
+                  parent="stock.menu_warehouse_report"
+                  id="menu_stock_report_cost"
+                  sequence="22"/>
+    </data>
+</odoo>

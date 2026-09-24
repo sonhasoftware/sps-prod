@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Employee calendar views -->
+    <data>
+        <record id="view_wizard_employee_calendar_form" model="ir.ui.view">
+            <field name="name">wizard.employee.calendar.form</field>
+            <field name="model">wizard.employee.calendar</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <label for="date"/>
+                                <div>
+                                    <field name="date" class="oe_inline" nolabel="1"/>
+                                    <span style="padding-right: 10px;"></span>
+                                    <button name="button_view_calendar" type="object" class="oe_highlight" string="Xem lịch làm việc"/>
+                                </div>
+                            </group>
+                            <group></group>
+                        </group>
+                        <field name="line_ids">
+                            <tree>
+                                <field name="employee_id"/>
+                                <field name="job_id"/>
+                                <field name="department_id"/>
+                                <field name="project_id"/>
+                                <field name="scope"/>
+                                <field name="address"/>
+                                <field name="time_from" widget="float_time"/>
+                                <field name="time_to" widget="float_time"/>
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_employee_calendar" model="ir.actions.act_window">
+            <field name="name">Lịch làm việc</field>
+            <field name="res_model">wizard.employee.calendar</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            id="menu_wizard_employee_calendar"
+            name="Lịch làm việc"
+            action="action_wizard_employee_calendar"
+            parent="project.menu_main_pm"
+            sequence="10"/>
+    </data>
+</odoo>

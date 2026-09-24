@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+        <!--<record model="ir.actions.server" id="action_un_validate_time_sheet">
+            <field name="name">In Phiếu thu_chi (Excel)</field>
+            <field name="model_id" ref="account_saving.model_account_payment"/>
+            <field name="binding_model_id" ref="account_saving.model_account_payment"/>
+            <field name="binding_view_types">list,form</field>
+            <field name="state">code</field>
+            <field name="code">
+                action = records.generate_xlsx_report()
+            </field>
+        </record>-->
+        <record id="action_print_job_description" model="ir.actions.server">
+            <field name="name">In phiếu thu-chi(Excel)</field>
+            <field name="model_id" ref="xaccount.model_account_payment"/>
+            <field name="binding_model_id" ref="xaccount.model_account_payment"/>
+            <field name="x_print_menu" eval="True"/>
+            <field name="state">code</field>
+            <field name="code">
+                if records:
+                attachment_id = records.get_job_description()
+                action = {
+                'type': 'ir.actions.act_url',
+                'url': '/web/content/' + str(attachment_id.id) + '?download=true',
+                'url': "web/content/?model=ir.attachment&amp;id=" + str(attachment_id.id) + "&amp;filename_field=name&amp;field=datas&amp;download=true&amp;name="
+                + attachment_id.name,
+                'target': 'new',
+                }
+            </field>
+        </record>
+    </data>
+
+</odoo>

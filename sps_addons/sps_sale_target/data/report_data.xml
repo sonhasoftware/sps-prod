@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="sale_turnover_report_xlsx" model="ir.actions.report">
+        <field name="name">Sale TurnOver</field>
+        <field name="model">sale.turnover.wiz</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">sps_sale_target.sale_turnover_report_xlsx</field>
+        <field name="report_file">sps_sale_target.sale_turnover_report_xlsx</field>
+    </record>
+
+    <record id="annual_sale_report_xlsx" model="ir.actions.report">
+        <field name="name">Annual Sale</field>
+        <field name="model">annual.sale.report</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">sps_sale_target.annual_sale_report_xlsx</field>
+        <field name="report_file">sps_sale_target.annual_sale_report_xlsx</field>
+    </record>
+
+    <record id="sale_order_report_xlsx" model="ir.actions.report">
+        <field name="name">Sale Order</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">sps_sale_target.sale_order_report_xlsx</field>
+        <field name="report_file">sps_sale_target.sale_order_report_xlsx</field>
+    </record>
+
+</odoo>

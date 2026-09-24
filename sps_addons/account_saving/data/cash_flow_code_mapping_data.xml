@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Thu nhập - Lưu chuyển tiền vào (sequence 1-6) -->
+        <record id="mapping_rms" model="cash.flow.code.mapping">
+            <field name="sequence">1</field>
+            <field name="name">Thu từ Bảo trì và Dịch vụ</field>
+            <field name="code">RMS</field>
+            <field name="parent">Lưu chuyển tiền vào (thu nhập) </field>
+           <field name="parent_2">chi</field>
+            <field name="description">Khoản thu từ hoạt động bảo trì và dịch vụ</field>
+        </record>
+        
+        <record id="mapping_rfm" model="cash.flow.code.mapping">
+            <field name="sequence">2</field>
+            <field name="name">Thu từ quản lý vận hành tòa nhà</field>
+            <field name="code">RFM</field>
+            <field name="parent">Lưu chuyển tiền vào (thu nhập) </field>
+           <field name="parent_2">chi</field>
+            <field name="description">Khoản thu từ hoạt động quản lý vận hành tòa nhà</field>
+        </record>
+        
+        <record id="mapping_rin" model="cash.flow.code.mapping">
+            <field name="sequence">3</field>
+            <field name="name">Thu từ lãi tiền gửi hoặc lãi đầu tư tài chính, thanh lý tài sản</field>
+            <field name="code">RIN</field>
+            <field name="parent">Lưu chuyển tiền vào (thu nhập) </field>
+           <field name="parent_2">chi</field>
+            <field name="description">Khoản thu từ lãi tiền gửi, đầu tư tài chính và thanh lý tài sản</field>
+        </record>
+        
+        <record id="mapping_riv" model="cash.flow.code.mapping">
+            <field name="sequence">4</field>
+            <field name="name">Thu lại tiền "IV"</field>
+            <field name="code">RIV</field>
+            <field name="parent">Lưu chuyển tiền vào (thu nhập) </field>
+           <field name="parent_2">chi</field>
+            <field name="description">Khoản thu lại tiền IV</field>
+        </record>
+        
+        <record id="mapping_rrm" model="cash.flow.code.mapping">
+            <field name="sequence">5</field>
+            <field name="name">Thu khác: thu tạm ứng thừa, tiền chuyển sai</field>
+            <field name="code">RRM</field>
+            <field name="parent">Lưu chuyển tiền vào (thu nhập) </field>
+           <field name="parent_2">chi</field>
+            <field name="description">Các khoản thu khác như tạm ứng thừa, tiền chuyển sai</field>
+        </record>
+        
+        <record id="mapping_ccl" model="cash.flow.code.mapping">
+            <field name="sequence">6</field>
+            <field name="name">Vốn góp hoặc các khoản vay</field>
+            <field name="code">CCL</field>
+            <field name="parent">Lưu chuyển tiền vào (thu nhập) </field>
+           <field name="parent_2">chi</field>
+            <field name="description">Khoản vốn góp hoặc các khoản vay</field>
+        </record>
+
+        <!-- Chi phí - Lưu chuyển tiền ra (sequence 7-20) -->
+        <record id="mapping_ms" model="cash.flow.code.mapping">
+            <field name="sequence">7</field>
+            <field name="name">Các khoản chi cho các dự án Bảo trì &amp; Dịch vụ</field>
+            <field name="code">MS</field>
+            <field name="parent">Lưu chuyển tiền ra (chi phí)</field>
+            <field name="parent_2">thu</field>
+            <field name="description">Các khoản chi cho các dự án Bảo trì &amp; Dịch vụ</field>
+        </record>
+
+        <record id="mapping_fm" model="cash.flow.code.mapping">
+            <field name="sequence">8</field>
+            <field name="name">Các khoản chi liên quan tới dự án vận hành tòa nhà</field>
+            <field name="code">FM</field>
+            <field name="parent">Lưu chuyển tiền ra (chi phí)</field>
+            <field name="parent_2">thu</field>
+            <field name="description">Các khoản chi liên quan tới dự án vận hành tòa nhà</field>
+        </record>
+
+        <record id="mapping_ss" model="cash.flow.code.mapping">
+            <field name="sequence">9</field>
+            <field name="name">Phí dịch vụ bảo vệ thuộc quản lý vận hành tòa nhà</field>
+            <field name="code">SS</field>
+            <field name="parent">Lưu chuyển tiền ra (chi phí)</field>
+            <field name="parent_2">thu</field>
+            <field name="description">Phí dịch vụ bảo vệ thuộc quản lý vận hành tòa nhà</field>
+        </record>
+
+        <record id="mapping_cs" model="cash.flow.code.mapping">
+            <field name="sequence">10</field>
+            <field name="name">Phí làm sạch thuộc quản lý vận hành tòa nhà</field>
+            <field name="code">CS</field>
+            <field name="parent">Lưu chuyển tiền ra (chi phí)</field>
+            <field name="parent_2">thu</field>
+            <field name="description">Phí làm sạch thuộc quản lý vận hành tòa nhà</field>
+        </record>
+
+        <record id="mapping_pg" model="cash.flow.code.mapping">
+            <field name="sequence">11</field>
+            <field name="name">Kiểm soát côn trùng, chăm sóc cây xanh thuộc quản lý vận hành tòa nhà</field>
+            <field name="code">PG</field>
+            <field name="parent">Lưu chuyển tiền ra (chi phí)</field>
+            <field name="parent_2">thu</field>
+            <field name="description">Kiểm soát côn trùng, chăm sóc cây xanh thuộc quản lý vận hành tòa nhà</field>
+        </record>
+
+        <record id="mapping_lc" model="cash.flow.code.mapping">
+            <field name="sequence">12</field>
+            <field name="name">Lương nhân viên &amp; BHXH, BHYT, đồng phục, giày, trợ cấp điện thoại</field>
+            <field name="code">LC</field>
+            <field name="parent">Lưu chuyển tiền ra (chi phí)</field>
+            <field name="parent_2">thu</field>
+            <field name="description">Lương nhân viên &amp; BHXH, BHYT, đồng phục, giày, trợ cấp điện thoại</field>
+        </record>
+
+        <record id="mapping_cr" model="cash.flow.code.mapping">
+            <field name="sequence">13</field>
+            <field name="name">Chi phí quan hệ khách hàng</field>
+            <field name="code">CR</field>
+            <field name="parent">Lưu chuyển tiền ra (chi phí)</field>
+            <field name="parent_2">thu</field>
+            <field name="description">Chi phí quan hệ khách hàng</field>
+        </record>
+
+        <record id="mapping_gc" model="cash.flow.code.mapping">
+            <field name="sequence">14</field>
+            <field name="name">Vật tư tiêu hao dùng chung</field>
+            <field name="code">GC</field>
+            <field name="parent">Lưu chuyển tiền ra (chi phí)</field>
+            <field name="parent_2">thu</field>
+            <field name="description">Vật tư tiêu hao dùng chung</field>
+        </record>
+
+        <record id="mapping_at" model="cash.flow.code.mapping">
+            <field name="sequence">15</field>
+            <field name="name">Tài sản, công cụ dụng cụ, máy tính, trang thiết bị văn phòng, trang bị an toàn</field>
+            <field name="code">AT</field>
+            <field name="parent">Lưu chuyển tiền ra (chi phí)</field>
+            <field name="parent_2">thu</field>
+            <field name="description">Tài sản, công cụ dụng cụ, máy tính, trang thiết bị văn phòng, trang bị an toàn (mũ, kính, đai an toàn…)</field>
+        </record>
+
+        <record id="mapping_oh" model="cash.flow.code.mapping">
+            <field name="sequence">16</field>
+            <field name="name">Chi phí quản lý: Chi phí văn phòng, phí ngân hàng, tiếp khách, liên hoan, bảo hiểm TNNN, tai nạn</field>
+            <field name="code">OH</field>
+            <field name="parent">Lưu chuyển tiền ra (chi phí)</field>
+            <field name="parent_2">thu</field>
+            <field name="description">Chi phí quản lý: Chi phí văn phòng, phí ngân hàng, tiếp khách, liên hoan, bảo hiểm TNNN, tai nạn…</field>
+        </record>
+
+        <record id="mapping_ta" model="cash.flow.code.mapping">
+            <field name="sequence">17</field>
+            <field name="name">Thuế VAT, TNDN, phí nộp nhà nước</field>
+            <field name="code">TA</field>
+            <field name="parent">Lưu chuyển tiền ra (chi phí)</field>
+            <field name="parent_2">thu</field>
+            <field name="description">Thuế VAT, TNDN, phí nộp nhà nước</field>
+        </record>
+
+        <record id="mapping_dp" model="cash.flow.code.mapping">
+            <field name="sequence">18</field>
+            <field name="name">Thanh toán khoản vay, trả tiền cổ đông, chi trả cổ tức</field>
+            <field name="code">DP</field>
+            <field name="parent">Lưu chuyển tiền ra (chi phí)</field>
+            <field name="parent_2">thu</field>
+            <field name="description">Thanh toán khoản vay, trả tiền cổ đông, chi trả cổ tức</field>
+        </record>
+
+        <record id="mapping_iv_expense" model="cash.flow.code.mapping">
+            <field name="sequence">19</field>
+            <field name="name">XLHĐ</field>
+            <field name="code">IV</field>
+            <field name="parent">Lưu chuyển tiền ra (chi phí)</field>
+            <field name="parent_2">thu</field>
+            <field name="description">XLHĐ</field>
+        </record>
+
+        <record id="mapping_ba" model="cash.flow.code.mapping">
+            <field name="sequence">20</field>
+            <field name="name">Chuyển tiền giữa các TK, đổi tiền, chi mua bán hộ, vay/tạm ứng (có trả lại)</field>
+            <field name="code">BA</field>
+            <field name="parent">Lưu chuyển tiền ra (chi phí)</field>
+            <field name="parent_2">thu</field>
+            <field name="description">Chuyển tiền giữa các TK, đổi tiền, chi mua bán hộ, vay/tạm ứng (có trả lại) …</field>
+        </record>
+
+
+
+        <!-- 1. Tổng tiền quỹ (sequence 21-22) -->
+        <record id="mapping_cash" model="cash.flow.code.mapping">
+            <field name="sequence">21</field>
+            <field name="name">Tiền mặt quỹ</field>
+            <field name="code">Cash</field>
+            <field name="parent">1. Tổng tiền quỹ</field>
+            <field name="parent_2">ton_cuoi_ky</field>
+            <field name="description">Tiền mặt quỹ</field>
+        </record>
+
+        <record id="mapping_i_tcb" model="cash.flow.code.mapping">
+            <field name="sequence">22</field>
+            <field name="name">Ngân hàng nội bộ</field>
+            <field name="code">I-TCB</field>
+            <field name="parent">1. Tổng tiền quỹ</field>
+            <field name="parent_2">ton_cuoi_ky</field>
+            <field name="description">Ngân hàng nội bộ</field>
+        </record>
+
+        <!-- 2. Tiền gửi ngân hàng thanh toán (sequence 23-25) -->
+        <record id="mapping_bidv" model="cash.flow.code.mapping">
+            <field name="sequence">23</field>
+            <field name="name">Ngân hàng BIDV</field>
+            <field name="code">BIDV</field>
+            <field name="parent">2. Tiền gửi ngân hàng thanh toán</field>
+            <field name="parent_2">ton_cuoi_ky</field>
+            <field name="description">Ngân hàng BIDV</field>
+        </record>
+
+        <record id="mapping_tcb" model="cash.flow.code.mapping">
+            <field name="sequence">25</field>
+            <field name="name">Ngân hàng Techcombank</field>
+            <field name="code">TCB</field>
+            <field name="parent">2. Tiền gửi ngân hàng thanh toán</field>
+            <field name="parent_2">ton_cuoi_ky</field>
+            <field name="description">Ngân hàng Techcombank</field>
+        </record>
+
+        <record id="mapping_bidv2" model="cash.flow.code.mapping">
+            <field name="sequence">24</field>
+            <field name="name">Ngân hàng BIDV2</field>
+            <field name="code">BIDV2</field>
+            <field name="parent">2. Tiền gửi ngân hàng thanh toán</field>
+            <field name="parent_2">ton_cuoi_ky</field>
+            <field name="description">Ngân hàng BIDV2</field>
+        </record>
+
+        <record id="mapping_vcb" model="cash.flow.code.mapping">
+            <field name="sequence">26</field>
+            <field name="name">Ngân hàng VCB</field>
+            <field name="code">VCB</field>
+            <field name="parent">2. Tiền gửi ngân hàng thanh toán</field>
+            <field name="parent_2">ton_cuoi_ky</field>
+            <field name="description">Ngân hàng VCB</field>
+        </record>
+
+        <record id="mapping_vpb" model="cash.flow.code.mapping">
+            <field name="sequence">27</field>
+            <field name="name">Ngân hàng VPBank</field>
+            <field name="code">VPBank</field>
+            <field name="parent">2. Tiền gửi ngân hàng thanh toán</field>
+            <field name="parent_2">ton_cuoi_ky</field>
+            <field name="description">Ngân hàng VPBank</field>
+        </record>
+
+        <record id="mapping_saving_pending" model="cash.flow.code.mapping">
+            <field name="sequence">28</field>
+            <field name="name">Số chưa đến hạn</field>
+            <field name="code">-</field>
+            <field name="parent">3. Tiền gửi tiết kiệm</field>
+            <field name="parent_2">ton_cuoi_ky</field>
+            <field name="description">Số chưa đến hạn</field>
+        </record>
+
+        <record id="mapping_saving_matured" model="cash.flow.code.mapping">
+            <field name="sequence">29</field>
+            <field name="name">Số tất toán trong tháng</field>
+            <field name="code">-</field>
+            <field name="parent">3. Tiền gửi tiết kiệm</field>
+            <field name="parent_2">ton_cuoi_ky</field>
+            <field name="description">Số tất toán trong tháng</field>
+        </record>
+
+        <record id="mapping_sc_income" model="cash.flow.code.mapping">
+            <field name="sequence">30</field>
+            <field name="name">Thu lại tiền đầu tư tài chính, tất toán tiết kiệm</field>
+            <field name="code">SC</field>
+            <field name="parent">4. Thu, chi Sc</field>
+            <field name="parent_2">ton_cuoi_ky</field>
+            <field name="description">Thu lại tiền đầu tư tài chính, tất toán tiết kiệm</field>
+        </record>
+
+        <record id="mapping_sc_deposit" model="cash.flow.code.mapping">
+            <field name="sequence">31</field>
+            <field name="name">Chi tiền gửi tiết kiệm, đầu tư tài chính</field>
+            <field name="code">SC</field>
+            <field name="parent">4. Thu, chi Sc</field>
+            <field name="parent_2">ton_cuoi_ky</field>
+            <field name="description">Chi tiền gửi tiết kiệm, đầu tư tài chính</field>
+        </record>
+
+        <record id="mapping_tcbs" model="cash.flow.code.mapping">
+            <field name="sequence">33</field>
+            <field name="name">TCBS</field>
+            <field name="code">TCBS</field>
+            <field name="parent">TCBS</field>
+            <field name="parent_2">ton_cuoi_ky</field>
+            <field name="description">Ngân hàng TCBS</field>
+        </record>
+
+        <record id="mapping_tkdt" model="cash.flow.code.mapping">
+            <field name="sequence">34</field>
+            <field name="name">Tài khoản đầu tư TCBS</field>
+            <field name="code">TKDT</field>
+            <field name="parent">TKDT</field>
+            <field name="parent_2">ton_cuoi_ky</field>
+            <field name="description">Tài khoản đầu tư TCBS</field>
+        </record>
+
+    </data>
+</odoo> 

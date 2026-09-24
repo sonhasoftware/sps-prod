@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="project_reward_detail_tree" model="ir.ui.view">
+            <field name="name">project_reward_detail_tree</field>
+            <field name="model">project.efficiency.reward.line</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false" class="hide_o_list_record_selector">
+                    <field name="member_name"/>
+                    <field name="role"/>
+                    <field name="pp_name_report"/>
+                    <field name="project_name"/>
+                    <field name="leader" optional="hide"/>
+                    <field name="project_supporter" optional="hide"/>
+                    <field name="project_type" optional="hide"/>
+                    <field name="end_month"/>
+                    <field name="budget" widget="integer" optional="hide"/>
+                    <field name="estimate_materials_and_other_costs" widget="integer" optional="hide"/>
+                    <field name="total_1" widget="integer" optional="hide"/>
+                    <field name="actual_labor" widget="integer" optional="hide"/>
+                    <field name="actual_materials_and_other_costs" widget="integer" optional="hide"/>
+                    <field name="total_depreciation_cost" widget="integer" optional="hide"/>
+                    <field name="total_work_hour"/>
+                    <field name="work_hour"/>
+                    <field name="ratio"/>
+                    <field name="total_2" widget="integer" optional="hide"/>
+                    <field name="rate"/>
+                    <field name="member_diff" widget="integer"/>
+                    <field name="reward" widget="integer"/>
+                    <field name="master_key" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="project_reward_detail_search" model="ir.ui.view">
+            <field name="name">project_reward_detail_search</field>
+            <field name="model">project.efficiency.reward.line</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="member_name" string="Nhân viên" filter_domain="[('member_name', 'ilike', self)]"/>
+                    <field name="pp_name_report" string="Số phụ dự án" filter_domain="[('pp_name_report', 'ilike', self)]"/>
+                    <field name="project_name" string="Tên dự án" filter_domain="[('project_name', 'ilike', self)]"/>
+                    <field name="leader" string="Phụ trách" filter_domain="[('leader', 'ilike', self)]"/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_member" string="Nhân viên" context="{'group_by': 'member_name'}"/>
+                        <filter name="group_by_role" string="Vai trò" context="{'group_by': 'role'}"/>
+                        <filter name="group_by_pp" string="Số phụ dự án" context="{'group_by': 'pp_name_report'}"/>
+                        <filter name="group_by_leader" string="Phụ trách" context="{'group_by': 'leader'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>

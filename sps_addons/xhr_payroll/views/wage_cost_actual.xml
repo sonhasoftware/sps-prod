@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="wage_cost_actual_form" model="ir.ui.view">
+        <field name="name">wage.cost.actual.form</field>
+        <field name="model">wage.cost.actual</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="unit_price"/>
+                        </group>
+                        <group>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="payslip_id" invisible="1"/>
+                            <field name="state" invisible="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+     <record id="wage_cost_actual_tree_view" model="ir.ui.view">
+            <field name="name">wage.cost.actual.tree</field>
+            <field name="model">wage.cost.actual</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="employee_id"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="unit_price"/>
+<!--                    <field name="payslip_id"/>-->
+<!--                    <field name="state"/>-->
+                </tree>
+            </field>
+        </record>
+
+    <record id="action_wage_cost_actual" model="ir.actions.act_window">
+        <field name="name">Đơn giá nhân công theo giờ</field>
+        <field name="res_model">wage.cost.actual</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+    </record>
+
+    <menuitem
+        id="menu_action_wage_cost_actual"
+        name="Đơn giá nhân công"
+        action="action_wage_cost_actual"
+        parent="hr.menu_human_resources_configuration"
+        sequence="100"/>
+
+</odoo>

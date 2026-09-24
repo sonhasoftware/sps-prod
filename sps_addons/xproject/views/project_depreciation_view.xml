@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Tree / form cho project.depreciation.line -->
+        <record id="view_project_depreciation_line_tree" model="ir.ui.view">
+            <field name="name">project.depreciation.line.tree</field>
+            <field name="model">project.depreciation.line</field>
+            <field name="arch" type="xml">
+                <tree string="Khấu hao CCDC" create="0" edit="0"
+                      decoration-info="state == 'open'" decoration-muted="state == 'closed'">
+                    <field name="product_id"/>
+                    <field name="lot_id"/>
+                    <field name="quantity"/>
+                    <field name="returned_qty"/>
+                    <field name="remaining_qty"/>
+                    <field name="receiver_id"/>
+                    <field name="allocation_type"/>
+                    <field name="date_borrow"/>
+                    <field name="date_return"/>
+                    <field name="total_hours" sum="Tổng giờ"/>
+                    <field name="cost_unit"/>
+                    <field name="hourly_rate"/>
+                    <field name="depreciation_value" sum="Tổng giá trị KH"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_project_depreciation_line_form" model="ir.ui.view">
+            <field name="name">project.depreciation.line.form</field>
+            <field name="model">project.depreciation.line</field>
+            <field name="arch" type="xml">
+                <form string="Khấu hao CCDC" create="0">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="project_id" readonly="1"/>
+                                <field name="product_id" readonly="1"/>
+                                <field name="lot_id" readonly="1"/>
+                                <field name="quantity" readonly="1"/>
+                                <field name="returned_qty" readonly="1"/>
+                                <field name="remaining_qty" readonly="1"/>
+                                <field name="receiver_id" readonly="1"/>
+                                <field name="allocation_type" readonly="1"/>
+                                <field name="state"/>
+                            </group>
+                            <group>
+                                <field name="picking_out_id" readonly="1"/>
+                                <field name="picking_in_ids" readonly="1" widget="many2many_tags"/>
+                                <field name="date_borrow" readonly="1"/>
+                                <field name="date_return" readonly="1"/>
+                                <field name="cost_unit" readonly="1"/>
+                                <field name="depreciation_years" readonly="1"/>
+                                <field name="hours_per_year_snapshot" readonly="1"
+                                       attrs="{'invisible': [('allocation_type', '=', 'personal')]}"/>
+                            </group>
+                        </group>
+                        <group string="Giá trị tính toán">
+                            <field name="total_hours" readonly="1"/>
+                            <field name="hourly_rate" readonly="1"/>
+                            <field name="depreciation_value" readonly="1"/>
+                        </group>
+                        <field name="note"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tab Khấu hao CCDC trên project form + tick is_personal_project -->
+        <record id="view_project_form_inherit_depreciation" model="ir.ui.view">
+            <field name="name">project.project.form.depreciation</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="xproject.edit_project"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='actual_costs']" position="after">
+                    <page name="depreciation_ccdc" string="Chi phí CCDC">
+                        <group>
+                            <field name="total_depreciation_cost" readonly="1"/>
+                            <field name="x_damage_cost_total" readonly="1"/>
+<!--                            <button name="action_recompute_depreciation_lines"-->
+<!--                                    string="Tính lại khấu hao CCDC"-->
+<!--                                    type="object" class="oe_highlight"-->
+<!--                                    confirm="Sẽ quét lại lịch sử phiếu xuất/thu hồi CCDC của dự án và build lại bảng. Tiếp tục?"/>-->
+                        </group>
+                        <separator string="Khấu hao CCDC"/>
+                        <field name="x_depreciation_line_ids" readonly="1">
+                            <tree decoration-info="state == 'open'">
+                                <field name="product_id"/>
+                                <field name="lot_id"/>
+                                <field name="quantity"/>
+                                <field name="returned_qty"/>
+<!--                                <field name="remaining_qty"/>-->
+                                <field name="receiver_id"/>
+<!--                                <field name="allocation_type"/>-->
+                                <field name="date_borrow"/>
+                                <field name="date_return"/>
+                                <field name="total_hours" sum="Tổng giờ"/>
+                                <field name="cost_unit"/>
+                                <field name="hourly_rate"/>
+                                <field name="depreciation_value" sum="Tổng giá trị KH"/>
+                                <field name="state"/>
+                                <field name="picking_out_id" invisible="1"/>
+                                <field name="has_picking_in" invisible="1"/>
+                                <button name="action_open_picking_out" type="object"
+                                        string="Phiếu mượn" icon="fa-sign-out"
+                                        attrs="{'invisible': [('picking_out_id', '=', False)]}"/>
+                                <button name="action_open_picking_in" type="object"
+                                        string="Phiếu trả" icon="fa-sign-in"
+                                        attrs="{'invisible': [('has_picking_in', '=', False)]}"/>
+                            </tree>
+                        </field>
+                        <separator string="Chi phí hỏng/mất CCDC"/>
+                        <field name="x_damage_line_display" readonly="1" nolabel="1"/>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name='x_cost_object']" position="after">
+                    <field name="personal_employee_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Cron one-shot chạy nền recompute_all_ccdc (idle, kích hoạt bằng nút) -->
+        <record id="cron_recompute_all_ccdc" model="ir.cron">
+            <field name="name">KH-CCDC: Tính lại toàn bộ khấu hao + đơn giá nhân công</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">1</field>
+            <field name="doall" eval="False"/>
+            <field name="model_id" ref="model_project_depreciation_line"/>
+            <field name="state">code</field>
+            <field name="code">model.recompute_all_ccdc()</field>
+            <field name="active" eval="False"/>
+        </record>
+
+        <!-- Server action + menu để bấm chạy nền -->
+        <record id="action_recompute_ccdc_server" model="ir.actions.server">
+            <field name="name">Tính lại khấu hao CCDC + đơn giá nhân công</field>
+            <field name="model_id" ref="model_project_depreciation_line"/>
+            <field name="state">code</field>
+            <field name="code">action = model.action_recompute_ccdc_now()</field>
+        </record>
+
+        <menuitem id="menu_recompute_ccdc"
+                  name="Tính lại khấu hao CCDC + đơn giá"
+                  action="action_recompute_ccdc_server"
+                  parent="project.menu_project_config"
+                  sequence="102"/>
+
+        <!-- Field khấu hao CCDC dưới uom_id trên product.template -->
+        <record id="product_template_form_view_depreciation" model="ir.ui.view">
+            <field name="name">product.template.form.depreciation.ccdc</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='uom_id']" position="after">
+                    <field name="x_product_type" invisible="1"/>
+                    <field name="x_hours_per_year"
+                           attrs="{'invisible': [('x_product_type', '!=', 'tools')]}"/>
+                    <field name="x_depreciation_years"
+                           attrs="{'invisible': [('x_product_type', '!=', 'tools')]}"/>
+                    <field name="x_hourly_depreciation_rate"
+                           attrs="{'invisible': [('x_product_type', '!=', 'tools')]}"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

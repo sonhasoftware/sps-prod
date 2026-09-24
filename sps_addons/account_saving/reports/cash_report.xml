@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="cash_report_tree" model="ir.ui.view">
+            <field name="name">Báo cáo Sổ quỹ tiền mặt</field>
+            <field name="model">cash.report</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false" class="hide_o_list_record_selector">
+                    <field name="number_license"/>
+                    <field name="date"/>
+                    <field name="receive_or_pay"/>
+                    <field name="name"/>
+                    <field name="explain"/>
+                    <field name="code_project"/>
+                    <field name="type_license"/>
+                    <field name="code"/>
+                    <field name="type"/>
+                    <field name="thu" sum="Tổng"/>
+                    <field name="chi" sum="Tổng"/>
+                    <field name="so_du"/>
+                    <field name="note"/>
+                    <field name="master_key" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_cash_report" model="ir.actions.act_window">
+            <field name="name">Báo cáo Sổ quỹ tiền mặt</field>
+            <field name="res_model">cash.report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree</field>
+            <field name="limit">10000000</field>
+        </record>
+    </data>
+</odoo>

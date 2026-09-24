@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_partner_form" model="ir.ui.view">
+            <field name="name">res.partner.view.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='sale']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='property_account_position_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//label[@for='ref']" position="attributes">
+                    <attribute name="string">Tên viết tắt</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='name']" position="replace">
+
+                    <field name="name" default_focus="1" placeholder="Tên khách hàng" attrs="{'required' : [('type', '=', 'contact')]}" invisible="context.get('search_default_supplier', 0) == 1"/>
+                    <field name="name" default_focus="1" placeholder="Tên nhà cung cấp" attrs="{'required' : [('type', '=', 'contact')]}" invisible="context.get('search_default_supplier', 0) == 0"/>
+                </xpath>
+
+                <xpath expr="//group[@name='fiscal_information']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//group[@name='container_row_stock']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <!--<xpath expr="//field[@name='property_stock_customer']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='property_stock_supplier']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>-->
+
+                <xpath expr="//field[@name='website']" position="after">
+                    <field name="x_buying_frequency" invisible="context.get('search_default_supplier', 0) == 0"/>
+                    <field name="x_purchase_form" invisible="context.get('search_default_supplier', 0) == 0"/>
+                    <field name="x_delivery_form" widget="many2many_tags"
+                           invisible="context.get('search_default_supplier', 0) == 0"
+                    />
+                </xpath>
+                <xpath expr="//sheet/group/group[1]" position="inside">
+                    <field name="x_type_ncc" invisible="context.get('search_default_supplier', 0) == 0" options="{'no_create': True}"/>
+                    <field name="x_group_item" widget="many2many_tags"
+                           invisible="context.get('search_default_supplier', 0) == 0"
+                    />
+                    <field name="x_product_typical" invisible="context.get('search_default_supplier', 0) == 0"/>
+                    <field name="is_expense"/>
+
+
+                </xpath>
+                <xpath expr="//field[@name='child_ids']" position="attributes">
+                    <attribute name="context">{'default_parent_id': active_id, 'default_street': street,
+                        'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip':
+                        zip, 'default_country_id': country_id, 'default_lang': lang, 'default_user_id': user_id,
+                        'default_type': 'contact'}
+                    </attribute>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_partner_tree" model="ir.ui.view">
+            <field name="name">res.partner.view.tree</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='contact_address']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='customer_source']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='customer_status']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='user_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='activity_ids']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='city']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='state_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='country_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='vat']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='category_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='comment']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='phone']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='email']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='ref']" position="attributes">
+                    <attribute name="string">Tên viết tắt</attribute>
+                </xpath>
+                <xpath expr="//field[@name='ref']" position="after">
+                    <field name="phone"/>
+                    <field name="mobile"/>
+                    <field name="email"/>
+                    <field name="street"/>
+                    <field name="x_product_typical"/>
+                    <field name="comment" string="Ghi chú nội bộ"/>
+                    <field name="x_group_item"/>
+                    <field name="x_type_ncc"/>
+                    <field name="x_buying_frequency"/>
+                    <field name="x_purchase_form"/>
+                    <field name="x_delivery_form"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="view_partner_property_form_inherit" model="ir.ui.view">
+            <field name="name">res.partner.purchase.property.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="priority">36</field>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='receipt_reminder']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//label[@for='receipt_reminder_email']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Chỉ hiển thị nhà cung cấp đã phát sinh phiếu mua hàng -->
+        <record id="account.res_partner_action_supplier" model="ir.actions.act_window">
+            <field name="domain">[('purchase_line_ids', '!=', False)]</field>
+        </record>
+
+        <!-- Bộ lọc "Partner rác": không phát sinh dữ liệu nghiệp vụ nào trong hệ thống -->
+        <record id="view_res_partner_filter_junk" model="ir.ui.view">
+            <field name="name">res.partner.search.junk</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="inside">
+                    <separator/>
+                    <filter name="x_is_junk" string="Partner rác"
+                            domain="[('x_is_junk', '=', True)]"
+                            help="Không phải nhân viên/user, không liên hệ con-cha, không phát sinh dữ liệu nghiệp vụ"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

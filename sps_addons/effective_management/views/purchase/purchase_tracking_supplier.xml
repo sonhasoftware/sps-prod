@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <record id="purchase_tracking_supplier_tree" model="ir.ui.view">
+            <field name="name">purchase_tracking_supplier_tree</field>
+            <field name="model">purchase.tracking.supplier</field>
+            <field name="arch" type="xml">
+                <tree string="Bảng theo dõi nhà cung cấp" create="false" edit="false" delete="false">
+                    <field name="index" />
+                    <field name="supplier"/>
+                    <field name="amount" sum="Tổng" widget="integer"/>
+                    <field name="master_key" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_purchase_tracking_supplier_view" model="ir.actions.act_window">
+            <field name="name">Bảng theo dõi nhà cung cấp</field>
+            <field name="res_model">purchase.tracking.supplier</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+    </data>
+</odoo>

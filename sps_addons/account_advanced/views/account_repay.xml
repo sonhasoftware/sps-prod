@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <record id="account_account_advance_repay_form_view" model="ir.ui.view">
+            <field name="name">Phiếu hoàn ứng</field>
+            <field name="model">account.advance.repay</field>
+            <field name="arch" type="xml">
+                <form class="custom_sheet">
+                    <header>
+                        <field name="state" widget="statusbar"/>
+                        <button string="Gửi duyệt" class="oe_highlight" type="object" name="action_send"
+                                attrs="{'invisible': [('state','!=','draft')]}"/>
+                        <button string="Phê duyệt" class="oe_highlight" type="object" name="action_approve"
+                                attrs="{'invisible': [('state','in',('draft','approved','paid_done','paid','cancel'))]}"/>
+                        <button string="Từ chối" type="object" name="action_cancel"
+                                attrs="{'invisible': ['&amp;','&amp;','|',('state','!=','pending'),('check_user','=',False),'|',('state','!=','pending_acc'),('check_accountant','=',False),'|',('state','!=','paid_pending'),('user_setting_id','=',False)]}"/>
+                        <button string="Chuyển về nháp" type="object" name="action_draft"
+                                attrs="{'invisible': ['&amp;',('state','not in',('cancel','pending')),'|',('state','!=','pending_acc'),('check_accountant','=',False)]}"/>
+                        <button string="Thanh toán" class="oe_highlight" type="object" name="action_payment"
+                                confirm="Xác nhận thanh toán dựa theo số tiền còn lại ?"
+                                attrs="{'invisible': [('state','!=','approved')]}"/>
+                    </header>
+                    <link rel="stylesheet" href="/account_advanced/static/src/custom.css"/>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="check_user" invisible="1"/>
+                                <field name="check_record" invisible="1"/>
+                                <field name="check_accountant" invisible="1"/>
+                                <field name="user_setting_id" invisible="1"/>
+                                <field name="repay_type" />
+                                <field name="supplier_id" domain="[('parent_id', '=', False)]"
+                                        attrs="{'required' : [('repay_type', '=', 'supplier')],'invisible':[('repay_type', '=', 'employee')], 'readonly': [('state','!=','draft')]}" force_save="1"/>
+                                <field name="employee_id" attrs="{'required' : [('repay_type', '=', 'employee')],'invisible':[('repay_type', '!=', 'employee')],'readonly': [('state','!=','draft')]}"
+                                       force_save="1"/>
+                                <field name="advance_account_id" attrs="{'readonly': [('state','!=','draft')], 'invisible': [('repay_type', '=', 'supplier')]}"
+                                       force_save="1"/>
+                                <field name="approver_id" force_save="1"/>
+                                <field name="is_allowed_license_type" invisible="0"/>
+                                <field name="license_type" attrs="{'readonly': ['&amp;', ('state','not in',('draft','approved')), ('is_allowed_license_type', '=', False)]}"/>
+                            </group>
+                            <group>
+                                <field name="number_ballot"/>
+                                <field name="date_suggest" attrs="{'readonly': [('state','!=','draft')]}"/>
+                                <field name="create_uid" readonly="1" string="Người đề nghị"/>
+                                <field name="date_repay" attrs="{'readonly': [('state','!=','draft')]}"/>
+
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string='Danh sánh tạm ứng'>
+                                <field name="account_advance_repay_line_ids" attrs="{'readonly': [('state','not in',('draft','pending_acc','pending','approved'))]}">
+                                    <tree create="false" edit="false">
+                                        <field name="advance_number"/>
+                                        <field name="advance_reason"/>
+                                        <field name="project_id"/>
+                                        <field name="project_name"/>
+                                        <field name="advance_money"/>
+                                        <field name="date_suggestions"/>
+                                        <field name="date_payment"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string='Chi tiết hoàn ứng'>
+                                <field name="account_repay_line_ids" attrs="{'readonly': [('state','not in',('draft','pending_acc','pending','approved'))]}"
+                                       context="{'default_supplier_id': supplier_id}">
+                                    <tree editable="bottom">
+                                        <field name="currency_id" invisible="1"/>
+                                        <field name="project_id"/>
+                                        <field name="project_name" force_save="1"/>
+                                        <field name="invoice_number"/>
+                                        <field name="date_invoice"/>
+                                        <field name="supplier_id"/>
+                                        <field name="content"/>
+                                        <field name="cost_type_id" options="{'no_create': True}"/>
+                                        <field name="account_id" force_save="1"/>
+                                        <field name="uom_id"/>
+                                        <field name="qty" attrs="{'readonly': [('is_expense', '=', True), ('is_the_first', '=', False)]}" force_save="1"/>
+                                        <field name="price_unit" attrs="{'readonly': [('is_expense', '=', True), ('is_the_first', '=', False)]}" force_save="1"/>
+                                        <field name="amount_untaxed" force_save="1" widget="monetary"
+                                               options="{'currency_field': 'currency_id'}"/>
+                                        <field name="vat_ids" force_save="1" domain="[('type_tax_use','=','purchase')]" />
+                                        <field name="amount_tax" force_save="1" widget="monetary"
+                                               options="{'currency_field': 'currency_id'}"/>
+                                        <field name="note"/>
+                                        <field name="is_expense" force_save="1" readonly="1" invisible="1"/>
+                                        <field name="is_the_first" attrs="{'readonly': [('is_expense', '=', True), ('is_the_first', '=', False)]}" force_save="1"/>
+                                    </tree>
+                                </field>
+                                <group col="4">
+                                    <group col="3" colspan="3">
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                    </group>
+                                    <group col="1" colspan="1">
+                                        <field name="currency_id" invisible="1"/>
+                                        <field name="amount_total" force_save="1" widget="monetary"
+                                               options="{'currency_field': 'currency_id'}"/>
+                                        <field name="deposit_costs" force_save="1" widget="monetary"
+                                               options="{'currency_field': 'currency_id'}"/>
+                                        <field name="amount_advance" force_save="1"/>
+                                        <field name="still_pay" force_save="1" widget="monetary"
+                                               options="{'currency_field': 'currency_id'}" />
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Thông tin thanh toán">
+                                <group>
+                                    <group>
+                                        <field name="partner_bank_id"
+                                               attrs="{'readonly': [('state','not in',('draft','pending_acc','pending','approved'))]}"
+                                                context="{'repay_type':repay_type,'employee_id' : employee_id,'supplier_id': supplier_id}"/>
+                                        <field name="beneficiary"
+                                               attrs="{'readonly': [('state','not in',('draft','pending_acc','pending','approved'))]}" force_save="1"/>
+                                        <field name="bank_id"
+                                               attrs="{'readonly': [('state','not in',('draft','pending_acc','pending','approved'))]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="diary_id" domain="[('type', 'in', ('cash','bank'))]" attrs="{'readonly': [('is_allowed_license_type', '=', False)]}"/>
+                                        <field name="code_money" attrs="{'readonly': [('is_allowed_license_type', '=', False)]}"/>
+                                        <field name="payment_id"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Hạch toán" attrs="{'invisible': [('check_record','=',False)]}">
+                                <field name="account_account_line_ids" readonly="1" force_save="1">
+                                    <tree editable="bottom">
+                                        <field name="acc_id"/>
+                                        <field name="currency_id" invisible="1"/>
+                                        <field name="debit" widget="monetary"
+                                               options="{'currency_field': 'currency_id'}"/>
+                                        <field name="credit" widget="monetary"
+                                               options="{'currency_field': 'currency_id'}"/>
+                                        <field name="project_id"/>
+                                        <field name="project_name"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <sheet>
+                        <div class="oe_chatter">
+                            <field name="message_follower_ids"/>
+                            <field name="activity_ids"/>
+                            <field name="message_ids"/>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="account_repay_tree_view">
+            <field name="name">account.advance.repay</field>
+            <field name="model">account.advance.repay</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="number_ballot"/>
+                    <field name="employee_id"/>
+                    <field name="supplier_id"/>
+                    <field name="approver_id"/>
+                    <field name="date_suggest"/>
+                    <field name="date_repay"/>
+                    <field name="amount_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    <field name="amount_advance"/>
+                    <field name="still_pay"/>
+                    <field name="x_state"/>
+                    <field name="currency_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="account_repay_search_view">
+            <field name="name">account.advance.repay</field>
+            <field name="model">account.advance.repay</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="employee_id"/>
+                    <field name="supplier_id"/>
+                    <field name="advance_account_id"/>
+                    <field name="approver_id"/>
+                    <field name="number_ballot"/>
+                    <field name="state"/>
+                </search>
+            </field>
+        </record>
+        <record id="action_account_advance_repay" model="ir.actions.act_window">
+            <field name="name">Phiếu hoàn ứng</field>
+            <field name="res_model">account.advance.repay</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+                id="menu_account_advance_repay"
+                name="Hoàn ứng nội bộ"
+                action="action_account_advance_repay"
+                parent="account_advanced.menu_advance"
+                sequence="3"/>
+    </data>
+</odoo>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="project_efficiency_detail_tree" model="ir.ui.view">
+            <field name="name">project_efficiency_detail_tree</field>
+            <field name="model">project.efficiency.detail</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false" class="hide_o_list_record_selector"  >
+                    <field name="pp_name_report"/>
+                    <field name="project_name"/>
+                    <field name="leader"/>
+                    <field name="project_supporter"/>
+                    <field name="project_type"/>
+                    <field name="end_month"/>
+                    <field name="budget" widget="integer"/>
+                    <field name="estimate_materials_and_other_costs" widget="integer"/>
+                    <field name="total_1" widget="integer"/>
+                    <field name="actual_labor"  widget="integer"/>
+                    <field name="actual_materials_and_other_costs" widget="integer"/>
+                    <field name="total_depreciation_cost" widget="integer"/>
+                    <field name="total_2" widget="integer"/>
+                    <field name="iv_fee"/>
+                    <field name="invoice_processing_profit" widget="integer"/>
+                    <field name="no_invoice_extra_cost" widget="integer"/>
+                    <field name="diff" widget="integer"/>
+                    <field name="rate"/>
+                    <field name="reward" widget="integer"/>
+                    <button name="action_view_reward_lines" type="object"
+                            string="Chi tiết thưởng" icon="fa-money"/>
+                    <field name="master_key" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="project_efficiency_reward_line_tree" model="ir.ui.view">
+            <field name="name">project_efficiency_reward_line_tree</field>
+            <field name="model">project.efficiency.reward.line</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false">
+                    <field name="member_name"/>
+                    <field name="role"/>
+                    <field name="work_hour" widget="float" sum="Tổng giờ"/>
+                    <field name="ratio" widget="float"/>
+                    <field name="reward" widget="integer" sum="Tổng thưởng"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="project_efficiency_detail_search" model="ir.ui.view">
+            <field name="name">project_efficiency_detail_search</field>
+            <field name="model">project.efficiency.detail</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="pp_name_report" string="Số phụ dự án" filter_domain="[('pp_name_report', 'ilike', self)]"/>
+                    <field name="project_name" string="Tên dự án" filter_domain="[('project_name', 'ilike', self)]"/>
+                    <field name="leader" string="Phụ trách" filter_domain="[('leader', 'ilike', self)]"/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_leader" string="Phụ trách" context="{'group_by': 'leader'}"/>
+                        <filter name="group_by_project_type" string="Phân loại" context="{'group_by': 'project_type'}"/>
+                        <filter name="group_by_end_month" string="Tháng kết thúc" context="{'group_by': 'end_month'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_project_efficiency_detail" model="ir.actions.act_window">
+            <field name="name">Báo cáo hiệu quả dự án</field>
+            <field name="res_model">project.efficiency.detail</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="project_efficiency_detail_tree"/>
+            <field name="search_view_id" ref="project_efficiency_detail_search"/>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Không có dữ liệu báo cáo hiệu quả dự án
+                </p>
+                <p>
+                    Sử dụng wizard để tạo báo cáo hiệu quả dự án theo năm.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

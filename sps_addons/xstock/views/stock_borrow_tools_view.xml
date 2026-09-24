@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Bảng trung gian để lấy dữ liệu cho mượn/trả CCDC-->
+        <record id="stock_borrow_tools_tree_view" model="ir.ui.view">
+            <field name="name">stock.borrow.tools.tree</field>
+            <field name="model">stock.borrow.tools</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="product_id"/>
+                    <field name="lot_id"/>
+                    <field name="receiver_id"/>
+                    <field name="project_id"/>
+                    <field name="amount"/>
+                    <field name="standard_price" optional="show" groups="stock.group_stock_manager"/>
+                    <field name="value" groups="stock.group_stock_manager"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="stock_borrow_tools_form_view" model="ir.ui.view">
+            <field name="name">stock.borrow.tools.form</field>
+            <field name="model">stock.borrow.tools</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="product_id"/>
+                                <field name="lot_id"/>
+                                <field name="receiver_id"/>
+                            </group>
+                            <group>
+                                <field name="project_id"/>
+                                <field name="amount" force_save="1"/>
+                                <field name="standard_price"/>
+                                <field name="value"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="stock_borrow_tools_search" model="ir.ui.view">
+            <field name="name">stock.borrow.tools.search</field>
+            <field name="model">stock.borrow.tools</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="product_id"/>
+                    <field name="lot_id"/>
+                    <field name="receiver_id"/>
+                    <field name="project_id"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_stock_borrow_tools" model="ir.actions.act_window">
+            <field name="name">Mượn/trả CCDC</field>
+            <field name="res_model">stock.borrow.tools</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+        id="menu_stock_borrow_tools"
+        name="Mượn/trả CCDC"
+        action="action_stock_borrow_tools"
+        parent="stock.menu_warehouse_config"
+        sequence="100"/>
+
+</odoo>

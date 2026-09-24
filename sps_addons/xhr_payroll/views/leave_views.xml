@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="hr_leave_view_tree" model="ir.ui.view">
+            <field name="name">hr.leave.tree</field>
+            <field name="model">hr.leave</field>
+            <field name="inherit_id" ref="hr_holidays.hr_leave_view_tree"/>
+            <field name="arch" type="xml">
+                <field name="duration_display" position="after">
+                    <field name="x_phone_status"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="hr_leave_view_form" model="ir.ui.view">
+            <field name="name">hr.leave.form</field>
+            <field name="model">hr.leave</field>
+            <field name="inherit_id" ref="hr_holidays.hr_leave_view_form"/>
+            <field name="arch" type="xml">
+                <field name="number_of_days" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                    <attribute name="force_save">1</attribute>
+                </field>
+
+                <xpath expr="//field[@name='department_id']/../.." position="after">
+                    <field name="x_log_ids" readonly="1" force_save="1">
+                        <tree>
+                            <field name="leave_type_id"/>
+                            <field name="date"/>
+                            <field name="number_of_days"/>
+                        </tree>
+                    </field>
+                </xpath>
+
+                <field name="holiday_status_id" position="attributes">
+                    <attribute name="domain">
+                        [
+                        '&amp;',
+                        '&amp;',
+                        ('virtual_remaining_leaves', '&gt;', 0),
+                        '|',
+                        ('allocation_type', 'in', ['fixed_allocation', 'no']),
+                        '&amp;', ('allocation_type', '=', 'fixed'), ('max_leaves', '>', '0'),
+                        '|', '|', '|',
+                        '&amp;', ('validity_start', '=', False), ('validity_stop', '=', False),
+                        '&amp;', ('validity_start', '=', False), ('validity_stop', '&gt;=',
+                        context_today().strftime('%Y-%m-%d')),
+                        '&amp;', ('validity_stop', '=', False), ('validity_start', '&lt;=',
+                        context_today().strftime('%Y-%m-%d')),
+                        '&amp;', ('validity_start', '&lt;=', context_today().strftime('%Y-%m-%d')), ('validity_stop', '&gt;=',
+                        context_today().strftime('%Y-%m-%d')),
+                        ]
+                    </attribute>
+                </field>
+
+                <field name="name" position="before">
+                    <field name="x_phone_status"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="hr_leave_view_form_manager" model="ir.ui.view">
+            <field name="name">hr.leave.form</field>
+            <field name="model">hr.leave</field>
+            <field name="inherit_id" ref="hr_holidays.hr_leave_view_form_manager"/>
+            <field name="arch" type="xml">
+                <field name="holiday_type" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                    <attribute name="force_save">1</attribute>
+                </field>
+
+                <field name="number_of_days" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                    <attribute name="force_save">1</attribute>
+                </field>
+
+                <!--                <xpath expr="//field[@name='department_id']/../.." position="after">-->
+                <!--                    <field name="x_log_ids" readonly="1" force_save="1">-->
+                <!--                        <tree>-->
+                <!--                            <field name="leave_type_id"/>-->
+                <!--                            <field name="date"/>-->
+                <!--                            <field name="number_of_days"/>-->
+                <!--                        </tree>-->
+                <!--                    </field>-->
+                <!--                </xpath>-->
+            </field>
+        </record>
+
+        <record id="edit_holiday_status_form" model="ir.ui.view">
+            <field name="name">hr.leave.type.form</field>
+            <field name="model">hr.leave.type</field>
+            <field name="inherit_id" ref="hr_holidays.edit_holiday_status_form"/>
+            <field name="arch" type="xml">
+                <field name="request_unit" position="after">
+                    <field name="x_pay"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

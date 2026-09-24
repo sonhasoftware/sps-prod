@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="report_payslip" inherit_id="hr_payroll.report_payslip">
+    <xpath expr="//div[@class='page']" position="replace">
+        <div class="page">
+            <table cellspacing="0" style="border-collapse:collapse; width:100%">
+	<tbody>
+		<tr>
+			<td colspan="8" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:60px; text-align:center; vertical-align:middle; white-space:nowrap; width:673px">
+				<img src="/xhr_payroll/static/img/logo.png" style="height:50px; display:block; margin-left:auto; margin-right:auto;"/>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="8" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:center; vertical-align:middle; white-space:nowrap; width:673px"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black"></span></span></strong></span></td>
+		</tr>
+		<tr>
+			<td colspan="8" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:center; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black"></span></span></strong></span></td>
+		</tr>
+		<tr>
+			<td colspan="8" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:center; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">PHIẾU THANH TOÁN LƯƠNG</span></span></strong></span></td>
+		</tr>
+		<tr>
+			<td colspan="8" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:43px; text-align:center; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><em><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">PAYSLIP</span></span></em></span></td>
+		</tr>
+		<tr>
+			<td colspan="8" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:center; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">THÁNG - NĂM: <t t-esc="o.date_from.strftime('%m/%Y')"></t></span></span></span></td>
+		</tr>
+		<tr>
+			<td colspan="8" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:center; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black"></span></span></strong></span></td>
+		</tr>
+		<tr>
+			<td colspan="2" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:right; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">Họ và tên:&#160;</span></span></span></td>
+			<td colspan="3" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="color:#0070c0"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span t-field="o.employee_id"></span></span></strong></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:right; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">Mã NV:&#160;</span></span></span></td>
+			<td colspan="2" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="color:#0070c0"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span t-field="o.employee_id.x_code"></span></span></strong></span></span></td>
+		</tr>
+		<tr>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">1</span></span></strong></span></td>
+			<td colspan="5" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">Giờ công tiêu chuẩn tháng:</span></span></strong></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:right; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="color:#0070c0"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><t t-esc="'{:,.1f}'.format(o.input_line_ids.filtered(lambda i: i.code == 'OTHER_WORK_HOUR_THEORY').amount)"> </t></span></strong></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">Hrs</span></span></span></td>
+		</tr>
+		<tr>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">2</span></span></strong></span></td>
+			<td colspan="5" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">Lương cơ bản + Lương KPI định mức :</span></span></strong></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:right; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="color:#0070c0"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><t t-esc="'{:,.0f}'.format(o.contract_id.wage)"></t></span></strong></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif">VNĐ</span></span></td>
+		</tr>
+		<tr>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">3</span></span></strong></span></td>
+			<td colspan="5" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">Tổng thu nhập thực tế</span></span></strong></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:right; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="color:#0070c0"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><t t-esc="'{:,.0f}'.format(sum(x.total for x in o.line_ids.filtered(lambda i: i.code in ('TNTGCTT', 'LKPI', 'LNG', 'LDL'))))"></t></span></strong></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif">VNĐ</span></span></td>
+		</tr>
+		<tr>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">4</span></span></strong></span></td>
+			<td colspan="5" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">Thưởng hoặc các khoản thu nhập khác (nếu có)</span></span></strong></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:right; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="color:#0070c0"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><t t-esc="'{:,.0f}'.format(o.input_line_ids.filtered(lambda i: i.code == 'OTHER_BONUS').amount)"> </t></span></strong></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif">VNĐ</span></span></td>
+		</tr>
+		<tr>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">5</span></span></strong></span></td>
+			<td colspan="5" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">Các khoản giảm trừ (5 = 5.1+5.2+5.3+5.4)</span></span></strong></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:right; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="color:#0070c0"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><t t-esc="'{:,.0f}'.format(sum(x.total for x in o.line_ids.filtered(lambda i: i.code in ('BHXH', 'BHYT', 'BHTN', 'TTNCNPN'))))"></t></span></strong></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif">VNĐ</span></span></td>
+		</tr>
+		<tr>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">5.1</span></span></span></td>
+			<td colspan="5" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">Bảo hiểm XH (8%) :</span></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:right; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="color:#0070c0"><span style="font-family:&quot;Times New Roman&quot;,serif"><t t-esc="'{:,.0f}'.format(o.line_ids.filtered(lambda i: i.code == 'BHXH').total)"></t></span></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif">VNĐ</span></span></td>
+		</tr>
+		<tr>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">5.2</span></span></span></td>
+			<td colspan="5" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">Bảo hiểm Y Tế (1.5 %) :</span></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:right; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="color:#0070c0"><span style="font-family:&quot;Times New Roman&quot;,serif"><t t-esc="'{:,.0f}'.format(o.line_ids.filtered(lambda i: i.code == 'BHYT').total)"></t></span></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif">VNĐ</span></span></td>
+		</tr>
+		<tr>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">5.3</span></span></span></td>
+			<td colspan="5" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">Bảo hiểm thất nghiệp (1%) :</span></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:right; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="color:#0070c0"><span style="font-family:&quot;Times New Roman&quot;,serif"><t t-esc="'{:,.0f}'.format(o.line_ids.filtered(lambda i: i.code == 'BHTN').total)"></t></span></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif">VNĐ</span></span></td>
+		</tr>
+		<tr>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">5.4</span></span></span></td>
+			<td colspan="5" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">Thuế thu nhập cá nhân :</span></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:right; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="color:#0070c0"><span style="font-family:&quot;Times New Roman&quot;,serif"><t t-esc="'{:,.0f}'.format(o.line_ids.filtered(lambda i: i.code == 'TTNCNPN').total)"> </t></span></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif">VNĐ</span></span></td>
+		</tr>
+		<tr>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">6</span></span></strong></span></td>
+			<td colspan="5" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">Khoản đã nhận tạm ứng (nếu có)</span></span></strong></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:right; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="color:#0070c0"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><t t-esc="'{:,.0f}'.format(o.line_ids.filtered(lambda i: i.code == 'TU').total)"> </t></span></strong></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif">VNĐ</span></span></td>
+		</tr>
+		<tr>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">7</span></span></strong></span></td>
+			<td colspan="5" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">Bù trừ lương tháng (nếu có)</span></span></strong></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:right; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="color:#0070c0"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><t t-esc="'{:,.0f}'.format(o.input_line_ids.filtered(lambda i: i.code == 'OTHER_FINED').amount)"> </t></span></strong></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif">VNĐ</span></span></td>
+		</tr>
+		<tr>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">8</span></span></strong></span></td>
+			<td colspan="5" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">Hoàn thuế TNCN năm trước (nếu có)</span></span></strong></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:right; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="color:#0070c0"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><t t-esc="'{:,.0f}'.format(o.input_line_ids.filtered(lambda i: i.code == 'OTHER_TAX_RETURN').amount)"> </t></span></strong></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif">VNĐ</span></span></td>
+		</tr>
+		<tr>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">9</span></span></strong></span></td>
+			<td colspan="5" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">Hỗ trợ xăng xe</span></span></strong></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:right; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="color:#0070c0"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><t t-if="o.input_line_ids.filtered(lambda i: i.code == 'OTHER_WORK_DAY_THEORY').amount > 0">
+                                  <t t-esc="'{:,.0f}'.format(o.contract_id.x_gasoline_standard * o.input_line_ids.filtered(lambda i: i.code == 'OTHER_GAS_PRICE').amount * o.input_line_ids.filtered(lambda i: i.code == 'OTHER_WORK_DAY_PAID').amount / o.input_line_ids.filtered(lambda i: i.code == 'OTHER_WORK_DAY_THEORY').amount)">
+                              </t>
+                              <t t-if="o.input_line_ids.filtered(lambda i: i.code == 'OTHER_WORK_DAY_THEORY').amount == 0">
+                                  0
+                              </t>
+                          </t></span></strong></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif">VNĐ</span></span></td>
+		</tr>
+		<tr>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">10</span></span></strong></span></td>
+			<td colspan="5" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">Hỗ trợ ăn ca</span></span></strong></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:right; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="color:#0070c0"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><t t-esc="'{:,.0f}'.format(o.line_ids.filtered(lambda i: i.code == 'HTAC').total)"></t></span></strong></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif">VNĐ</span></span></td>
+		</tr>
+		<tr>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">11</span></span></strong></span></td>
+			<td colspan="5" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">Công tác phí</span></span></strong></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:right; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="color:#0070c0"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><t t-esc="'{:,.0f}'.format(o.input_line_ids.filtered(lambda i: i.code == 'OTHER_BUSINESS_FEE').amount)"></t></span></strong></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif">VNĐ</span></span></td>
+		</tr>
+		<tr>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">12</span></span></strong></span></td>
+			<td colspan="5" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif">Hỗ trợ 70% tiền lương bù đủ công</span></strong></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:right; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="color:#0070c0"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><t t-esc="'{:,.0f}'.format(o.line_ids.filtered(lambda i: i.code == 'HTTLBDC').total)"></t></span></strong></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif">VNĐ</span></span></td>
+		</tr>
+		<tr>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">13</span></span></strong></span></td>
+			<td colspan="5" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">Hỗ trợ điện thoại</span></span></strong></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:right; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="color:#0070c0"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><t t-esc="'{:,.0f}'.format(o.input_line_ids.filtered(lambda i: i.code == 'OTHER_MOBILE').amount)"></t></span></strong></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif">VNĐ</span></span></td>
+		</tr>
+		<tr>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">14</span></span></strong></span></td>
+			<td colspan="5" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">Lương thực nhận (14 = 3+4-5-6-7+8+9+10+11+12+13)</span></span></strong></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:right; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="color:#0070c0"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><t t-esc="'{:,.0f}'.format(o.x_amount_total)"> </t></span></strong></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif">VNĐ</span></span></td>
+		</tr>
+		<tr>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:16px; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="color:white"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"></span></strong></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:right; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="color:white"><span style="font-family:&quot;Times New Roman&quot;,serif">Số tiền bằng chữ: </span></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="color:white"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"></span></strong></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="color:white"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"></span></strong></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="color:white"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"></span></strong></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="color:white"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"></span></strong></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="color:white"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"></span></strong></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="color:white"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"></span></strong></span></span></td>
+		</tr>
+		<tr>
+			<td colspan="8" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">Số tiền bằng chữ: <t t-raw="o.get_amount_text()"></t> đồng</span></span></span></td>
+		</tr>
+		<tr>
+			<td colspan="8" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">SPS tự hào khi cùng bạn đồng hành trên chặng đường phát triển.<br/>Chúng ta hãy cùng nhau xây dựng một cuộc sống ngày càng thịnh vượng và bền vững hơn.</span></span></span></td>
+		</tr>
+		<tr>
+		</tr>
+		<tr>
+			<td colspan="3" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:center; vertical-align:middle; white-space:normal; width:244px"><span style="font-size:18px"><em><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black"></span></span></em></span></td>
+			<td colspan="5" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">Ký ghi rõ họ tên</span></span></strong></span></td>
+		</tr>
+		<tr>
+			<td colspan="3" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:center; vertical-align:middle; white-space:normal; width:244px"><span style="font-size:18px"><em><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black"></span></span></em></span></td>
+			<td colspan="5" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:top; white-space:nowrap"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">(Áp dụng với trường hợp thanh toán bằng tiền mặt)</span></span></span></td>
+		</tr>
+		<tr>
+			<td colspan="8" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:center; vertical-align:middle; white-space:normal; width:673px"><span style="font-size:18px"><em><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black"></span></span></em></span></td>
+		</tr>
+		<tr>
+			<td colspan="8" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:center; vertical-align:middle; white-space:normal; width:673px"><span style="font-size:18px"><em><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black"></span></span></em></span></td>
+		</tr>
+		<tr>
+			<td colspan="8" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:center; vertical-align:middle; white-space:normal; width:673px"><span style="font-size:18px"><em><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black"></span></span></em></span></td>
+		</tr>
+		<tr>
+			<td colspan="8" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:center; vertical-align:middle; white-space:normal; width:673px"><span style="font-size:18px"><em><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black"></span></span></em></span></td>
+		</tr>
+		<tr>
+			<td colspan="8" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:center; vertical-align:middle; white-space:normal; width:673px"><span style="font-size:18px"><em><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black"></span></span></em></span></td>
+		</tr>
+		<tr>
+			<td colspan="8" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:45px; text-align:left; vertical-align:middle; white-space:normal; width:673px"><span style="font-size:18px"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">Ghi chú: Các trường hợp nhận tiền mặt sau khi ký sẽ gửi lại phòng Nhân sự một bản để lưu giữ.</span></span></span></td>
+		</tr>
+		<tr>
+			<td colspan="8" style="background-color:white; border-bottom:none; border-left:none; border-right:none; border-top:none; height:25px; text-align:center; vertical-align:middle; white-space:nowrap"><span style="font-size:18px"><strong><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black"></span></span></strong></span></td>
+		</tr>
+	</tbody>
+</table>
+        </div>
+    </xpath>
+</template>
+</odoo>

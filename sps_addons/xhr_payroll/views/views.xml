@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="assets_backend" name="xhr_payroll assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/xhr_payroll/static/src/css/styles.css"/>
+        </xpath>
+    </template>
+
+    <data>
+        <menuitem
+            id="menu_hr_work_shift_settings"
+            name="Work shifts"
+            parent="hr_work_entry_contract.menu_hr_payroll_configuration"
+            sequence="10"/>
+
+        <menuitem
+            id="menu_xhr_work_entry_root"
+            name="Work Entries"
+            parent="hr.menu_hr_root"
+            sequence="10"/>
+
+    </data>
+
+</odoo>

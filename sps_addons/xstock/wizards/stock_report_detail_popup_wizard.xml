@@ -1,0 +1,30 @@
+<odoo>
+    <record id="stock_report_detail_popup_wizard_view" model="ir.ui.view">
+        <field name="name">Báo cáo chi tiết hoạt động kho</field>
+        <field name="model">stock.report.detail.popup.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Báo cáo chi tiết hoạt động kho">
+                    <group>
+                        <field name="product_ids" widget="many2many_tags"/>
+                    </group>
+                    <footer>
+                        <button name="action_report" string="Xem báo cáo" type="object" class="btn-primary"/>
+                        <button string="Đóng" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+        </field>
+    </record>
+
+    <record id="action_stock_report_detail_popup_wizard" model="ir.actions.act_window">
+        <field name="name">Báo cáo hoạt động chi tiết kho</field>
+        <field name="res_model">stock.report.detail.popup.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+
+    </record>
+    <menuitem action="action_stock_report_detail_popup_wizard"
+              name="Báo cáo hoạt động chi tiết kho"
+              parent="stock.menu_warehouse_report"
+              id="menu_stock_report_detail_report_wizard"
+              sequence="1"/>
+</odoo>

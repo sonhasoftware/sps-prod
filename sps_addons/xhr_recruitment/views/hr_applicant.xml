@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="crm_case_tree_view_job" model="ir.ui.view">
+            <field name="name">hr.applicant.tree</field>
+            <field name="model">hr.applicant</field>
+            <field name="inherit_id" ref="hr_recruitment.crm_case_tree_view_job"/>
+            <field name="arch" type="xml">
+                <field name="priority" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="user_id" position="after">
+                    <field name="x_interview_result"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="hr_kanban_view_applicant" model="ir.ui.view">
+            <field name="name">hr.applicant.kanban</field>
+            <field name="model">hr.applicant</field>
+            <field name="inherit_id" ref="hr_recruitment.hr_kanban_view_applicant"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div/field[@name='priority']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="hr_applicant_view_form" model="ir.ui.view">
+            <field name="name">hr.applicant.form</field>
+            <field name="model">hr.applicant</field>
+            <field name="inherit_id" ref="hr_recruitment.hr_applicant_view_form"/>
+            <field name="arch" type="xml">
+
+                <field name="type_id" position="after">
+<!--                    <field name="x_certificate"/>-->
+                    <field name="x_dob"/>
+                    <field name="x_state_id" domain="[('country_id','=',241)]"/>
+                </field>
+                <field name="job_id" position="after">
+                    <field name="recruit_rq_id"/>
+                </field>
+                 <field name="source_id" position="after">
+                    <field name="x_experience"/>
+                    <field name="x_submission_date"/>
+                </field>
+                <field name="priority" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="kanban_state" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <xpath expr="//sheet/group" position="after">
+                    <separator string="Interview"/>
+                    <group>
+                        <group>
+                            <field name="x_eval_overall" widget="radio"/>
+                        </group>
+                        <group>
+                            <field name="x_eval_overall_note"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="x_eval_degree" widget="radio" />
+                        </group>
+                        <group>
+                            <field name="x_eval_degree_note" />
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="x_eval_experience" widget="radio" />
+                        </group>
+                        <group>
+                            <field name="x_eval_experience_note"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="x_eval_language" widget="radio" />
+                        </group>
+                        <group>
+                            <field name="x_eval_language_note" />
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="x_eval_motivation" widget="radio" />
+                        </group>
+                        <group>
+                            <field name="x_eval_motivation_note" />
+                        </group>
+                        <group>
+                            <field name="x_employment_status" widget="radio"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="x_interview_result" widget="radio"/>
+                    </group>
+                </xpath>
+                <xpath expr="//sheet/group/group[2]" position="after">
+                    <group colspan="4" string="Trình độ">
+                        <group>
+                            <field name="x_certificate"/>
+                            <field name="x_training_form"/>
+                        </group>
+                        <group>
+                            <field name="x_study_field_id"/>
+                            <field name="x_study_school_id"/>
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+  </data>
+</odoo>

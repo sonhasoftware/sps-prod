@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_template_tree_view_inherit_sps_sale_target" model="ir.ui.view">
+        <field name="name">product.template.view.tree.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='barcode']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='default_code']" position="after">
+                <field name="description_sale"/>
+            </xpath>
+            <xpath expr="//field[@name='company_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='list_price']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='standard_price']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath expr="//field[@name='categ_id']" position="attributes">
+                <attribute name="optional">show</attribute>
+            </xpath>
+            <!--<xpath expr="//field[@name='type']" position="attributes">
+                <attribute name="optional">show</attribute>
+            </xpath>
+            <xpath expr="//field[@name='type']" position="after">
+                <field name="description" />
+            </xpath>-->
+
+            <xpath expr="//field[@name='type']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <field name="type" postion="after">
+                <field name="x_type"/>
+            </field>
+
+            <xpath expr="//field[@name='uom_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='activity_exception_decoration']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_template_form_view_inherit_sps_sale_target" model="ir.ui.view">
+        <field name="name">product.template.view.form.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='options']" position="before">
+                <group>
+                    <field name="default_code"/>
+                    <field name="x_code_brand"/>
+                    <field name="x_product_company"/>
+                </group>
+            </xpath>
+            <xpath expr="//label[@for='list_price']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//div[@name='standard_price_uom']" position="attributes">
+                <attribute name="groups">stock.group_stock_manager</attribute>
+            </xpath>
+            <xpath expr="//div[@name='pricing']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='type']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <field name="type" position="after">
+                <field name="x_type" required="1"/>
+                <field name="x_product_type" attrs="{'invisible' : [('x_type', '=', 'service')]}"/>
+                <field name="x_location_stock" attrs="{'invisible' : [('x_type', '=', 'service')]}"/>
+                <field name="x_supplies_type" attrs="{'invisible' : [('x_product_type', '=', 'tools')]}"/>
+                <field name="x_manage_frequency"/>
+                <field name="x_frequency_id" attrs="{'invisible': [('x_manage_frequency', '=', False)]}"/>
+            </field>
+
+            <field name="uom_id" position="after">
+                <field name="min_inventory" groups="stock.group_stock_manager"/>
+                <field name="max_inventory" groups="stock.group_stock_manager"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="product_template_only_form_view_inherit_sps_sale_target" model="ir.ui.view">
+        <field name="name">product.template.only.view.form.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='general_information']//field[@name='default_code']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='barcode']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='uom_po_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+<!--            <xpath expr="//page[@name='general_information']//field[@name='type']" position="after">-->
+<!--                <field name="x_manage_frequency"/>-->
+<!--                <field name="x_frequency_id"  attrs="{'invisible' :[('x_manage_frequency' , '=',False)]}" />-->
+<!--            </xpath>-->
+        </field>
+    </record>
+
+    <record id="product_template_form_view_invoice_policy_inherit_sps_sale_target" model="ir.ui.view">
+        <field name="name">product.template.view.form.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="sale.product_template_form_view_invoice_policy"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='expense_policy']" position="attributes">
+                <attribute name="attrs">{'invisible': [(1, '=', 1)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

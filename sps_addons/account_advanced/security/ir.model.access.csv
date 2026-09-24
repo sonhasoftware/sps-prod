@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_code_money,code_money,model_code_money,base.group_user,1,1,1,1
+access_account_advance,account_advance,model_account_advance,base.group_user,1,1,1,1
+access_account_advance_line,account_advance_line,model_account_advance_line,base.group_user,1,1,1,1
+access_account_advance_register,account_advance_register,model_account_advance_register,base.group_user,1,1,1,1
+
+acess_account_advance_repay,account_advance_repay,model_account_advance_repay,base.group_user,1,1,1,1
+acess_account_repay_line,account_repay_line,model_account_repay_line,base.group_user,1,1,1,1
+acess_account_advance_repay_line,account_advance_repay_line,model_account_advance_repay_line,base.group_user,1,1,1,1
+acess_account_accounting_line,account_accounting_line,model_account_accounting_line,base.group_user,1,1,1,1
+
+access_account_advance_register_line, model_account_advance_register_line,model_account_advance_register_line,base.group_user,1,1,1,1

@@ -1,0 +1,11 @@
+.custom_sheet.o_form_view.o_xxl_form_view > .o_form_sheet_bg > .o_form_sheet{
+     width: auto;
+     max-width :none;
+
+}
+.o_form_sheet .o_notebook .o_field_one2many .o_list_view .o_list_table .o_data_row .o_list_record_remove:last-child {
+    display: none;
+}
+.o_form_sheet .o_notebook .o_field_one2many .o_list_view .o_list_table .o_list_record_remove_header:last-child {
+    display: none;
+}

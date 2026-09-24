@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+  <data>
+
+
+    <!-- Top menu item -->
+    <menuitem name="Quản lý hiệu quả" id="effective_menu_root" web_icon="effective_management,static/image/icon.png" active="True" groups="base.group_user"/>
+    <!-- menu categories -->
+    <menuitem name="Hiệu quả tuyển dụng" id="effective_hr" parent="effective_menu_root" sequence="2" groups="effective_management.group_effective_recruitment"/>
+    <menuitem name="Hiệu quả mua hàng" id="effective_purchase" parent="effective_menu_root" sequence="1" groups="effective_management.group_effective_purchase"/>
+    <menuitem name="Hiệu quả kinh doanh" id="effective_sale" parent="effective_menu_root" sequence="3" groups="effective_management.group_effective_sale"/>
+    <menuitem name="Hiệu quả dự án" id="effective_project" parent="effective_menu_root" sequence="4" groups="effective_management.group_effective_project"/>
+
+
+
+  </data>
+</odoo>

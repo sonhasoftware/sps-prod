@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_project_sum_value_labor_wizards" model="ir.ui.view">
+            <field name="name">Báo cáo tổng giá trị ngân sách</field>
+            <field name="model">project.sum.value.labor.wizards</field>
+            <field name="arch" type="xml">
+                <form string="Báo cáo tổng giá trị ngân sách">
+                    <group>
+                        <field name="year"/>
+                    </group>
+                    <footer>
+                        <button name="action_report" string="Xem báo cáo" type="object" class="btn-primary"/>
+                        <button string="Đóng" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_project_sum_value_labor_wizards" model="ir.actions.act_window">
+            <field name="name">Báo cáo tổng giá trị ngân sách</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">project.sum.value.labor.wizards</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="project_sum_value_labor_menu"
+                  name="Báo cáo tổng giá trị ngân sách"
+                  action="action_project_sum_value_labor_wizards"
+                  parent="effective_management.effective_project"
+                  sequence="5"
+        />
+    </data>
+</odoo>

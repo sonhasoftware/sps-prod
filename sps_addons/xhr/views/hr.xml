@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Employee views -->
+    <data>
+
+        <record id="view_department_tree" model="ir.ui.view">
+            <field name="name">hr.department.tree</field>
+            <field name="model">hr.department</field>
+            <field name="inherit_id" ref="hr.view_department_tree"/>
+            <field name="arch" type="xml">
+                <field name="parent_id" position="after">
+                    <field name="x_block_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_employee_tree" model="ir.ui.view">
+            <field name="name">hr.employee.tree</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="x_code"/>
+                </field>
+                <field name="work_email" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="department_id" position="before">
+                    <field name="job_id" position="move"/>
+                </field>
+                <field name="work_location" position="attributes">
+                    <attribute name="optional"></attribute>
+                </field>
+                <field name="work_phone" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="work_phone" position="after">
+                    <field name="mobile_phone"/>
+                </field>
+
+            </field>
+        </record>
+
+        <record id="view_employee_form" model="ir.ui.view">
+            <field name="name">hr.employee.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <field name="job_title" position="before">
+                    <label for="job_title"/>
+                </field>
+                <xpath expr="//h2" position="after">
+                    <label for="x_code"/>
+                    <field name="x_code" required="1"/>
+                </xpath>
+
+                <field name="company_id" position="after">
+                    <field name="x_project_id"/>
+                    <field name="x_employee_type"/>
+                </field>
+
+                <xpath expr="//field[@name='tz']/.." position="after">
+                    <group string="Profile">
+                        <field name="x_has_cv"/>
+                        <field name="x_has_birth_cert"/>
+                        <field name="x_has_medical_exam"/>
+                        <field name="x_has_id_card"/>
+                        <field name="x_has_registration_book"/>
+                        <field name="x_has_degree"/>
+                        <field name="x_has_portrait"/>
+                        <field name="x_note"/>
+                    </group>
+                    <group string="Other">
+                        <field name="x_onboard_date"/>
+                        <field name="x_quit_date"/>
+                        <field name="x_cv_code"/>
+                    </group>
+                </xpath>
+
+                <field name="identification_id" position="after">
+                    <field name="x_identification_issue_date"/>
+                    <field name="x_identification_issue_by"/>
+                </field>
+
+                <field name="country_of_birth" position="after">
+                    <field name="x_ethnic_id"/>
+                    <field name="x_living"/>
+                    <field name="x_household_address"/>
+                </field>
+                <field name="place_of_birth" position="replace">
+                    <field name="x_place_of_birth_id" domain="[('country_id','=',241)]"/>
+                </field>
+
+                <field name="study_school" position="after">
+                    <field name="x_study_field_id"/>
+                    <field name="x_study_school_id"/>
+                    <field name="x_training_form"/>
+                </field>
+                <field name="study_school" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="study_field" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+
+                <xpath expr="//field[@name='certificate']/.." position="after">
+                    <group string="Account">
+                        <field name="x_tax_number"/>
+                        <field name="x_bank_account_holder"/>
+                        <field name="x_bank_account"/>
+                        <field name="x_bank_name"/>
+                        <field name="x_bank_branch"/>
+                        <field name="x_salary_hold"/>
+                    </group>
+                    <group string="Social insurance">
+                        <field name="x_insurance_number"/>
+                        <field name="x_insurance_place"/>
+                    </group>
+                </xpath>
+
+                <page name="hr_settings" position="after">
+                    <page name="dependant" string="Thông tin gia đình">
+                        <field name="x_depend_ids">
+                            <tree editable="bottom">
+                                <field name="sequence" widget="handle"/>
+                                <field name="name"/>
+                                <field name="relation"/>
+                                <field name="mobile_phone"/>
+                                <field name="dob"/>
+                                <field name="tax_number"/>
+                                <field name="is_depend"/>
+                            </tree>
+                            <form>
+                                <group>
+                                    <group>
+                                        <field name="name"/>
+                                        <field name="relation"/>
+                                        <field name="mobile_phone"/>
+                                    </group>
+                                    <group>
+                                        <field name="dob"/>
+                                        <field name="tax_number"/>
+                                        <field name="is_depend"/>
+                                    </group>
+                                </group>
+                            </form>
+                        </field>
+                    </page>
+                    <!--                    Không dùng tab người liên hệ khần cấp nữa-->
+                    <page name="emergency" string="Emergency" invisible="1">
+                        <field name="x_emergency_ids">
+                            <tree editable="bottom">
+                                <field name="sequence" widget="handle"/>
+                                <field name="name"/>
+                                <field name="relation"/>
+                                <field name="dob"/>
+                                <field name="phone"/>
+                            </tree>
+                            <form>
+                                <group>
+                                    <group>
+                                        <field name="name"/>
+                                        <field name="relation"/>
+                                    </group>
+                                    <group>
+                                        <field name="dob"/>
+                                        <field name="phone"/>
+                                    </group>
+                                </group>
+                            </form>
+                        </field>
+                    </page>
+                    <page name="history_job" string="Lịch sử chức vụ" groups="xhr.group_view_history_work">
+                        <field name="x_history_job_ids" context="{'default_manager_id': parent_id}">
+                            <tree editable="bottom" create="0" delete="0" default_order="date_start desc">
+                                <field name="company_id" invisible="1"/>
+                                <field name="employee_id" invisible="1"/>
+                                <field name="contract_id" readonly="1"/>
+                                <field name="job_id"/>
+                                <field name="department_id"/>
+                                <field name="manager_id"/>
+                                <field name="resource_type"/>
+                                <field name="employee_type"/>
+                                <field name="wage"/>
+                                <field name="date_start"/>
+                                <field name="date_end"/>
+                            </tree>
+                        </field>
+                    </page>
+                </page>
+
+                <xpath expr="//field[@name='address_home_id']/.." position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='emergency_contact']/.." position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <group name="work_permit" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </group>
+
+                <group name="identification_group" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </group>
+
+                <field name="country_of_birth" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+
+                <field name="coach_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+
+                <xpath expr="//field[@name='children']/.." position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <field name="spouse_complete_name" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="spouse_birthdate" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+    </data>
+
+    <!-- Contract views -->
+    <data>
+
+        <record id="hr_contract_view_form" model="ir.ui.view">
+            <field name="name">hr.contract.form</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='wage']" position="after">
+                    <field name="x_insurance_wage"/>
+                    <field name="x_allowance_phone"/>
+                    <field name="x_gasoline_standard"/>
+                    <field name="kpi_norm"/>
+                    <field name="x_ot_allowed"/>
+                </xpath>
+
+                <field name="structure_type_id" position="after">
+                    <field name="x_type_employee"/>
+                    <field name="x_contract_type"/>
+                    <field name="x_drafting_department_id"/>
+                    <field name="x_sign_job_id"/>
+                    <field name="x_contract_duration"/>
+                </field>
+            </field>
+        </record>
+    </data>
+
+    <!-- Department views -->
+    <data>
+
+        <record id="view_department_tree" model="ir.ui.view">
+            <field name="name">hr.department.tree</field>
+            <field name="model">hr.department</field>
+            <field name="inherit_id" ref="hr.view_department_tree"/>
+            <field name="arch" type="xml">
+                <field name="parent_id" position="after">
+                    <field name="x_block_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_department_form" model="ir.ui.view">
+            <field name="name">hr.department.form</field>
+            <field name="model">hr.department</field>
+            <field name="inherit_id" ref="hr.view_department_form"/>
+            <field name="arch" type="xml">
+                <field name="parent_id" position="after">
+                    <field name="x_block_id"/>
+                </field>
+            </field>
+        </record>
+    </data>
+
+    <!-- Position view -->
+    <data>
+        <record id="view_hr_job_form" model="ir.ui.view">
+            <field name="name">hr.job.form</field>
+            <field name="model">hr.job</field>
+            <field name="inherit_id" ref="hr.view_hr_job_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('oe_title')]" position="after">
+                    <group>
+                        <group>
+                            <field name="x_responsible_id"/>
+                            <field name="x_work_location"/>
+                        </group>
+                        <group></group>
+                    </group>
+                </xpath>
+
+                <field name="description" position="after">
+                    <label for="x_mission_ids"/>
+                    <field name="x_mission_ids">
+                        <tree editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="name"/>
+                            <field name="content"/>
+                        </tree>
+                        <form>
+                            <group>
+                                <group>
+                                    <field name="name"/>
+                                    <field name="content"/>
+                                </group>
+                                <group></group>
+                            </group>
+                        </form>
+                    </field>
+                    <label for="x_require_ids"/>
+                    <field name="x_require_ids">
+                        <tree editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="name"/>
+                            <field name="content"/>
+                        </tree>
+                        <form>
+                            <group>
+                                <group>
+                                    <field name="name"/>
+                                    <field name="content"/>
+                                </group>
+                                <group></group>
+                            </group>
+                        </form>
+                    </field>
+                </field>
+            </field>
+        </record>
+
+  </data>
+</odoo>

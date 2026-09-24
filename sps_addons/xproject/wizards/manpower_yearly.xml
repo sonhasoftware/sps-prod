@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+        <record id="wizard_manpower_yearly_report" model="ir.ui.view">
+            <field name="name">Báo cáo nhân lực theo năm</field>
+            <field name="model">manpower.yearly</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Báo cáo nhân lực theo năm">
+                    <group>
+                        <field name="x_block_department" widget="selection"/>
+                    </group>
+                    <footer>
+                        <button string=" Xuất báo cáo" name="print_reports" type="object" class="btn-primary"/>
+                        <button string="Huỷ" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_manpower_yearly_report" model="ir.actions.act_window">
+            <field name="name">Báo cáo nhân lực theo năm</field>
+            <field name="res_model">manpower.yearly</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="domain">[]</field>
+        </record>
+        <menuitem action="action_manpower_yearly_report"
+                  name="Báo cáo nhân lực theo năm"
+                  parent="project.menu_project_report"
+                  id="menu_manpower_yearly_report"
+                  sequence="20"/>
+    </data>
+</odoo>

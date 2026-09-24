@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Payslip -->
+    <data>
+        <record id="view_hr_payslip_tree" model="ir.ui.view">
+            <field name="name">hr.payslip.tree</field>
+            <field name="model">hr.payslip</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_payslip_tree"/>
+            <field name="arch" type="xml">
+                <field name="state" position="before">
+                    <field name="x_amount_total"/>
+                    <field name="x_hot_bonus"/>
+                    <field name="x_other_bonus"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_hr_payslip_form" model="ir.ui.view">
+            <field name="name">hr.payslip.form</field>
+            <field name="model">hr.payslip</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//button[@name='action_payslip_done']" position="after">
+                    <button string="Test Function" 
+                        name="get_holiday_out_contract" type="object" 
+                        class="oe_highlight"/>
+                </xpath>
+
+
+                <field name="worked_days_line_ids" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+
+                <xpath expr="//page[@name='worked_days_input']/separator[1]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='input_line_ids']/tree/field[@name='payslip_id']" position="after">
+                    <field name="x_readonly" invisible="1"/>
+                    <field name="code"/>
+                </xpath>
+
+                <xpath expr="//field[@name='input_line_ids']/tree" position="attributes">
+                    <attribute name="create">0</attribute>
+                    <attribute name="delete">0</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='input_line_ids']/tree/field[@name='input_type_id']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('x_readonly', '=', True)]}</attribute>
+                    <attribute name="force_save">1</attribute>
+                </xpath>
+
+                <page name="account_info" position="attributes">
+                    <attribute name="invisibile">1</attribute>
+                </page>
+
+                <page name="salary_computation" position="inside">
+                    <group class="oe_subtotal_footer oe_right" colspan="2" name="salary_total">
+                        <field name="x_amount_total"
+                               widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    </group>
+                    <div class="oe_clear"/>
+                </page>
+
+                <button name="refund_sheet" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </button>
+            </field>
+        </record>
+
+    </data>
+
+    <!-- Category -->
+    <data>
+        <record id="view_hr_payroll_other_category_tree" model="ir.ui.view">
+            <field name="name">hr.payroll.other.category.tree</field>
+            <field name="model">hr.payroll.other.category</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name"/>
+                    <field name="type"/>
+                    <field name="code"/>
+                    <field name="count_in_unit_price"
+                           attrs="{'readonly': [('type', '!=', 'bonus')]}"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_hr_payroll_other_category_form" model="ir.ui.view">
+            <field name="name">hr.payroll.other.category.form</field>
+            <field name="model">hr.payroll.other.category</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                      <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="type"/>
+                            <field string="Mã" name="code"/>
+                            <field name="count_in_unit_price"
+                                   attrs="{'readonly': [('type', '!=', 'bonus')]}"/>
+                        </group>
+                        <group></group>
+                      </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_hr_payroll_other_category" model="ir.actions.act_window">
+            <field name="name">Other advantage category</field>
+            <field name="res_model">hr.payroll.other.category</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            id="menu_hr_payroll_other_category"
+            name="Other advantage category"
+            action="action_hr_payroll_other_category"
+            parent="hr_payroll.menu_hr_salary_configuration"
+
+            sequence="99"/>
+    </data>
+
+    <!-- Items -->
+    <data>
+        <record id="view_hr_payroll_other_tree" model="ir.ui.view">
+            <field name="name">hr.payroll.other.tree</field>
+            <field name="model">hr.payroll.other</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="categ_id"/>
+                    <field name="categ_type"/>
+                    <field name="employee_id"/>
+                    <field name="amount"/>
+                    <field name="amount"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_hr_payroll_other_form" model="ir.ui.view">
+            <field name="name">hr.payroll.other.form</field>
+            <field name="model">hr.payroll.other</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_approve" string="Approve" states="draft" type="object" class="oe_highlight"/>
+                        <button name="action_cancel" string="Cancel" confirm="Confirm to cancel this item?" states="draft,approved" type="object"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                      <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="date"/>
+                            <field name="categ_id"/>
+                            <field name="categ_type"/>
+                        </group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="amount"/>
+                            <field name="note"/>
+                        </group>
+                      </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_hr_payroll_other" model="ir.actions.act_window">
+            <field name="name">Other advantage</field>
+            <field name="res_model">hr.payroll.other</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            id="menu_hr_payroll_other"
+            name="Other advantage"
+            action="action_hr_payroll_other"
+            parent="hr_payroll.menu_hr_payroll_payslips"
+
+            sequence="100"/>
+    </data>
+
+    <!-- Oil price config -->
+    <data>
+        <record id="view_hr_payroll_oil_price_tree" model="ir.ui.view">
+            <field name="name">hr.payroll.oil.price.tree</field>
+            <field name="model">hr.payroll.oil.price</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name" readonly="1" force_save="1"/>
+                    <field name="month"/>
+                    <field name="year"/>
+                    <field name="price"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_hr_payroll_oil_price_form" model="ir.ui.view">
+            <field name="name">hr.payroll.oil.price.form</field>
+            <field name="model">hr.payroll.oil.price</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                      <group>
+                        <group>
+                            <field name="name" readonly="1" force_save="1"/>
+                            <field name="month"/>
+                            <field name="year"/>
+                            <field name="price"/>
+                        </group>
+                        <group>
+                        </group>
+                      </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_hr_payroll_oil_price" model="ir.actions.act_window">
+            <field name="name">Oil price</field>
+            <field name="res_model">hr.payroll.oil.price</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            id="menu_hr_payroll_oil_price"
+            name="Oil price"
+            action="action_hr_payroll_oil_price"
+            parent="hr_payroll.menu_hr_salary_configuration"
+
+            sequence="100"/>
+    </data>
+
+    <!-- Tax personal income config -->
+    <data>
+        <record id="view_hr_payroll_tax_config_tree" model="ir.ui.view">
+            <field name="name">hr.payroll.tax.config.tree</field>
+            <field name="model">hr.payroll.tax.config</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="sequence" widget="handle"/>
+                    <field name="income_from"/>
+                    <field name="income_to"/>
+                    <field name="factor"/>
+                    <field name="last_tax_amount"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_hr_payroll_tax_config_form" model="ir.ui.view">
+            <field name="name">hr.payroll.tax.config.form</field>
+            <field name="model">hr.payroll.tax.config</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                      <group>
+                        <group>
+                            <field name="sequence" widget="handle"/>
+                            <field name="income_from"/>
+                            <field name="income_to"/>
+                            <field name="factor"/>
+                            <field name="last_tax_amount"/>
+                        </group>
+                        <group>
+                        </group>
+                      </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_hr_payroll_tax_config" model="ir.actions.act_window">
+            <field name="name">Personal income tax config</field>
+            <field name="res_model">hr.payroll.tax.config</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            id="menu_hr_payroll_tax_config"
+            name="Personal income tax config"
+            action="action_hr_payroll_tax_config"
+            parent="hr_payroll.menu_hr_salary_configuration"
+
+            sequence="100"/>
+    </data>
+
+
+    <!-- Employee views -->
+    <data>
+        <record id="payroll_hr_employee_view_form" model="ir.ui.view">
+            <field name="name">hr.employee.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr_payroll.payroll_hr_employee_view_form"/>
+            <field name="arch" type="xml">
+                <field name="registration_number" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+    </data>
+
+    <!-- Other hour (manual input) -->
+    <data>
+        <record id="view_hr_payroll_other_hour_search" model="ir.ui.view">
+            <field name="name">hr.payroll.other.hour.search</field>
+            <field name="model">hr.payroll.other.hour</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="employee_id"/>
+                    <field name="date"/>
+                    <field name="project_id"/>
+                    <field name="hour"/>
+                    <field name="note"/>
+                    <field name="state"/>
+                    <group>
+                        <filter string='Employee' name="employee_id" domain="[]" context="{'group_by': 'employee_id'}"/>
+                        <filter string='Date' name="date" domain="[]" context="{'group_by': 'date'}"/>
+                        <filter string='Project' name="project_id" domain="[]" context="{'group_by': 'project_id'}"/>
+                        <filter string='State' name="state" domain="[]" context="{'group_by': 'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_hr_payroll_other_hour_tree" model="ir.ui.view">
+            <field name="name">hr.payroll.other.hour.tree</field>
+            <field name="model">hr.payroll.other.hour</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="employee_id"/>
+                    <field name="date"/>
+                    <field name="project_id"/>
+                    <field name="hour" sum="Total"/>
+                    <field name="note"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_hr_payroll_other_hour_form" model="ir.ui.view">
+            <field name="name">hr.payroll.other.hour.form</field>
+            <field name="model">hr.payroll.other.hour</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_approve" groups="hr.group_hr_manager" string="Approve" states="draft" type="object" class="oe_highlight"/>
+                        <button name="action_cancel" confirm="Confirm to cancel this item?" groups="hr.group_hr_manager" string="Cancel" states="draft,approved" type="object"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                      <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="date"/>
+                            <field name="project_id"/>
+                            <field name="hour"/>
+                            <field name="note"/>
+                        </group>
+                        <group>
+                        </group>
+                      </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_hr_payroll_other_hour" model="ir.actions.act_window">
+            <field name="name">Other Hour</field>
+            <field name="res_model">hr.payroll.other.hour</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            id="menu_hr_payroll_other_hour"
+            name="Other Hour"
+            action="action_hr_payroll_other_hour"
+            parent="hr_work_entry_contract.menu_hr_payroll_work_entries_root"
+            groups="hr.group_hr_user,base.group_erp_manager"
+            sequence="100"/>
+    </data>
+
+</odoo>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_picking_status_wizards" model="ir.ui.view">
+            <field name="name">Báo cáo tình trạng giao hàng</field>
+            <field name="model">purchase.picking.status.wizards</field>
+            <field name="arch" type="xml">
+                <form string="Báo cáo tình trạng giao hàng">
+                    <group>
+                        <field name="year"/>
+                    </group>
+                    <footer>
+                        <button name="action_report" string="Xem báo cáo" type="object" class="btn-primary"/>
+                        <button string="Đóng" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_purchase_picking_status_wizards" model="ir.actions.act_window">
+            <field name="name">Báo cáo tình trạng mua hàng</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.picking.status.wizards</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="purchase_picking_status_menu"
+                  name="Báo cáo tình trạng mua hàng"
+                  action="action_purchase_picking_status_wizards"
+                  parent="effective_management.effective_purchase"
+                  sequence="2"
+        />
+    </data>
+</odoo>

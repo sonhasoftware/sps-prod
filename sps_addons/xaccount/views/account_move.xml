@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_move_form_inherit_sale_order" model="ir.ui.view">
+            <field name="name">view.move.form.inherit.sale.order</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="x_order_id" domain="[('partner_id', '=', partner_id)]"
+                           attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund', 'out_receipt'))], 'required': [('move_type', 'in', ('out_invoice', 'out_refund', 'out_receipt'))]}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_move_form_inherit" model="ir.ui.view">
+            <field name="name">account.move.form.inherit</field>
+            <field name="model">account.move</field>
+            <field name="mode">primary</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='oe_title']" position="after">
+                    <div>
+                        <h2>
+                            <label for="name" string="Số Phiếu"/>
+                            <field name="name" required="1" readonly="1"/>
+                        </h2>
+                    </div>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='invoice_date']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+                <xpath expr="//div[@class='oe_title']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='x_order_id']" position="after">
+                    <field name="investor_id"/>
+                    <field name="x_invoiced"
+                           attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund', 'out_receipt'))]}"/>
+                    <field name="x_number_invoice"
+                           attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund', 'out_receipt'))]}"/>
+                    <field name="x_gen_cost_percent" invisible="context.get('move_type', 'out_invoice') != 'out_invoice'"/>
+                    <field name="x_gen_cost_tax_id" invisible="context.get('move_type', 'out_invoice') != 'out_invoice'"/>
+                    <field name="x_product_sale_ids" widget="many2many_tags" invisible="1"/>
+                    <field name="is_penalty_move"/>
+                </xpath>
+                <xpath expr="//div[@class='d-flex']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='invoice_payment_term_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//label[@for='invoice_payment_term_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='payment_reference']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//group[@id='header_right_group']//div[@class='o_td_label']" position="before">
+                    <field name="x_date_created"
+                           attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund', 'out_receipt'))]}"/>
+                    <field name="x_date_sent"
+                           attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund', 'out_receipt'))]}"/>
+                </xpath>
+                <xpath expr="//group[@id='header_right_group']//field[@name='invoice_date']" position="after">
+                    <field name="x_payment_rules"
+                           attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund', 'out_receipt'))]}"/>
+                    <field name="x_payment_term"
+                            attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund', 'out_receipt'))]}"/>
+                </xpath>
+                <xpath expr="//field[@name='amount_untaxed']" position="attributes">
+                    <attribute name="invisible">0</attribute>
+                </xpath>
+                <xpath expr="//field[@name='product_id']" position="before">
+                    <field name="x_project_id" domain="[('x_order_id', '=', x_sale_project_id)]"/>
+                </xpath>
+                <xpath expr="//field[@name='product_id']" position="attributes">
+                        <attribute name="domain">[('id','in',parent.x_product_sale_ids)]</attribute>
+                </xpath>
+                <xpath expr="//field[@name='quantity']" position="after">
+                    <field name="x_price_unit_contract" force_save="1"
+                           invisible="context.get('default_move_type') not in ('out_invoice', 'out_refund','out_receipt')"/>
+                    <field name="x_is_gen_cost" force_save="1" invisible="1"/>
+                    <field name="sale_line_ids" force_save="1" widget="many2many_tags"
+                           invisible="1"/>
+                    <field name="x_work" force_save="1"
+                           invisible="context.get('default_move_type') not in ('out_invoice', 'out_refund','out_receipt')"/>
+                </xpath>
+                <xpath expr="//field[@name='line_ids']/tree/field[@name='credit']" position="after">
+                    <field name="x_price_unit_contract" force_save="1"
+                           invisible="1"/>
+                    <field name="sale_line_ids" force_save="1" widget="many2many_tags"
+                           invisible="1"/>
+                    <field name="x_work" force_save="1" invisible="1"/>
+                    <field name="x_project_id" force_save="1" invisible="1"/>
+                    <field name="x_is_gen_cost" force_save="1" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='product_uom_id']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='quantity']" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </xpath>
+                <xpath expr="//field[@name='price_unit']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='account_id']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+                <xpath expr="//page[@id='invoice_tab']" position="before">
+                    <page id="project_ids" string="Mã dự án" attrs="{'invisible': ['|',('x_order_id', '=',False),('move_type', 'not in', ('out_invoice', 'out_refund', 'out_receipt'))], 'required': [('move_type', 'in', ('out_invoice', 'out_refund', 'out_receipt'))]}">
+                        <field name="x_project_ids"  domain="['&amp;','&amp;',('x_order_id', '=', x_order_id),('is_merge_project','=',False),('active', 'in', [True, False])]">
+                            <tree>
+                                <field name="name" string="Mã phụ dự án"/>
+                                <field name="x_date_plan_start" />
+                                <field name="x_date_plan_end" />
+                                <field name="x_date_start" />
+                                <field name="x_date_end" />
+                                <field name="user_id" />
+                                <field name="x_rate" />
+                                <field name="state" />
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name='x_payment_term']" position="after">
+                    <field name="x_payment_latest_date" invisible="context.get('default_move_type') != 'out_invoice'"/>
+                </xpath>
+                 <xpath expr="//field[@name='partner_bank_id']" position="after">
+                    <field name="x_project_state"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_invoice_tree_custom" model="ir.ui.view">
+            <field name="name">account.invoice.tree_custom</field>
+            <field name="mode">primary</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_invoice_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_register_payment']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='activity_ids']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='invoice_partner_display_name']" position="after">
+                    <field name="x_number_invoice" optional="show"/>
+                    <field name="x_order_id"/>
+                    <field name="investor_id"/>
+                    <field name="x_project_ids" widget="many2many_tags"/>
+                    <field name="x_invoiced"/>
+                </xpath>
+                <xpath expr="//field[@name='invoice_date_due']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='invoice_date_due']" position="after">
+                    <field name="x_payment_term"/>
+                    <field name="x_payment_latest_date" invisible="context.get('default_move_type') != 'out_invoice'"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="account.action_move_in_invoice_type" model="ir.actions.act_window">
+             <field name="context">{
+                'search_default_state_not_cancel': 1,
+                'default_move_type': 'in_invoice' }
+             </field>
+        </record>
+        <record id="account.action_move_out_refund_type" model="ir.actions.act_window">
+            <field name="context">{
+                'search_default_state_not_cancel': 1,
+                'default_move_type': 'out_refund' }
+            </field>
+        </record>
+        <record id="account.action_move_in_refund_type" model="ir.actions.act_window">
+              <field name="context">{
+                'search_default_state_not_cancel': 1,
+                'default_move_type': 'in_refund' }
+             </field>
+        </record>
+
+        <record id="account.action_move_out_invoice_type" model="ir.actions.act_window">
+            <field name="context">{
+                'search_default_state_not_cancel': 1,
+                'default_move_type': 'out_invoice' }
+            </field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('xaccount.view_invoice_tree_custom')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('xaccount.view_move_form_inherit')})]"/>
+        </record>
+
+        <record id="view_move_form_vendor" model="ir.ui.view">
+            <field name="name">account.move.form.vendor.inherit</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='ref']" position="attributes">
+                    <attribute name="attrs">{'invisible':[('move_type', 'not in', ('in_invoice', 'in_receipt', 'in_refund', 'out_invoice', 'out_refund'))]}</attribute>
+                </xpath>
+                <xpath expr="//label[@for='ref']" position="attributes">
+                    <attribute name="attrs">{'invisible':[('move_type', 'not in', ('in_invoice', 'in_receipt', 'in_refund', 'out_invoice', 'out_refund'))]}</attribute>
+                    <attribute name="string">Diễn giải</attribute>
+                </xpath>
+                <xpath expr="//div[@name='journal_div']" position="after">
+                    <field name="x_license_type" attrs="{'invisible': [('move_type', 'in', ('out_invoice', 'out_refund'))]}"/>
+                    <field name="x_note" attrs="{'invisible': [('move_type', 'in', ('out_invoice', 'out_refund'))]}"/>
+                </xpath>
+                <xpath expr="//page[@id='other_tab']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund'))]}</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_invoice_sent'][1]" position="replace"/>
+                <xpath expr="//button[@name='action_invoice_sent']" position="replace"/>
+                <xpath expr="//button[@name='preview_invoice']" position="replace"/>
+                <xpath expr="//button[@name='action_reverse']" position="replace"/>
+                <xpath expr="//field[@name='purchase_vendor_bill_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='analytic_account_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='analytic_tag_ids']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='line_ids']/tree/field[@name='analytic_account_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='line_ids']/tree/field[@name='analytic_tag_ids']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='account_id']" position="attributes">
+                    <attribute name="optional">hide</attribute>
+                </xpath>
+                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='name']" position="attributes">
+                    <attribute name="optional">hide</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='line_ids']/tree/field[@name='tax_tag_ids']" position="before">
+                    <field name="x_number_bill" invisible="context.get('default_move_type', True) not in ('in_invoice', 'in_refund')"/>
+                    <field name="x_date_bill" invisible="context.get('default_move_type', True) not in ('in_invoice', 'in_refund')"/>
+                    <field name="x_cost_type_id" options="{'no_create': True}" invisible="context.get('default_move_type', True) not in ('in_invoice', 'in_refund')"/>
+                </xpath>
+<!--                <field name="partner_bank_id" position="attributes">-->
+<!--                    <attribute name="readonly">1</attribute>-->
+<!--                </field>-->
+                <xpath expr="//field[@name='partner_bank_id']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', 'not in', ('draft', 'posted'))]}</attribute>
+                </xpath>
+                <xpath expr="//page[@name='other_info']/group/group[@name='sale_info_group']/field[@name='partner_bank_id']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', 'not in', ('draft', 'posted'))]}</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="view_account_invoice_filter_tree" model="ir.ui.view">
+            <field name="name">account.invoice.filter</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="before">
+                    <field name="x_order_id"/>
+                    <field name="x_number_invoice"/>
+                    <field name="state"/>
+                </xpath>
+                  <xpath expr="//filter[@name='posted']" position="after">
+                     <filter string="Phiếu chưa hủy" name="state_not_cancel" domain="[('state', '!=', 'cancel')]"/>
+                </xpath>
+                <xpath expr="//filter[@name='invoice_date']" position="before">
+                    <filter name="payment_term_date" string="Ngày dự kiến nhận tiền" date="x_payment_term"/>
+                    <filter name="payment_last_date" string="Ngày nhận tiền" date="x_payment_latest_date"/>
+                </xpath>
+
+                <xpath expr="//filter[@name='due_date']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//filter[@name='duedate']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//filter[@name='invoicedate']" position="before">
+                    <filter string="Ngày dự kiến nhận tiền" name="paymenttermdate" context="{'group_by': 'x_payment_term'}"/>
+                    <filter string="Ngày nhận tiền" name="paymentlastdate" context="{'group_by': 'x_payment_latest_date'}"/>
+                </xpath>
+                <xpath expr="//filter[@name='status']" position="after" >
+                    <field name="move_type" invisible="True"/>
+                    <filter string="Tình trạng thanh toán" name="payment_state" context="{'group_by':'payment_state'}"
+                                invisible="context.get('default_move_type', True) != 'out_invoice'"
+                    />
+                </xpath>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

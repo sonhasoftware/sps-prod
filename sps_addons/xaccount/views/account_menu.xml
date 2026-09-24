@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="account.menu_board_journal_1" model="ir.ui.menu">
+              <field name="active" eval="False"/>
+        </record>
+         <record id="account.menu_action_account_payments_payable" model="ir.ui.menu">
+              <field name="active" eval="False"/>
+        </record>
+         <record id="account.menu_action_account_payments_receivable" model="ir.ui.menu">
+              <field name="active" eval="False"/>
+        </record>
+    </data>
+    <data>
+        <menuitem id="menu_account_payment" name="Thanh Toán" parent="account_accountant.menu_accounting" sequence="0">
+            <menuitem id="account_payments_receivable" name="Thu tiền" action="account.action_account_payments" sequence="1"/>
+            <menuitem id="account_payments_payable" name="Chi tiền" action="account.action_account_payments_payable" sequence="2"/>
+            <menuitem id="account_deposit_tracking" name="Theo dõi tiền gửi" action="xaccount.action_account_deposit_tracking" sequence="3" active="False"/>
+        </menuitem>
+    </data>
+</odoo>

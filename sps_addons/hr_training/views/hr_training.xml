@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_hr_training_item_tree" model="ir.ui.view">
+            <field name="name">hr.training.item.tree</field>
+            <field name="model">hr.training.item</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="categ_id"/>
+                     <field name="type"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_hr_training_item_form" model="ir.ui.view">
+            <field name="name">hr.training.item.form</field>
+            <field name="model">hr.training.item</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <label for="name"/>
+                        <field name="name" required="1"/>
+                        <group>
+                            <group>
+                                <field name="categ_id" required="1"/>
+                                 <field name="type"/>
+                            </group>
+                            <group>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="require_ids">
+                                <tree editable="bottom">
+                                    <field name="job_id"/>
+                                    <field name="job_department_id"/>
+                                    <field name="result_require"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <group>
+                                            <field name="job_id"/>
+                                            <field name="job_department_id"/>
+                                            <field name="result_require"/>
+                                        </group>
+                                    </group>
+                                </form>
+                            </field>
+                        </group>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_hr_training_item" model="ir.actions.act_window">
+            <field name="name">Training Items</field>
+            <field name="res_model">hr.training.item</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            id="menu_hr_training_item"
+            name="Training Items"
+            action="action_hr_training_item"
+            parent="hr.menu_human_resources_configuration"
+            sequence="10"/>
+
+    </data>
+
+    <!-- Training category views -->
+    <data>
+        <record id="view_hr_training_categ_tree" model="ir.ui.view">
+            <field name="name">hr.training.categ.tree</field>
+            <field name="model">hr.training.categ</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="active" widget="boolean_toggle"/>
+                    <field name="type"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_hr_training_categ_form" model="ir.ui.view">
+            <field name="name">hr.training.categ.form</field>
+            <field name="model">hr.training.categ</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="active" widget="boolean"/>
+                                <field name="type"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_hr_training_categ" model="ir.actions.act_window">
+            <field name="name">Training Category</field>
+            <field name="res_model">hr.training.categ</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            id="menu_hr_training_categ"
+            name="Training Category"
+            action="action_hr_training_categ"
+            parent="hr.menu_human_resources_configuration"
+            sequence="10"/>
+
+    </data>
+
+    <!-- Training result views -->
+    <data>
+        <record id="view_hr_training_result_tree" model="ir.ui.view">
+            <field name="name">hr.training.result.tree</field>
+            <field name="model">hr.training.result</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="trainee_id"/>
+                    <field name="trainee_job_id"/>
+                    <field name="trainee_department_id"/>
+                    <field name="project_id"/>
+                    <field name="date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_hr_training_result_form" model="ir.ui.view">
+            <field name="name">hr.training.result.form</field>
+            <field name="model">hr.training.result</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="trainee_id"/>
+                                <field name="trainee_job_id"/>
+                                <field name="trainee_department_id"/>
+                                <field name="project_id"/>
+                            </group>
+                            <group>
+                                <field name="date"/>
+                            </group>
+                        </group>
+                        <label for="lines"/>
+                        <field name="lines">
+                            <tree editable="bottom">
+                                <field name="training_item_id"/>
+                                <field name="type"/>
+                                <field name="type_employee_train"/>
+                                <field name="trainer_id" attrs="{'invisible': [('type_employee_train','=', 'out')], 'required': [('type_employee_train','=', 'in')]}"/>
+                                <field name="hr_employee_training_out_id" attrs="{'invisible': [('type_employee_train','=', 'in')]}"/>
+                                <field name="result"/>
+                                <field name="document_name"/>
+                            </tree>
+                        </field>
+                        <label for="note"/>
+                        <field name="note"/>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_hr_training_result" model="ir.actions.act_window">
+            <field name="name">Training Results</field>
+            <field name="res_model">hr.training.result</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            id="menu_hr_training_result"
+            name="Training Results"
+            action="action_hr_training_result"
+            parent="hr.menu_hr_employee_payroll"
+            sequence="10"/>
+
+    </data>
+
+    <!-- Training result detail views -->
+    <data>
+        <record id="view_hr_training_result_line_tree" model="ir.ui.view">
+            <field name="name">hr.training.result.line.tree</field>
+            <field name="model">hr.training.result.line</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom" create="0" edit="0" delete="0">
+                    <field name="training_item_id"/>
+                    <field name="type"/>
+                    <field name="training_item_categ_id"/>
+                    <field name="type_employee_train"/>
+                    <field name="trainer_id" attrs="{'invisible': [('type_employee_train','=', 'out')]}"/>
+                    <field name="hr_employee_training_out_id" attrs="{'invisible': [('type_employee_train','=', 'in')]}"/>
+                    <field name="trainee_id"/>
+                    <field name="trainee_department_id"/>
+                    <field name="project_id"/>
+                    <field name="result"/>
+                    <field name="date"/>
+                    <field name="note"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_hr_training_result_line" model="ir.actions.act_window">
+            <field name="name">Training Tracking</field>
+            <field name="res_model">hr.training.result.line</field>
+            <field name="view_mode">tree</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            id="menu_hr_training_result_line"
+            name="Training Tracking"
+            action="action_hr_training_result_line"
+            parent="menu_report_training_root"
+            sequence="0"/>
+
+    </data>
+</odoo>

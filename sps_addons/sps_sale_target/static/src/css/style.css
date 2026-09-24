@@ -1,0 +1,31 @@
+.x_sale_order .estimates_line th[data-name="order_line_id"] {
+    width: 200px !important;
+    max-width: 200px !important;
+}
+.x_sale_order .estimates_line th[data-name="product_id"] {
+    width: 200px !important;
+    max-width: 200px !important;
+}
+.x_sale_order .estimates_line th[data-name="category"] {
+    width: 200px !important;
+    max-width: 200px !important;
+}
+.x_sale_order .estimates_line th[data-name="uom_id"] {
+    width: 60px !important;
+    max-width: 60px !important;
+}
+.x_sale_order .estimates_line th[data-name="note"] {
+    width: 100px !important;
+    max-width: 100px !important;
+}
+.x_sale_order.o_form_view.o_xxl_form_view {
+    -webkit-flex-flow: column nowrap;
+    flex-flow: column nowrap;
+    height: auto;
+}
+.x_sale_order.o_form_view.o_xxl_form_view > .o_form_sheet_bg {
+    width: auto;
+}
+.x_sale_order.o_form_view.o_xxl_form_view > .o_form_sheet_bg > .o_form_sheet {
+    max-width: 1693px;
+}

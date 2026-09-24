@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_move_form_views" model="ir.ui.view">
+            <field name="name">account.move.form.views</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+<!--                <xpath expr="//button[@name='button_cancel']" position="after">-->
+<!--                    <button name="button_debt_collection" string="Thu hồi công nợ" type="object"/>-->
+<!--                </xpath>-->
+
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <field name="x_payment_ids" invisible="1"/>
+                    <button type="object"
+                            name="action_view_payment"
+                            class="oe_stat_button"
+                            icon="fa-paste"
+                            attrs="{'invisible': [('x_payment_count', '=', 0)]}" groups="base.group_user">
+                        <field name="x_payment_count" widget="statinfo" string="Phiếu TT"/>
+
+                    </button>
+                    <button name="action_view_account_receivable" type="object" class="oe_stat_button" icon="fa-pencil-square-o">
+                        <field name="account_receivable" widget="statinfo" string="Số dư công nợ"/>
+                    </button>
+                </xpath>
+                 <xpath expr="//field[@name='invoice_line_ids']" position="attributes">
+                    <attribute name="context">{'default_move_type': context.get('default_move_type'),'order_id':x_order_id, 'journal_id': journal_id, 'default_partner_id': commercial_partner_id, 'default_currency_id': currency_id or company_currency_id}</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_register_payment']" position="attributes">
+                      <attribute name="attrs">{'invisible': ['|', '|','|',('x_payment_count','!=',0),('state', '!=', 'posted'), ('payment_state', 'not in', ('not_paid', 'partial')), ('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_register_payment']" position="after">
+                      <button name="action_register_payment" id="account_invoice_payment_btn_non_class"
+                                type="object"
+                                attrs="{'invisible': ['|', '|','|',('x_payment_count','=',0),('state', '!=', 'posted'), ('payment_state', 'not in', ('not_paid', 'partial')), ('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}"
+                                context="{'dont_redirect_to_payments': True}"
+                                string="Ghi nhận thanh toán"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="x_check" invisible="1"/>
+                    <field name="move_type" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='product_id']" position="before">
+                    <field name="x_number_bill" invisible="context.get('default_move_type', True) not in ('in_invoice', 'in_refund')"/>
+                    <field name="x_date_bill" invisible="context.get('default_move_type', True) not in ('in_invoice', 'in_refund')"/>
+                    <field name="x_cost_type_id" options="{'no_create': True}" invisible="context.get('default_move_type', True) not in ('in_invoice', 'in_refund')"/>
+                    <field name="x_sale_project_id" attrs="{'readonly':[('parent.x_check','=',False),('parent.move_type','in',('out_refund','out_invoice'))]}" force_save="1"/>
+                    <field name="x_project_id" invisible="context.get('default_move_type', True) not in ('in_invoice', 'in_refund')" readonly="1"/>
+                </xpath>
+                <xpath expr="//field[@name='line_ids']//field[@name='account_id']" position="before">
+                    <field name="x_sale_project_id" attrs="{'readonly':[('parent.x_check','=',False),('parent.move_type','in',('out_refund','out_invoice'))]}" force_save="1"/>
+                </xpath>
+                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='tax_ids']" position="attributes">
+                    <attribute name="widget">many2many_tag_once</attribute>
+                </xpath>
+                <xpath expr="//field[@name='line_ids']/tree/field[@name='tax_ids']" position="attributes">
+                    <attribute name="widget">many2many_tag_once</attribute>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

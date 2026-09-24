@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_wizard_report_payslip_imprest" model="ir.ui.view">
+            <field name="name">wizard.report.payslip.imprest.form</field>
+            <field name="model">wizard.report.payslip.imprest</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="month"/>
+                            <field name="year"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Ok" name="process" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_report_payslip_imprest" model="ir.actions.act_window">
+            <field name="name">Report payslip imprest</field>
+            <field name="res_model">wizard.report.payslip.imprest</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_wizard_report_payslip_imprest"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+            id="menu_wizard_report_payslip_imprest"
+            name="Report payslip imprest"
+            action="action_report_payslip_imprest"
+            parent="hr_payroll.menu_hr_payroll_report"
+            sequence="106"/>
+<!--            parent="hr_payroll.menu_hr_salary_configuration"-->
+
+
+    </data>
+</odoo>

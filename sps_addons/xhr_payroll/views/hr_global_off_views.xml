@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Global timeoff config -->
+    <data>
+        <record id="view_hr_global_off_tree" model="ir.ui.view">
+            <field name="name">hr.global.off.tree</field>
+            <field name="model">hr.global.off</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <field name="active" widget="boolean_toggle"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_hr_global_off_form" model="ir.ui.view">
+            <field name="name">hr.global.off.form</field>
+            <field name="model">hr.global.off</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                      <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="active" widget="boolean_toggle"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                        </group>
+                      </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_hr_global_off" model="ir.actions.act_window">
+            <field name="name">Global Time Off</field>
+            <field name="res_model">hr.global.off</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            id="menu_hr_global_off"
+            name="Global Time Off"
+            action="action_hr_global_off"
+            parent="hr_work_entry_contract.menu_hr_work_entry_confirguration"
+            sequence="25"/>
+
+    </data>
+
+    <!-- Overrider resource views -->
+    <data>
+        <record id="resource_calendar_form" model="ir.ui.view">
+            <field name="name">resource.calendar.form</field>
+            <field name="model">resource.calendar</field>
+            <field name="inherit_id" ref="resource.resource_calendar_form"/>
+            <field name="arch" type="xml">
+                <page name="global_leaves" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </page>
+            </field>
+        </record>
+    </data>
+</odoo>

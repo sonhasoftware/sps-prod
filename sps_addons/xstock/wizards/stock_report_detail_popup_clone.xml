@@ -1,0 +1,65 @@
+<odoo>
+
+    <record id="view_stock_report_detail_popup_clone_search" model="ir.ui.view">
+            <field name="name">stock.report.detail.popup.clone.search</field>
+            <field name="model">stock.report.detail.popup.clone</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="picking_type"/>
+                    <field name="move_date"/>
+                    <field name="entry_name"/>
+                    <field name="product_code"/>
+                    <field name="product_name"/>
+                    <field name="product_type"/>
+                    <field name="uom_name"/>
+                    <field name="serial"/>
+                    <field name="location_name"/>
+                    <field name="location_dest_name"/>
+                    <field name="from_project"/>
+                    <field name="to_project"/>
+                    <field name="create_user"/>
+                    <field name="payer_name"/>
+                    <field name="receiver_name"/>
+                    <field name="quantity"/>
+                    <field name="price_unit"/>
+                    <field name="value"/>
+                </search>
+            </field>
+        </record>
+
+    <record id="stock_report_detail_popup_clone_view" model="ir.ui.view">
+        <field name="name">Báo cáo chi tiết hoạt động kho</field>
+        <field name="model">stock.report.detail.popup.clone</field>
+        <field name="arch" type="xml">
+            <tree string="Báo cáo chi tiết hoạt đông kho" create="false" delete="false">
+                <field name="picking_type"/>
+                <field name="move_date"/>
+                <field name="entry_name"/>
+                <field name="product_code"/>
+                <field name="product_name"/>
+                <field name="product_type"/>
+                <field name="uom_name"/>
+                <field name="serial"/>
+                <field name="location_name"/>
+                <field name="location_dest_name"/>
+                <field name="from_project"/>
+                <field name="to_project"/>
+                <field name="create_user"/>
+                <field name="payer_name"/>
+                <field name="receiver_name"/>
+                <field name="quantity"/>
+                <field name="price_unit"/>
+                <field name="value"/>
+                <field name="master_key" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_stock_report_detail_popup_clone" model="ir.actions.act_window">
+        <field name="name">Báo cáo hoạt động chi tiết kho</field>
+        <field name="res_model">stock.report.detail.popup.clone</field>
+        <field name="search_view_id" ref="view_stock_report_detail_popup_clone_search"/>
+        <field name="view_mode">tree</field>
+
+    </record>
+</odoo>

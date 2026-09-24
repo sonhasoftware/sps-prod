@@ -1,0 +1,60 @@
+<odoo>
+    <record model="ir.ui.view" id="report_training_standard_view">
+        <field name="name">Standard</field>
+        <field name="model">report.training.standard</field>
+        <field name="arch" type="xml">
+            <form>
+                <div class="row">
+                    <div class="col-4">
+                        <group>
+                            <field name="employee_id"/>
+                        </group>
+                    </div>
+                    <div class="col-4">
+                        <group>
+                            <field name="department_id"/>
+                        </group>
+                    </div>
+                    <div class="col-4">
+                        <button name="get_report" type="object" string="Get Report" class="btn btn-secondary"/>
+                    </div>
+                </div>
+
+                    <notebook>
+                        <page string="Report Standard">
+                            <field name="report_lines">
+                                <tree create="false" delete="false">
+                                    <field name="x_code" string="Mã nhân viên"/>
+                                    <field name="name" string="Tên nhân viên"/>
+                                    <field name="department" string="Phòng ban"/>
+                                    <field name="job_title" string="Chức danh"/>
+                                    <field name="training_item" string="Hạng mục đào tạo"/>
+                                    <field name="category" string="Phân loại"/>
+                                    <field name="require" string="Yêu cầu kết quả"/>
+                                    <field name="date" string="Ngày đào tạo thực tế"/>
+                                    <field name="trainer" string="Người đào tạo"/>
+                                    <field name="document_name" string="Tên &amp; nguồn giáo trình đào tạo"/>
+                                    <field name="result" string="Kết quả đào tạo"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+
+            </form>
+        </field>
+    </record>
+
+
+    <record id="report_training_standard_act" model="ir.actions.act_window">
+        <field name="name">Standard</field>
+        <field name="res_model">report.training.standard</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <menuitem
+            id="menu_report_training_standard"
+            name="Standard"
+            action="report_training_standard_act"
+            parent="menu_report_training_root"
+            sequence="8"/>
+</odoo>

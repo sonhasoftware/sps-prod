@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <record id="cash_flow_report_detail_tree_view" model="ir.ui.view">
+            <field name="name">Chi tiết báo cáo dòng tiền</field>
+            <field name="model">cash.flow.report.detail</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false">
+                    <field name="name"/>
+                    <field name="year"  invisible="1"/>
+                    <field name="parent"  invisible="1"/>
+                    <field name="parent_2"  invisible="1"/>
+                    <field name="code"/>
+                    <field name="t1" widget="integer"/>
+                    <field name="t2" widget="integer"/>
+                    <field name="t3" widget="integer"/>
+                    <field name="t4" widget="integer"/>
+                    <field name="t5" widget="integer"/>
+                    <field name="t6" widget="integer"/>
+                    <field name="t7" widget="integer"/>
+                    <field name="t8" widget="integer"/>
+                    <field name="t9" widget="integer"/>
+                    <field name="t10" widget="integer"/>
+                    <field name="t11" widget="integer"/>
+                    <field name="t12" widget="integer"/>
+                    <field name="total" widget="integer"/>
+                    <field name="radio" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="cash_flow_report_detail_search_view" model="ir.ui.view">
+            <field name="name">Chi tiết báo cáo dòng tiền</field>
+            <field name="model">cash.flow.report.detail</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="year"/>
+                    <field name="parent"/>
+                    <field name="parent_2"/>
+                    <field name="code"/>
+                    <group expand="0" string="Nhóm theo">
+                        <filter name="group_by_year" string="Năm" context="{'group_by': 'year'}"/>
+                        <filter name="group_by_parent" string="Nhóm cha" context="{'group_by': 'parent'}"/>
+                        <filter name="group_by_parent_2" string="Loại" context="{'group_by': 'parent_2'}"/>
+                        <filter name="group_by_code" string="Mã" context="{'group_by': 'code'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_cash_flow_report_detail" model="ir.actions.act_window">
+            <field name="name">Chi tiết báo cáo dòng tiền</field>
+            <field name="res_model">cash.flow.report.detail</field>
+            <field name="view_mode">tree</field>
+            <field name="domain">[]</field>
+            <field name="context">{'group_by': ['year', 'parent_2', 'parent']}</field>
+        </record>
+    </data>
+</odoo> 

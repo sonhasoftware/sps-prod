@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <record id="purchase_picking_requesters_tree" model="ir.ui.view">
+            <field name="name">purchase_picking_requesters_tree</field>
+            <field name="model">purchase.picking.requesters</field>
+            <field name="arch" type="xml">
+                <tree string="Báo cáo tình trạng giao hàng cho phụ trách dự án" create="false" edit="false" delete="false">
+                    <field name="requestor"/>
+                    <field name="on_going" sum="on_going"/>
+                    <field name="pending" sum="pending"/>
+                    <field name="delay" sum="delay"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_purchase_picking_requesters_view" model="ir.actions.act_window">
+            <field name="name">Báo cáo tình trạng giao hàng cho phụ trách dự án</field>
+            <field name="res_model">purchase.picking.requesters</field>
+            <field name="view_mode">tree</field>
+        </record>
+        <menuitem name="Báo cáo tình trạng giao hàng cho phụ trách dự án"
+                  id="purchase_picking_requesters"
+                  action="action_purchase_picking_requesters_view"
+                  parent="effective_management.effective_purchase"
+                  sequence="1"/>
+    </data>
+</odoo>

@@ -1,0 +1,656 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Project views -->
+    <data>
+        <record id="project.menu_projects_config" model="ir.ui.menu">
+              <field name="active" eval="False"/>
+        </record>
+        <record id="edit_project" model="ir.ui.view">
+            <field name="name">project.project.form</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project"/>
+            <field name="arch" type="xml">
+                <button name="%(portal.portal_share_action)d" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </button>
+                <button name="%(project.act_project_project_2_project_task_all)d" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </button>
+                <button name="%(portal.portal_share_action)d" position="after">
+                    <button name="compute_estimates" string="Cập nhật dự toán" class="oe_highlight" type="object"/>
+                    <button name="compute_wage_cost" string="Cập nhật chi phí nhân công" class="oe_highlight" type="object"/>
+                    <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
+                </button>
+                <field name="label_tasks" position="attributes">
+                    <attribute name="class"></attribute>
+                </field>
+                <page name="description_page" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </page>
+                <page name="settings" position="attributes">
+                    <attribute name="string">Thông tin chung</attribute>
+                </page>
+                <div name="alias_def" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </div>
+                <div id="subtask_settings" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </div>
+                <div id="recurring_tasks_setting" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </div>
+                <field name="alias_contact" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="partner_phone" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="partner_email" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="analytic_account_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="privacy_visibility" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="allowed_internal_user_ids" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="allowed_portal_user_ids" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="company_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                 <xpath expr="//field[@name='user_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="user_id"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="domain">[('parent_id' ,'=',False),'|',('company_id' ,'=',False),('company_id' ,'=','company_id')]</attribute>
+                </xpath>
+                <xpath expr="//field[@name='message_follower_ids']" position="after">
+                    <field name="message_ids"/>
+                </xpath>
+                <field name="partner_id" position="after">
+                    <field name="x_phone"/>
+                    <field name="x_email"/>
+                    <field name="x_address"/>
+                    <field name="x_investor_id"/>
+                    <field name="project_supporter_id"/>
+                    <field name="actual_completion_date"/>
+                </field>
+                <field name="company_id" position="after">
+                    <field name="x_project_type"/>
+                    <field name="r_maintenace"
+                attrs="{'invisible': [('x_project_type', 'not in', ['maintainance'])]}"/>
+                <field name="e_fm"
+                attrs="{'invisible': [('x_project_type', 'not in', ['operation'])]}"/>
+                    <field name="x_expertise_ids" widget="many2many_tags"/>
+                    <field name="x_model"/>
+                    <field name="x_cost_object"/>
+                    <field name="x_cost_ok"/>
+                </field>
+                <group name="extra_settings" position="inside">
+                    <field name="x_date_plan_start"/>
+                    <field name="x_date_plan_end"/>
+                    <field name="x_date_start"/>
+                    <field name="x_date_end"/>
+                    <field name="x_date_warranty_expire"/>
+                    <field name="x_warranty_period" />
+                    <field name="x_warranty_period_unit" string="  " />
+                    <field name="x_order_line_id" string="Hạng mục báo giá" domain="[('order_id', '=', x_order_id)]" attrs="{'readonly': [('is_merge_project','!=',False)]}"/>
+                    <field name="x_category" force_save="1" readonly="True"/>
+                </group>
+                <xpath expr="//page[@name='settings']/group" position="attributes">
+                    <attribute name="col">3</attribute>
+                </xpath>
+                <xpath expr="//page[@name='settings']/group/group[1]" position="attributes">
+                    <attribute name="col">1</attribute>
+                </xpath>
+                <xpath expr="//page[@name='settings']/group/group[2]" position="attributes">
+                    <attribute name="col">1</attribute>
+                </xpath>
+                <xpath expr="//page[@name='settings']/group/group[3]" position="attributes">
+                    <attribute name="col">1</attribute>
+                </xpath>
+                <xpath expr="//sheet/div[@class='oe_title']" position="after">
+                    <group>
+                        <group>
+                            <field name="main_project" invisible="0"/>
+                            <field name="is_merge_project" attrs="{'invisible': [('x_merge_project_id','!=',False)]}"/>
+                            <field name="x_merge_project_id" readonly="1" attrs="{'invisible': [('is_merge_project','!=',False)]}" />
+                            <field name="x_order_id"/>
+                            <field name="x_scope"/>
+                            <field name="x_to_invoice"/>
+                            <field name="export_satisfaction_report"/>
+                            <field name="is_export_project_efficiency_detail"/>
+                        </group>
+                        <group></group>
+                    </group>
+                </xpath>
+                <page name="settings" position="after">
+                    <page name="estimates" string="Dự toán nhân công">
+                        <field name="x_estimate_ids" groups="project.group_project_manager">
+                            <tree editable="bottom">
+                                <field name="product_id"/>
+                                <field name="uom_id"/>
+                                <field name="quantity"/>
+                                <field name="price_unit"/>
+                                <field name="percent"/>
+                                <field name="amount"/>
+                                <field name="note"/>
+                            </tree>
+                            <form>
+                                <group>
+                                    <group>
+                                        <field name="product_id"/>
+                                        <field name="uom_id"/>
+                                        <field name="quantity"/>
+                                        <field name="price_unit"/>
+                                    </group>
+                                    <group>
+                                        <field name="percent"/>
+                                        <field name="amount"/>
+                                        <field name="note"/>
+                                    </group>
+                                </group>
+                            </form>
+                        </field>
+                        <group>
+                            <group>
+                                <field name="x_total_plan_day"/>
+                                <field name="plan_work_saturday"/>
+                                <field name="plan_work_sunday"/>
+                                <field name="plan_work_holiday"/>
+                                <field name="x_cost_estimate" readonly="1" force_save="1"/>
+                            </group>
+
+                        </group>
+                    </page>
+                    <page name="material_estimate" string="Dự toán vật tư và chi phí khác">
+                        <field name="x_material_estimate_ids">
+                            <tree editable="bottom">
+                                <field name="product_id"/>
+                                <field name="uom_id"/>
+                                <field name="amount"/>
+                                <field name="unit_price"/>
+                                <field name="time_line"/>
+                                <field name="amount_total"/>
+                            </tree>
+                        </field>
+                        <group col="2">
+                            <field name="x_material_estimate_total"/>
+                        </group>
+                    </page>
+                    <page name="fees" string="Chi phí chung" attrs="{'invisible': [('main_project', '=', False)]}">
+                        <group>
+                            <field name="cr_amount"/>
+                            <field name="tp_amount"/>
+                            <field name="overhead_cost_amount"/>
+                        </group>
+                    </page>
+                    <page name="members" string="Chi phí nhân công">
+                        <group>
+                            <group>
+                                <field name="travel_expenses_total"/>
+                                <field name="labor_costs_total"/>
+                                <field name="accommodation_costs_total"/>
+                                <field name="wage_cost_total"/>
+                            </group>
+                        </group>
+                         <field name="wage_cost_ids" readonly="1">
+                            <tree>
+                                <field name="employee_id"/>
+                                <field name="year"/>
+                                <field name="month"/>
+<!--                                <field name="start_date"/>-->
+<!--                                <field name="end_date"/>-->
+                                <field name="wage_cost_id" invisible="1"/>
+                                <field name="unit_price"/>
+                                <field name="depreciation_cost" optional="hide"/>
+<!--                                <field name="estimate_wage_cost_id" invisible="1"/>-->
+<!--                                <field name="estimate_unit_price"/>-->
+                                <field name="hour_converted" invisible="1"/>
+                                <field name="hour" invisible="1"/>
+                                <field name="work_hour"/>
+<!--                                <field name="estimate_cost"/>-->
+                                <field name="monthly_efficiency"/>
+                                <field name="standard_efficiency"/>
+                                <field name="cost"/>
+
+                            </tree>
+                            <form>
+                                <group>
+                                    <group>
+                                        <field name="employee_id"/>
+                                        <field name="year"/>
+                                        <field name="month"/>
+<!--                                        <field name="start_date"/>-->
+<!--                                        <field name="end_date"/>-->
+                                        <field name="wage_cost_id" invisible="1"/>
+                                        <field name="unit_price"/>
+<!--                                        <field name="estimate_wage_cost_id" invisible="1"/>-->
+<!--                                        <field name="estimate_unit_price"/>-->
+                                    </group>
+                                    <group>
+                                        <field name="hour_converted" invisible="0"/>
+                                        <field name="hour" invisible="0"/>
+                                        <field name="work_hour"/>
+<!--                                        <field name="estimate_cost"/>-->
+                                        <field name="monthly_efficiency"/>
+                                        <field name="standard_efficiency"/>
+                                        <field name="cost"/>
+                                        <field name="depreciation_cost"/>
+                                    </group>
+                                </group>
+                            </form>
+                        </field>
+
+                        <field name="labor_repay_line_ids">
+                            <tree editable="bottom">
+                                <field name="currency_id" invisible="1"/>
+                                <field name="account_repay_id"/>
+                                <field name="project_name" force_save="1"/>
+                                <field name="invoice_number"/>
+                                <field name="date_invoice"/>
+                                <field name="supplier_id"/>
+                                <field name="content"/>
+                                <field name="cost_type_id" options="{'no_create': True}"/>
+                                <field name="account_id" force_save="1"/>
+                                <field name="uom_id"/>
+                                <field name="qty"/>
+                                <field name="price_unit"/>
+                                <field name="amount_untaxed" force_save="1" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}" sum="Tổng"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page name="actual_costs" string="Chi phí vật tư và chi phí khác">
+                        <div class="o_row">
+                            <label for="actual_costs" class="oe_inline"/>
+                            <field name="actual_costs" class="oe_inline" string="Chi phí vật tư và chi phí khác" />
+                        </div>
+                        <br/>
+                        <div class="o_row">
+                            <label for="iv_costs_total" class="oe_inline"/>
+                            <field name="iv_costs_total" class="oe_inline" string="Chi phí IV" />
+                        </div>
+<!--                        <div class="o_row">-->
+<!--                            <label for="iv_value_total" class="oe_inline"/>-->
+<!--                            <field name="iv_value_total" class="oe_inline" string="Giá trị xử lý hóa đơn"/>-->
+<!--                        </div>-->
+                        <br/>
+                        <div class="o_row">
+                            <label for="invoice_processing_profit" class="oe_inline"/>
+                            <field name="invoice_processing_profit" class="oe_inline" string="Doanh thu IV"/>
+                        </div>
+                        <br/>
+                        <div class="o_row">
+                            <label for="no_invoice_extra_cost" class="oe_inline"/>
+                            <field name="no_invoice_extra_cost" class="oe_inline" string="Phí mua hàng không hóa đơn"/>
+                        </div>
+                        <separator string="Chi tiết vật tư sử dụng"/>
+                        <field name="material_usage_display" readonly="1" nolabel="1"/>
+                        <separator string="Chi phí khác"/>
+                        <field name="material_repay_line_ids">
+                            <tree editable="bottom">
+                                <field name="currency_id" invisible="1"/>
+                                <field name="account_repay_id"/>
+                                <field name="project_name" force_save="1"/>
+                                <field name="invoice_number"/>
+                                <field name="date_invoice"/>
+                                <field name="supplier_id"/>
+                                <field name="content"/>
+                                <field name="cost_type_id" options="{'no_create': True}"/>
+                                <field name="account_id" force_save="1"/>
+                                <field name="uom_id"/>
+                                <field name="qty"/>
+                                <field name="price_unit"/>
+                                <field name="amount_untaxed" force_save="1" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}" sum="total"/>
+                            </tree>
+                        </field>
+                        <separator string="Chi phí dịch vụ"/>
+                        <field name="service_purchase_line_ids">
+                            <tree editable="bottom">
+                                <field name="order_id"/>
+                                <field name="product_id"/>
+                                <field name="name"/>
+                                <field name="product_qty"/>
+                                <field name="product_uom"/>
+                                <field name="price_unit"/>
+                                <field name="price_subtotal" sum="total"/>
+                                <field name="x_invoice_subtotal" sum="total_hd"/>
+                            </tree>
+                        </field>
+                        <separator string="Chi phí IV"/>
+                        <field name="iv_repay_line_ids">
+                            <tree editable="bottom">
+                                <field name="currency_id" invisible="1"/>
+                                <field name="account_repay_id"/>
+                                <field name="project_name" force_save="1"/>
+                                <field name="invoice_number"/>
+                                <field name="date_invoice"/>
+                                <field name="supplier_id"/>
+                                <field name="content"/>
+                                <field name="cost_type_id" options="{'no_create': True}"/>
+                                <field name="account_id" force_save="1"/>
+                                <field name="uom_id"/>
+                                <field name="qty"/>
+                                <field name="price_unit"/>
+                                <field name="amount_untaxed" force_save="1" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}" sum="total"/>
+                            </tree>
+                        </field>
+                        <separator string="Doanh thu IV"/>
+                        <field name="iv_value_repay_line_ids">
+                            <tree editable="bottom">
+                                <field name="currency_id" invisible="1"/>
+                                <field name="account_repay_id"/>
+                                <field name="project_name" force_save="1"/>
+                                <field name="invoice_number"/>
+                                <field name="date_invoice"/>
+                                <field name="supplier_id"/>
+                                <field name="content"/>
+                                <field name="cost_type_id" options="{'no_create': True}"/>
+                                <field name="account_id" force_save="1"/>
+                                <field name="uom_id"/>
+                                <field name="qty"/>
+                                <field name="price_unit"/>
+                                <field name="amount_untaxed" force_save="1" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}" sum="total"/>
+                            </tree>
+                        </field>
+<!--                        <span>Thu RIV</span>-->
+<!--                        <field name="riv_payment_line_ids">-->
+<!--                            <tree editable="bottom">-->
+<!--                                <field name="payment_id"/>-->
+<!--                                <field name="project_id"/>-->
+<!--                                <field name="cost_type_id"/>-->
+<!--                                <field name="amount" sum="total"/>-->
+<!--                            </tree>-->
+<!--                        </field>-->
+<!--                        <field name="riv_project_detail_ids">-->
+<!--                            <tree editable="bottom">-->
+<!--                                <field name="payment_id"/>-->
+<!--                                <field name="project_id"/>-->
+<!--                                <field name="cost_type_id"/>-->
+<!--                                <field name="amount_total" sum="total"/>-->
+<!--                            </tree>-->
+<!--                        </field>-->
+                    </page>
+                    <page name="budget_cost" string="Chênh lệch dự toán và giá vốn">
+                        <div class="o_row">
+                            <label for="budget_cost" class="oe_inline"/>
+                            <field name="budget_cost" class="oe_inline" string="Chênh lệch dự toán và giá vốn" />
+                        </div>
+                    </page>
+                    <page name="feedback" string="Khách hàng đánh giá">
+                        <field name="satisfaction_ids" context="{'default_project_id': id}">
+                            <tree editable="bottom">
+                                <field name="project_id" invisible="1" force_save="1"/>
+                                <field name="start_date" required="0"/>
+                                <field name="end_date" required="0"/>
+                                <field name="report_date" required="0"/>
+                                <field name="work_employee_ids" widget="many2many_tags" invisible="1"/>
+                                <field name="employee_ids" required="0" widget="many2many_tags" domain="[('id', 'in', work_employee_ids)]"/>
+                                <field name="rate_id"/>
+                                <field name="general_status"/>
+                                <field name="feedback"/>
+                                <field name="action"/>
+                                <field name="feedback_note"/>
+                                <field name="project_type"/>
+                                <field name="is_valuatation"/>
+                            </tree>
+                            <form>
+                                <group>
+                                    <group>
+                                        <field name="project_id" invisible="1"/>
+                                        <field name="employee_ids" widget="many2many_tags"/>
+                                        <field name="rate_id"/>
+                                        <field name="is_valuatation" force_save="1"/>
+                                    </group>
+                                    <group>
+                                        <field name="start_date" required="0"/>
+                                        <field name="end_date" required="0"/>
+                                        <field name="report_date"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <field name="general_status"/>
+                                    <field name="feedback"/>
+                                    <field name="action"/>
+                                    <field name="feedback_note"/>
+                                    <field name="project_type"/>
+                                </group>
+                            </form>
+                        </field>
+                    </page>
+                    <page name="feedback_old" string="Khách hàng đánh giá cũ">
+                        <group>
+                            <field name="x_report_date"/>
+                            <field name="x_general_status"/>
+                            <field name="x_rate" invisible="1"/>
+                            <field name="x_rate_id" force_save="1" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="x_feedback"/>
+                            <field name="x_action"/>
+                            <field name="x_feedback_note"/>
+                        </group>
+                    </page>
+
+                </page>
+                 <page name="settings" position="before">
+                    <page name="sub_project" string="Mã dự án chi tiết" attrs="{'invisible': ['|',('is_merge_project','=',False),('x_order_id', '=', False)]}">
+                        <field name="x_sub_project_ids">
+                            <tree editable="bottom">
+                                <field name="sub_project_id" string="Mã dự án" domain="['&amp;','&amp;',('x_order_id', '=', parent.x_order_id),('is_merge_project','=',False),('x_merge_project_id','=',False)]"/>
+                                <field name="x_date_plan_start" readonly="1" force_save="1"/>
+                                <field name="x_date_plan_end" readonly="1" force_save="1"/>
+                                <field name="x_date_start" readonly="1" force_save="1"/>
+                                <field name="x_date_end" readonly="1" force_save="1"/>
+                                <field name="user_id" readonly="1" force_save="1"/>
+                                <field name="x_rate" readonly="1" force_save="1" invisible="1"/>
+                                <field name="x_rate_id" readonly="1" force_save="1"/>
+                                <field name="state" readonly="1" force_save="1"/>
+                            </tree>
+                        </field>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+        <record id="view_project_tree" model="ir.ui.view">
+            <field name="name">project.project.tree</field>
+            <field name="model">project.project</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="partner_id"/>
+                    <field name="actual_completion_date"/>
+                    <field name="x_address"/>
+                    <field name="x_order_id" string="Số báo giá"/>
+                    <field name="main_project" optional="hide"/>
+                    <field name="name" string="Mã dự án"/>
+                    <field name="label_tasks" string="Tên dự án"/>
+                    <field name="x_category"/>
+                    <field name="x_project_type"/>
+                    <field name="x_cost_object" string="Đối tượng tính phí"/>
+                    <field name="x_date_plan_start"/>
+                    <field name="x_date_plan_end"/>
+                    <field name="x_date_start"/>
+                    <field name="x_date_end"/>
+                    <field name="user_id"/>
+                    <field name="x_rate" invisible="1"/>
+<!--                    <field name="x_rate_id" force_save="1"/>-->
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_project_tree_o2m_01" model="ir.ui.view">
+            <field name="name">project.project.tree.o2m.01</field>
+            <field name="model">project.project</field>
+            <field name="priority">1000</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="x_scope"/>
+                    <field name="user_id"/>
+                    <field name="x_address"/>
+                    <field name="x_project_type"/>
+                    <field name="x_expertise_ids" widget="many2many_tags"/>
+                    <field name="x_date_plan_start"/>
+                    <field name="x_date_plan_end"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="project.open_view_project_all" model="ir.actions.act_window">
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="view_id" ref="view_project_tree"/>
+        </record>
+
+        <record model="ir.ui.view" id="view_project_kanban">
+            <field name="name">project.project.kanban</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.view_project_kanban"/>
+            <field name="arch" type="xml">
+                <a name="action_view_account_analytic_line" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </a>
+                <a name="action_view_tasks" position="replace">
+                    <a type="edit">
+                        <div>
+                            <span class="o_label">
+                                <t t-esc="record.label_tasks.value"/>
+                            </span>
+                        </div>
+                    </a>
+                </a>
+            </field>
+        </record>
+
+    </data>
+
+    <!-- Project wish views -->
+    <data>
+        <record id="view_project_wish_tree" model="ir.ui.view">
+            <field name="name">project.wish.tree</field>
+            <field name="model">project.wish</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="employee_id"/>
+                    <field name="date"/>
+                    <field name="project_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_project_wish_search" model="ir.ui.view">
+            <field name="name">project.wish.search</field>
+            <field name="model">project.wish</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="employee_id"/>
+                    <field name="date"/>
+                    <field name="project_id"/>
+                    <group>
+                        <filter string="Trạng thái" name="state" domain="[]" context="{'group_by': 'state'}"/>
+                        <!--                        <filter string="Tháng kế tiếp" name="next_month"-->
+                        <!--                                domain="[('date','&lt;', (context_today()+relativedelta(months=2)).strftime('%Y-%m-01')),('date','&gt;=',(context_today()+relativedelta(months=1)).strftime('%Y-%m-01'))]"/>-->
+
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_project_wish_form" model="ir.ui.view">
+            <field name="name">project.wish.form</field>
+            <field name="model">project.wish</field>
+            <field name="arch" type="xml">
+                <form>
+                    <field name="is_approvable" invisible="1"/>
+                    <header>
+                        <button name="button_send_approval" string="Gửi duyệt" states="draft" type="object"
+                                class="oe_highlight"/>
+                        <button name="button_approve" string="Phê duyệt" type="object" class="oe_highlight"
+                                confirm="Xác nhận phê duyệt phiếu đăng ký nguyện vọng này?"
+                                attrs="{'invisible': ['|', ('is_approvable', '!=', True), ('state', '!=', 'approval')]}"/>
+                        <button name="button_reject" string="Từ chối" type="object"
+                                confirm="Xác nhận từ chối phiếu đăng ký nguyện vọng này?"
+                                attrs="{'invisible': ['|', ('is_approvable', '!=', True), ('state', '!=', 'approval')]}"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="employee_id"
+                                       attrs="{'readonly': [('state', 'in', ['approved', 'cancel'])]}"
+                                       options="{'no_create': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>
+                                <field name="date" attrs="{'readonly': [('state', 'in', ['approved', 'cancel'])]}"/>
+                                <field name="project_id" attrs="{'readonly': [('state', 'in', ['approved', 'cancel'])]}"
+                                       domain="[('state', 'in', ['planning', 'ongoing'])]"
+                                       context="{'tree_view_ref': 'xproject.view_project_tree_o2m_01', 'search_default_next_month':1}"
+                                       options="{'no_create': 1, 'no_create_edit': 1, 'no_quick_create': 1}"/>
+                            </group>
+                            <group></group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_project_project_filter_seach">
+            <field name="name">project.project.fiilter</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.view_project_project_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='Partner']" position="after">
+                    <filter string="Tháng trước" name="previous_month"
+                            domain="[('x_date_plan_start','&lt;', (context_today()-relativedelta(months=0)).strftime('%Y-%m-01')),('x_date_plan_start','&gt;=',(context_today()-relativedelta(months=1)).strftime('%Y-%m-01'))]"/>
+                    <filter string="Tháng hiện hành" name="current_month"
+                            domain="[('x_date_plan_start','&lt;', (context_today()+relativedelta(months=1)).strftime('%Y-%m-01')),('x_date_plan_start','&gt;=',(context_today()-relativedelta(months=0)).strftime('%Y-%m-01'))]"/>
+                    <filter string="Tháng kế tiếp" name="next_month"
+                            domain="[('x_date_plan_start','&lt;', (context_today()+relativedelta(months=2)).strftime('%Y-%m-01')),('x_date_plan_start','&gt;=',(context_today()+relativedelta(months=1)).strftime('%Y-%m-01'))]"/>
+                     <filter name="plan_start" string="Ngày bắt đầu dự kiến" date="x_date_plan_start" context="{'group_by': 'x_date_plan_start'}"/>
+                    <filter name="plan_end" string="Ngày kết thúc dự kiến" date="x_date_plan_end" context="{'group_by': 'x_date_plan_end'}"/>
+                    <filter name="real_start" string="Ngày bắt đầu thực tế" date="x_date_start" context="{'group_by': 'x_date_start'}"/>
+                    <filter name="real_end" string="Ngày kết thúc thực tế" date="x_date_end" context="{'group_by': 'x_date_end'}"/>
+                    <filter name="rate" string="Mức độ hài lòng" context="{'group_by': 'x_rate_id'}"/>
+                    <filter name="state" string="Trạng thái" context="{'group_by': 'state'}"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="action_project_wish" model="ir.actions.act_window">
+            <field name="name">Đăng ký nguyện vọng</field>
+            <field name="res_model">project.wish</field>
+            <field name="view_mode">tree,form</field>
+            <!--            <field name="context">-->
+            <!--                {'search_default_next_month':1}-->
+            <!--            </field>-->
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            id="menu_project_wish"
+            name="Đăng ký nguyện vọng"
+            action="action_project_wish"
+            parent="hr.menu_hr_root"
+            sequence="10"/>
+
+    </data>
+    <data>
+        <record id="xproject.menu_project_wish" model="ir.ui.menu">
+              <field name="active" eval="False"/>
+        </record>
+    </data>
+</odoo>

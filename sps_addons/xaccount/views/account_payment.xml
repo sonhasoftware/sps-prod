@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+        <record model="ir.ui.view" id="payment_view_tree">
+            <field name="name">Phiếu thanh toán</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="default_order">date desc</attribute>
+                </xpath>
+                <xpath expr="//field[@name='amount']" position="after">
+                    <field name="x_license_type"/>
+                    <field name="x_code_money"/>
+                </xpath>
+                <xpath expr="//field[@name='payment_method_id']" position="after">
+                    <field name="payment_type" string="Loại thanh toán"/>
+                </xpath>
+                <xpath expr="//field[@name='payment_method_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='journal_id']" position="attributes">
+                    <attribute name="string">Nguồn tiền</attribute>
+                </xpath>
+
+            </field>
+        </record>
+        <record model="ir.ui.view" id="payment_view_form">
+            <field name="name">Phiếu thanh toán</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_post']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|',('state', '!=', 'draft'),'&amp;',('payment_type', '=','outbound'),('x_approved_state','!=','approved')]}</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_post']" position="before">
+                   <button name="action_send_approved" string="Gửi duyệt" type="object" class="oe_highlight" attrs="{'invisible': ['|','|',('state', '!=', 'draft'),('x_approved_state','!=',False),('payment_type', '!=','outbound')]}"/>
+                   <button name="action_accountant_approved" string="Kế toán duyệt" type="object" class="oe_highlight" attrs="{'invisible': ['|',('state', '!=', 'draft'),('x_approved_state','!=','wait_accountant')]}"/>
+                   <button name="action_bod_approved" string="BoD duyệt" type="object" class="oe_highlight" attrs="{'invisible': ['|',('state', '!=', 'draft'),('x_approved_state','!=','wait_bod')]}"/>
+                </xpath>
+                <xpath expr="//field[@name='payment_type']" position="before">
+                    <field name="x_approved_state" force_save="1"  attrs="{'invisible': [('payment_type', '!=','outbound')]}" />
+                </xpath>
+                <xpath expr="//field[@name='move_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='move_id']" position="after">
+                    <field name="x_receiver"/>
+                    <field name="x_address"/>
+                    <field name="x_note"/>
+                    <field name="form_view_ref" invisible="1"/>
+                    <field name="form_view_context" invisible="1"/>
+                    <field name="x_origin_move_id" readonly="1" string="Công nợ liên quan" context="{'form_view_ref': form_view_ref,'default_move_type' :form_view_context }" attrs="{'invisible': [('x_origin_move_id', '=', False)]}"/>
+                    <field name="x_number_invoice" attrs="{'invisible': [('x_origin_move_id', '=', False)]}"/>
+                    <field name="x_date_sent" attrs="{'invisible': [('x_origin_move_id', '=', False)]}"/>
+                    <field name="x_origin_advance_id"  readonly="1" string="Phiếu tạm ứng " attrs="{'invisible': [('x_origin_advance_id', '=', False)]}"/>
+                    <field name="x_origin_repay_id"  readonly="1" string="Phiếu hoàn ứng" attrs="{'invisible': [('x_origin_repay_id', '=', False)]}"/>
+                    <field name="x_origin_so_id"  readonly="1" string="Báo giá liên quan" attrs="{'invisible': [('x_origin_so_id', '=', False)]}"/>
+                    <field name="advance_request_date"  attrs="{'invisible': [('x_origin_so_id', '=', False)]}"/>
+                    <field name="expected_date"  attrs="{'invisible': [('x_origin_so_id', '=', False)]}"/>
+                    <field name="invoice_number"  attrs="{'invisible': [('x_origin_so_id', '=', False)]}"/>
+                    <field name="invoice_date"  attrs="{'invisible': [('x_origin_so_id', '=', False)]}"/>
+                    <field name="x_deposit_time"  readonly="1" string="Lần thanh toán" attrs="{'invisible': [('x_origin_so_id', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_type']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', '!=', 'draft')], 'invisible':
+                        ['|',('is_internal_transfer', '=', True),('x_pay_cost','=',True)]}
+                    </attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_draft']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('state', 'not in', ('posted','cancel'))]}
+                    </attribute>
+                </xpath>
+                <xpath expr="//field[@name='destination_account_id']" position="attributes">
+                    <attribute name="attrs">{'readonly': ['|', ('state', '!=', 'draft'), ('is_internal_transfer', '=',
+                        True)], 'invisible': [('x_pay_cost','=',True)]}
+                    </attribute>
+                    <attribute name="string">Tài khoản công nợ</attribute>
+                </xpath>
+                <xpath expr="//field[@name='journal_id']" position="attributes">
+                    <attribute name="string">Nguồn tiền</attribute>
+                </xpath>
+                <xpath expr="//field[@name='is_internal_transfer']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('x_pay_cost','=',True)],'readonly':
+                        [('state','!=','draft')]}
+                    </attribute>
+                </xpath>
+                <xpath expr="//field[@name='amount']" position="attributes">
+                    <attribute name="attrs">
+                        {'invisible': ['|', ('x_pay_cost', '=', True), ('x_project_detail_ids', '=', [])]}
+                    </attribute>
+                </xpath>
+                <xpath expr="//label[@for='amount']" position="attributes">
+                    <attribute name="attrs">
+                        {'invisible': ['|', ('x_pay_cost', '=', True), ('x_project_detail_ids', '=', [])]}
+                    </attribute>
+                </xpath>
+                <xpath expr="//field[@name='date']" position="before">
+                    <field name="x_amount_override" string="Tổng tiền"
+                           attrs="{'invisible': ['|', ('x_pay_cost', '=', True), ('x_project_detail_ids', '!=', [])]}"/>
+                    <field name="display_date" attrs="{'invisible': [('x_origin_so_id', '=', False)]}"/>
+                    <field name="project_state" attrs="{'invisible': [('x_origin_so_id', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='date']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('x_origin_so_id', '!=', False)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='is_internal_transfer']" position="after">
+                    <field name="x_pay_cost" attrs="{'readonly': [('state','!=','draft')]}"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_bank_id']" position="after">
+                    <field name="x_license_type"/>
+                    <field name="x_code_money"/>
+                </xpath>
+                <xpath expr="//group" position="after">
+
+                    <notebook>
+                        <page string="Chi tiết dự án" attrs="{'invisible': [('x_pay_cost','!=',False)]}">
+                            <field name="x_project_detail_ids">
+                                <tree editable="bottom">
+                                    <field name="payment_id" invisible="1"/>
+                                    <field name="code_project"/>
+                                    <field name="project_id"/>
+                                    <field name="cost_type_id" options="{'no_create': True}"/>
+<!--                                    <field name="tax_percent"-->
+<!--                                           attrs="{'readonly': ['|','|',('parent.x_origin_repay_id','!=',False),('parent.x_origin_advance_id','=',False),('parent.x_origin_move_id','=',False)]}"/>-->
+                                   <field name="tax_percent" />
+                                    <field name="amount_total"/>
+                                </tree>
+                            </field>
+                            <group col="1" colspan="1">
+                                <field name="x_total_project_line" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"
+                                       force_save="1"/>
+                            </group>
+                        </page>
+                        <page string="Hoàn ứng theo dự án" attrs="{'invisible': [('x_origin_repay_id','=',False)]}">
+                            <field name="x_project_repay_ids" force_save="1">
+                                <tree>
+                                    <field name="payment_id" invisible="1"/>
+                                    <field name="main_project"/>
+                                    <field name="amount_repay"/>
+                                </tree>
+                            </field>
+                            <group col="1" colspan="1">
+                                <field name="x_total_project_repay" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"
+                                       force_save="1"/>
+                            </group>
+                        </page>
+                        <page attrs="{'invisible': [('x_pay_cost','=',False)],'readonly': [('state','!=','draft')]}"
+                              string="Chi tiết">
+                            <field name="x_payment_line_ids">
+                                <tree editable="bottom">
+                                    <field name="x_sale_project_id"/>
+                                    <field name="project_id"/>
+                                    <field name="cost_type_id" options="{'no_create': True}"/>
+                                    <field name="account_id"
+                                           attrs="{'required': [('parent.x_pay_cost','=',True)]}"/>
+                                    <field name="partner_id"/>
+                                    <field name="content"/>
+                                    <field name="currency_id" invisible="1"/>
+<!--                                    <field name="tax_percent" attrs="{'readonly': ['|','|',('parent.x_origin_repay_id','!=',False),('parent.x_origin_advance_id','!=',False),('parent.x_origin_move_id','!=',False)]}" />-->
+                                    <field name="tax_percent" />
+                                    <field name="amount" widget="monetary"
+                                           options="{'currency_field': 'currency_id'}"/>
+                                </tree>
+                            </field>
+                            <group col="1" colspan="1">
+                                <field name="x_total_line" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"
+                                       force_save="1"/>
+                            </group>
+                        </page>
+
+                    </notebook>
+                </xpath>
+
+            </field>
+        </record>
+        <record id="view_invoice_tree_custom" model="ir.ui.view">
+            <field name="name">account.invoice.tree_custom</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_invoice_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_register_payment']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="payment_register_form">
+            <field name="name">Ghi nhận thanh toán</field>
+            <field name="model">account.payment.register</field>
+            <field name="inherit_id" ref="account.view_account_payment_register_form"/>
+            <field name="arch" type="xml">
+<!--                <xpath expr="//field[@name='communication']" position="after">-->
+<!--                    <field name="x_origin_move"/>-->
+<!--                </xpath>-->
+                <xpath expr="//field[@name='communication']" position="after">
+                    <field name="x_note"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_account_payment_search_filter" model="ir.ui.view">
+            <field name="name">account.payment.search</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_search"/>
+            <field name="arch" type="xml">
+                <field name="journal_id" position="attributes">
+                    <attribute name="string">Nguồn tiền</attribute>
+                </field>
+                <xpath expr="//filter[@name='inbound_filter']" position="attributes">
+                    <attribute name="domain">[('payment_type', '=', 'inbound')]</attribute>
+                </xpath>
+                <xpath expr="//filter[@name='outbound_filter']" position="attributes">
+                    <attribute name="domain">[('payment_type', '=', 'outbound')]</attribute>
+                </xpath>
+                <xpath expr="//filter[@name='state_posted']" position="after">
+                     <filter string="Phiếu chưa hủy" name="state_not_cancel" domain="[('state', '!=', 'cancel')]"/>
+                     <filter string="Đã hủy" name="state_cancel" domain="[('state', '=', 'cancel')]"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="account.action_account_payments" model="ir.actions.act_window">
+            <field name="context">{
+                'default_payment_type': 'inbound',
+                'default_partner_type': 'customer',
+                'search_default_inbound_filter': 1,
+                'search_default_state_not_cancel': 1,
+                'default_move_journal_types': ('bank', 'cash'),
+            }</field>
+        </record>
+        <record id="account.action_account_payments_payable" model="ir.actions.act_window">
+            <field name="context">{
+                'default_payment_type': 'outbound',
+                'default_partner_type': 'supplier',
+                'search_default_outbound_filter': 1,
+                'search_default_state_not_cancel': 1,
+                'default_move_journal_types': ('bank', 'cash'),
+            }</field>
+        </record>
+    </data>
+    <data>
+          <record id="account_journal_view_inherit_user" model="ir.ui.view">
+                <field name="name">account_journal_view_inherit</field>
+                <field name="model">account.journal</field>
+                <field name="inherit_id" ref="account.view_account_journal_form"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//field[@name='type']" position="after">
+                        <field name="x_charge_user_id"
+                               attrs="{'invisible': [('type', 'not in', ('cash','bank'))],
+                                       'required': [('type','in', ('cash','bank'))]}"/>
+                    </xpath>
+                </field>
+          </record>
+    </data>
+</odoo>

@@ -1,0 +1,112 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* account
+
+#. module: account
+#: model_terms:ir.ui.view,arch_db:account.view_invoice_tree
+#: model_terms:ir.ui.view,arch_db:account.view_move_form
+msgid "Bill Date"
+msgstr "Ngày ghi công nợ"
+
+#. module: account
+#: model_terms:ir.ui.view,arch_db:account.view_move_form
+msgid "Invoice Lines"
+msgstr "Chi tiết công nợ"
+
+#. module: account
+#: model:ir.model.fields,field_description:account.field_account_invoice_report__invoice_date
+#: model_terms:ir.ui.view,arch_db:account.portal_my_invoices
+#: model_terms:ir.ui.view,arch_db:account.view_account_invoice_filter
+#: model_terms:ir.ui.view,arch_db:account.view_invoice_tree
+#: model_terms:ir.ui.view,arch_db:account.view_move_form
+msgid "Invoice Date"
+msgstr "Ngày gửi hồ sơ thanh toán"
+
+#. module: account
+#: code:addons/account/controllers/portal.py:0
+#: model:ir.actions.act_window,name:account.action_move_in_invoice_type
+#: model:ir.ui.menu,name:account.menu_action_move_in_invoice_type
+#: model_terms:ir.ui.view,arch_db:account.account_journal_dashboard_kanban_view
+#, python-format
+msgid "Bills"
+msgstr "Công nợ NCC"
+
+#. module: account
+#: model:ir.actions.act_window,name:account.action_move_in_refund_type
+#: model:ir.ui.menu,name:account.menu_action_move_in_refund_type
+msgid "Refunds"
+msgstr "Công nợ âm NCC"
+
+#. module: account
+#: code:addons/account/controllers/portal.py:0
+#: model:ir.actions.act_window,name:account.action_move_out_invoice_type
+#: model:ir.actions.report,name:account.account_invoices
+#: model:ir.model.fields,field_description:account.field_account_invoice_send__invoice_ids
+#: model:ir.model.fields,field_description:account.field_res_partner__invoice_ids
+#: model:ir.model.fields,field_description:account.field_res_users__invoice_ids
+#: model:ir.ui.menu,name:account.menu_action_move_out_invoice_type
+#: model_terms:ir.ui.view,arch_db:account.account_journal_dashboard_kanban_view
+#: model_terms:ir.ui.view,arch_db:account.portal_my_invoices
+#: model_terms:ir.ui.view,arch_db:account.view_account_invoice_report_search
+#: model_terms:ir.ui.view,arch_db:account.view_account_payment_graph
+#: model_terms:ir.ui.view,arch_db:account.view_invoice_tree
+#, python-format
+msgid "Invoices"
+msgstr "Công nợ khách hàng"
+
+#. module: account
+#: model:ir.actions.act_window,name:account.action_move_out_refund_type
+#: model:ir.ui.menu,name:account.menu_action_move_out_refund_type
+#: model_terms:ir.ui.view,arch_db:account.account_journal_dashboard_kanban_view
+#: model_terms:ir.ui.view,arch_db:account.view_account_invoice_report_search
+msgid "Credit Notes"
+msgstr "Công nợ âm khách hàng"
+
+#. module: account
+#: model:ir.model.fields.selection,name:account.selection__account_payment_register__payment_difference_handling__open
+msgid "Keep open"
+msgstr "Còn phải thu"
+
+#. module: account
+#: model:ir.model.fields.selection,name:account.selection__account_payment_register__payment_difference_handling__reconcile
+msgid "Mark as fully paid"
+msgstr "Đã thanh toán hết"
+
+#. module: account
+#: model:ir.model.fields,field_description:account.field_account_bank_statement_line__partner_bank_id
+#: model:ir.model.fields,field_description:account.field_account_move__partner_bank_id
+msgid "Recipient Bank"
+msgstr "Tài khoản ngân hàng"
+
+#. module: account
+#: model:ir.model.fields,field_description:account.field_account_payment__partner_bank_id
+#: model:ir.model.fields,field_description:account.field_account_payment_register__partner_bank_id
+msgid "Recipient Bank Account"
+msgstr "Tài khoản ngân hàng"
+
+#. module: account
+#: code:addons/account/wizard/account_automatic_entry_wizard.py:0
+#: model:ir.model.fields,field_description:account.field_account_bank_statement_line__payment_ref
+#: model:ir.model.fields,field_description:account.field_account_move_line__name
+#: model:ir.model.fields,field_description:account.field_account_reconcile_model__match_label
+#: model:ir.model.fields,field_description:account.field_account_reconcile_model_template__match_label
+#: model_terms:ir.ui.view,arch_db:account.report_journal
+#: model_terms:ir.ui.view,arch_db:account.view_account_payment_register_form
+#: model_terms:ir.ui.view,arch_db:account.view_account_reconcile_model_form
+#, python-format
+msgid "Label"
+msgstr "Diễn giải"
+
+#. module: account
+#: model_terms:ir.ui.view,arch_db:account.account_journal_dashboard_kanban_view
+#: model_terms:ir.ui.view,arch_db:account.res_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:account.view_account_payment_search
+msgid "Vendor Payments"
+msgstr "Chi tiền"
+
+#. module: account
+#: model_terms:ir.ui.view,arch_db:account.account_journal_dashboard_kanban_view
+#: model_terms:ir.ui.view,arch_db:account.res_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:account.view_account_payment_search
+msgid "Customer Payments"
+msgstr "Thu tiền"

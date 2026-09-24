@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+         <record model="ir.module.category" id="module_category_effective">
+            <field name="name">Quản lý hiệu quả</field>
+            <field name="sequence">100</field>
+        </record>
+
+         <record id="group_effective_purchase" model="res.groups">
+            <field name="name">Mua hàng</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user')),]"/>
+            <field name="category_id" ref="effective_management.module_category_effective"/>
+        </record>
+
+         <record id="group_effective_recruitment" model="res.groups">
+            <field name="name">Tuyển dụng</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user')),]"/>
+            <field name="category_id" ref="effective_management.module_category_effective"/>
+        </record>
+
+        <record id="group_effective_sale" model="res.groups">
+            <field name="name">Bán hàng</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="category_id" ref="effective_management.module_category_effective"/>
+        </record>
+
+        <record id="group_effective_project" model="res.groups">
+            <field name="name">Dự án</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="category_id" ref="effective_management.module_category_effective"/>
+        </record>
+
+        <record id="group_effective_employee" model="res.groups">
+            <field name="name">Nhân viên</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="category_id" ref="effective_management.module_category_effective"/>
+        </record>
+        <record id="group_effective_admin" model="res.groups">
+            <field name="name">Admin</field>
+            <field name="implied_ids" eval="[(4, ref('effective_management.group_effective_purchase')),
+                                             (4, ref('effective_management.group_effective_recruitment')),
+                                             (4, ref('effective_management.group_effective_project')),
+                                             (4, ref('effective_management.group_effective_employee')),
+                                             (4, ref('effective_management.group_effective_sale'))]"/>
+            <field name="category_id" ref="effective_management.module_category_effective"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+    </data>
+</odoo>

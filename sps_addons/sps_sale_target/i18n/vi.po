@@ -1,0 +1,36 @@
+#. module: sps_sale_target
+#: model:ir.model.fields,field_description:sps_sale_target.field_sale_order__date_order
+msgid "Date Order"
+msgstr "Ngày Báo Giá"
+
+#. module: sps_sale_target
+#: model_terms:ir.ui.view,arch_db:sps_sale_target.sale_order_inherit_view_form
+msgid "Add a section"
+msgstr "Thêm hạng mục tổng"
+
+#. module: sale
+#: model:ir.model.fields,field_description:sale.field_report_all_channels_sales__name
+#: model:ir.model.fields,field_description:sale.field_sale_order__name
+#: model:ir.model.fields,field_description:sale.field_sale_order_line__order_id
+#: model:ir.model.fields,field_description:sale.field_sale_report__name
+msgid "Order Reference"
+msgstr "Số báo giá"
+
+#. module: base
+#: model:ir.model.fields,field_description:base.field_res_bank__city
+#: model:ir.model.fields,field_description:base.field_res_company__city
+#: model:ir.model.fields,field_description:base.field_res_partner__city
+#: model:ir.model.fields,field_description:base.field_res_users__city
+#: model_terms:ir.ui.view,arch_db:base.res_partner_view_form_private
+#: model_terms:ir.ui.view,arch_db:base.view_company_form
+#: model_terms:ir.ui.view,arch_db:base.view_partner_address_form
+#: model_terms:ir.ui.view,arch_db:base.view_partner_form
+#: model_terms:ir.ui.view,arch_db:base.view_res_bank_form
+msgid "City"
+msgstr "Quận/Huyện/Thị xã"
+
+#. module: sale
+#: model_terms:ir.ui.view,arch_db:sale.view_sales_order_filter
+#: model_terms:ir.ui.view,arch_db:sale.view_sales_order_line_filter
+msgid "Order"
+msgstr "Số báo giá hoặc Mã dự án"

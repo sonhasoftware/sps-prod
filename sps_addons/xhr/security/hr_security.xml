@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="group_view_history_work" model="res.groups">
+        <field name="name">Xem lịch sử chức vụ</field>
+    </record>
+</odoo>

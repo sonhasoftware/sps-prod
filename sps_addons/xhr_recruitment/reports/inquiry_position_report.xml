@@ -1,0 +1,26 @@
+<odoo>
+    <record model="ir.ui.view" id="recruitment_inquiry_position_report_view">
+        <field name="name">Inquiry Position Report</field>
+        <field name="model">recruitment.inquiry.position.report</field>
+        <field name="arch" type="xml">
+            <tree create="false" delete="false" default_order="id asc">
+                <field name="name" string="Requested Position"/>
+                <field name="ongoing"/>
+                <field name="delay"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="recruitment_inquiry_position_report_act">
+        <field name="name">Inquiry Position Report</field>
+        <field name="res_model">recruitment.inquiry.position.report</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem
+            id="recruitment_inquiry_position_report_menu"
+            name="Inquiry Position Report"
+            action="recruitment_inquiry_position_report_act"
+            parent="hr_recruitment.report_hr_recruitment"
+            sequence="4"/>
+</odoo>

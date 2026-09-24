@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="cash_flow_report_tree" model="ir.ui.view">
+            <field name="name">Báo cáo dòng tiền</field>
+            <field name="model">cash.flow.view_report</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false" js_class="cash_flow_tree">
+                    <field name="ngay"/>
+                    <field name="thang"/>
+                    <field name="nam"/>
+                    <field name="nguoi_nhan"/>
+                    <field name="ten_khach_hang"/>
+                    <field name="dien_giai"/>
+                    <field name="ma_du_an"/>
+                    <field name="chung_tu"/>
+                    <field name="ma_khoan_tien"/>
+                    <field name="kieu_thanh_toan"/>
+                    <field name="chi"/>
+                    <field name="thu"/>
+                    <field name="kq_1"/>
+                    <field name="ghi_chu"/>
+                    <field name="so_chung_tu"/>
+                    <field name="currency_id" attrs="{'column_invisible': 1}"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="cash_flow_report_search" model="ir.ui.view">
+            <field name="name">Báo cáo dòng tiền - Tìm kiếm</field>
+            <field name="model">cash.flow.view_report</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="ma_du_an" string="Mã dự án"
+                           filter_domain="[('ma_du_an', 'ilike', self)]"/>
+                    <field name="so_chung_tu" string="Số chứng từ"
+                           filter_domain="[('so_chung_tu', 'ilike', self)]"/>
+                    <field name="nguoi_nhan" string="Người nhận/nộp tiền"
+                           filter_domain="[('nguoi_nhan', 'ilike', self)]"/>
+                    <field name="ten_khach_hang" string="Tổ chức nhận/nộp tiền"
+                           filter_domain="[('ten_khach_hang', 'ilike', self)]"/>
+                    <field name="ma_khoan_tien" string="Mã khoản tiền"
+                           filter_domain="[('ma_khoan_tien', 'ilike', self)]"/>
+                    <field name="kieu_thanh_toan" string="Hình thức thu/chi"
+                           filter_domain="[('kieu_thanh_toan', 'ilike', self)]"/>
+                    <field name="dien_giai" string="Diễn giải"
+                           filter_domain="[('dien_giai', 'ilike', self)]"/>
+                    <field name="ngay"/>
+                    <field name="thang"/>
+                    <field name="nam"/>
+
+                    <filter name="thang_hien_tai" string="Tháng hiện tại"
+                            domain="[('thang', '=', context_today().month), ('nam', '=', context_today().year)]"/>
+                    <filter name="thang_truoc" string="Tháng trước"
+                            domain="[('thang', '=', (context_today() - relativedelta(months=1)).month), ('nam', '=', (context_today() - relativedelta(months=1)).year)]"/>
+                    <filter name="nam_hien_tai" string="Năm hiện tại"
+                            domain="[('nam', '=', context_today().year)]"/>
+                    <filter name="nam_truoc" string="Năm trước"
+                            domain="[('nam', '=', context_today().year - 1)]"/>
+
+                    <separator/>
+                    <filter name="chi" string="Chi" domain="[('chi', '!=', 0)]"/>
+                    <filter name="thu" string="Thu" domain="[('thu', '!=', 0)]"/>
+
+                    <group expand="0" string="Nhóm theo">
+                        <filter name="group_by_nam" string="Năm" context="{'group_by': 'nam'}"/>
+                        <filter name="group_by_thang" string="Tháng" context="{'group_by': 'thang'}"/>
+                        <filter name="group_by_ngay" string="Ngày" context="{'group_by': 'ngay'}"/>
+                        <filter name="group_by_ma_du_an" string="Mã dự án" context="{'group_by': 'ma_du_an'}"/>
+                        <filter name="group_by_ma_khoan_tien" string="Mã khoản tiền" context="{'group_by': 'ma_khoan_tien'}"/>
+                        <filter name="group_by_kieu_thanh_toan" string="Hình thức thu/chi" context="{'group_by': 'kieu_thanh_toan'}"/>
+                        <filter name="group_by_ten_khach_hang" string="Tổ chức nhận/nộp tiền" context="{'group_by': 'ten_khach_hang'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_cash_flow_report" model="ir.actions.act_window">
+            <field name="name">Báo cáo dòng tiền</field>
+            <field name="res_model">cash.flow.view_report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree</field>
+            <field name="search_view_id" ref="cash_flow_report_search"/>
+            <field name="context">{'search_default_nam_hien_tai': 1}</field>
+        </record>
+    </data>
+</odoo>

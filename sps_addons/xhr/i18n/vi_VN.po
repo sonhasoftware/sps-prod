@@ -1,0 +1,3657 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* xhr_recruitment
+# 	* hr
+# 	* xhr
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-13 11:39+0000\n"
+"PO-Revision-Date: 2024-03-13 11:39+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_company__hr_presence_control_email_amount
+#: model:ir.model.fields,field_description:hr.field_res_config_settings__hr_presence_control_email_amount
+msgid "# emails to send"
+msgstr "# Gửi email tới"
+
+#. module: hr
+#: code:addons/hr/models/hr_job.py:0
+#, python-format
+msgid "%s (copy)"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_job_view_kanban
+msgid "&amp;nbsp;"
+msgstr ""
+
+#. module: hr
+#: model:ir.actions.report,print_report_name:hr.hr_employee_print_badge
+msgid "'Print Badge - %s' % (object.name).replace('/', '')"
+msgstr "'In Huy hiệu - %s' % (object.name).replace('/', '')"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_recruit_request__working_hours__44
+msgid "44hrs"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_recruit_request__working_hours__48
+msgid "48hrs"
+msgstr ""
+
+#. module: hr
+#: code:addons/hr/models/hr_employee.py:0
+#, python-format
+msgid ""
+"<b>Congratulations!</b> May I recommend you to setup an <a "
+"href=\"%s\">onboarding plan?</a>"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_department_view_kanban
+msgid "<i class=\"fa fa-ellipsis-v\" role=\"img\" aria-label=\"Manage\" title=\"Manage\"/>"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model_terms:ir.ui.view,arch_db:xhr_recruitment.view_hr_recruit_request_form
+msgid ""
+"<span attrs=\"{'invisible': [('experience_required', '!=', '1')]}\"> "
+"years</span>"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model_terms:ir.ui.view,arch_db:xhr_recruitment.view_hr_recruit_request_form
+msgid ""
+"<span class=\"fa fa-arrow-right\" style=\"padding: 0 6px 0 6px;\" "
+"title=\"Age range\"/>"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_kanban
+#: model_terms:ir.ui.view,arch_db:hr.hr_kanban_view_employees
+msgid ""
+"<span class=\"fa fa-circle text-success\" role=\"img\" aria-label=\"Present\" title=\"Present\" name=\"presence_present\">\n"
+"                                                </span>"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_kanban
+#: model_terms:ir.ui.view,arch_db:hr.hr_kanban_view_employees
+msgid ""
+"<span class=\"fa fa-circle text-warning\" role=\"img\" aria-label=\"To define\" title=\"To define\" name=\"presence_to_define\">\n"
+"                                                </span>"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_kanban
+#: model_terms:ir.ui.view,arch_db:hr.hr_kanban_view_employees
+msgid ""
+"<span class=\"fa fa-circle-o text-muted\" role=\"img\" aria-label=\"Absent\" title=\"Absent\" name=\"presence_absent\">\n"
+"                                                </span>"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_kanban
+#: model_terms:ir.ui.view,arch_db:hr.hr_kanban_view_employees
+msgid ""
+"<span class=\"fa fa-circle-o text-success\" role=\"img\" aria-label=\"Present but not active\" title=\"Present but not active\" name=\"presence_absent_active\">\n"
+"                                                </span>"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" role=\"img\" aria-label=\"Values set here are company-"
+"specific.\" groups=\"base.group_multi_company\"/>"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
+msgid "<span class=\"ml8 mr-2\">IP Addresses (comma-separated)</span>"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
+msgid "<span class=\"ml8 mr-2\">Minimum number of emails to sent </span>"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
+msgid "<span class=\"o_form_label\">Presence Control</span>"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid ""
+"<span class=\"o_stat_text\">\n"
+"                                        Not Connected\n"
+"                                    </span>"
+msgstr ""
+"<span class=\"o_stat_text\">\n"
+"                                        Chưa kết nối\n"
+"                                    </span>"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+msgid ""
+"<span class=\"o_stat_text\">\n"
+"                                    Not Connected\n"
+"                                </span>"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+msgid "<span class=\"o_stat_text\">Connected Since</span>"
+msgstr "<span class=\"o_stat_text\">Được kết nối kể từ</span>"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "<span class=\"o_stat_text\">Present Since</span>"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "<span>Km</span>"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_department_view_kanban
+msgid "<strong><span>Reporting</span></strong>"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_interview_result__1
+msgid "A possible candidate, application for filing"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_interview_result__2
+msgid "A strong candidate, move to next round"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.constraint,message:hr.constraint_hr_employee_user_uniq
+msgid "A user cannot be linked to multiple employees in the same company."
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__hr_icon_display__presence_absent
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__hr_presence_state__absent
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_base__hr_icon_display__presence_absent
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_base__hr_presence_state__absent
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_public__hr_icon_display__presence_absent
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_public__hr_presence_state__absent
+msgid "Absent"
+msgstr ""
+
+#. module: xhr
+#: model_terms:ir.ui.view,arch_db:xhr.view_employee_form
+msgid "Account"
+msgstr "Tài khoản"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_bank_account_holder
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__x_bank_account_holder
+msgid "Account holder"
+msgstr ""
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__message_needaction
+#: model:ir.model.fields,field_description:hr.field_hr_employee__message_needaction
+#: model:ir.model.fields,field_description:hr.field_hr_job__message_needaction
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__message_needaction
+msgid "Action Needed"
+msgstr "Hành động cần thiết"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__active
+#: model:ir.model.fields,field_description:hr.field_hr_employee__active
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__active
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__active
+#: model:ir.model.fields,field_description:hr.field_hr_plan__active
+msgid "Active"
+msgstr "Có hiệu lực"
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__activity_ids
+#: model:ir.model.fields,field_description:hr.field_hr_plan__plan_activity_type_ids
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__activity_ids
+#: model_terms:ir.ui.view,arch_db:hr.hr_plan_activity_type_view_tree
+#: model_terms:ir.ui.view,arch_db:hr.hr_plan_view_form
+msgid "Activities"
+msgstr "Các hoạt động"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_plan_activity_type_view_form
+msgid "Activity"
+msgstr "Hoạt động"
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__activity_exception_decoration
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Hành động ngoại lệ"
+
+#. module: hr
+#: model:ir.ui.menu,name:hr.menu_config_plan
+msgid "Activity Planning"
+msgstr ""
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__activity_state
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__activity_state
+msgid "Activity State"
+msgstr "Trạng thái hoạt động"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_plan_activity_type__activity_type_id
+msgid "Activity Type"
+msgstr "Kiểu hoạt động"
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__activity_type_icon
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Biểu tượng kiểu hoạt động"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__reason_add
+msgid "Add"
+msgstr "Thêm"
+
+#. module: hr
+#: model_terms:ir.actions.act_window,help:hr.act_employee_from_department
+#: model_terms:ir.actions.act_window,help:hr.hr_employee_public_action
+#: model_terms:ir.actions.act_window,help:hr.open_view_employee_list_my
+msgid "Add a new employee"
+msgstr "Thêm nhân viên mới"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_departure_wizard__departure_description
+#: model:ir.model.fields,field_description:hr.field_hr_employee__departure_description
+msgid "Additional Information"
+msgstr "Thông tin thêm"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__additional_note
+#: model:ir.model.fields,field_description:hr.field_res_users__additional_note
+msgid "Additional Note"
+msgstr "Ghi chú bổ sung"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__address_home_id
+#: model:ir.model.fields,field_description:hr.field_res_users__address_home_id
+msgid "Address"
+msgstr "Địa chỉ"
+
+#. module: hr
+#: model:res.groups,name:hr.group_hr_manager
+msgid "Administrator"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_config_settings__module_hr_presence
+msgid "Advanced Presence Control"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
+msgid "Advanced presence of employees"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__age_from
+msgid "Age from"
+msgstr "Tuổi từ"
+
+#. module: xhr_recruitment
+#: model_terms:ir.ui.view,arch_db:xhr_recruitment.view_hr_recruit_request_form
+msgid "Age range"
+msgstr "Khoảng tuổi"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__age_to
+msgid "Age to"
+msgstr "Tuổi tới"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_employment_status__1
+msgid "Agree"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_mail_alias__alias_contact
+#: model:ir.model.fields,field_description:hr.field_mail_alias_mixin__alias_contact
+#: model:ir.model.fields,field_description:hr.field_mail_channel__alias_contact
+msgid "Alias Contact Security"
+msgstr "An ninh về bí danh liên hệ"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_recruit_request__income_type__all
+msgid "All in one"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
+msgid "Allow employees to update their own data"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
+msgid "Allow employees to update their own data."
+msgstr ""
+
+#. module: xhr_recruitment
+#: model_terms:ir.ui.view,arch_db:xhr_recruitment.view_hr_recruit_request_form
+msgid "Allowances"
+msgstr "Phụ cấp"
+
+#. module: xhr_recruitment
+#: model:ir.model,name:xhr_recruitment.model_hr_applicant
+msgid "Applicant"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__approver_uid
+msgid "Approver"
+msgstr "Người phê duyệt"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_form
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Approvers"
+msgstr "Người phê duyệt"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_departure_wizard__archive_private_address
+msgid "Archive Private Address"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_form
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_search
+#: model_terms:ir.ui.view,arch_db:hr.hr_plan_view_form
+#: model_terms:ir.ui.view,arch_db:hr.hr_plan_view_search
+#: model_terms:ir.ui.view,arch_db:hr.view_department_filter
+#: model_terms:ir.ui.view,arch_db:hr.view_department_form
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_filter
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Archived"
+msgstr "Đã lưu"
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__message_attachment_count
+#: model:ir.model.fields,field_description:hr.field_hr_employee__message_attachment_count
+#: model:ir.model.fields,field_description:hr.field_hr_job__message_attachment_count
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__message_attachment_count
+msgid "Attachment Count"
+msgstr "Số lượng tập tin đính kèm"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Attendance"
+msgstr "Chấm công"
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__mail_alias__alias_contact__employees
+msgid "Authenticated Employees"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.mail_channel_view_form_
+msgid "Auto Subscribe Departments"
+msgstr "Bộ phận đăng ký tự động"
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_mail_channel__subscription_department_ids
+msgid "Automatically subscribe members of those departments to the channel."
+msgstr "Tự động đăng ký thành viên của các bộ phận đó vào kênh."
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Available"
+msgstr "Khả dụng"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Away"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model_terms:ir.ui.view,arch_db:xhr_recruitment.view_hr_recruit_request_form
+msgid "BOD approve"
+msgstr "Ban giám đốc phê duyệt"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__barcode
+#: model:ir.model.fields,field_description:hr.field_res_users__barcode
+msgid "Badge ID"
+msgstr "Mã số thẻ"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__bank_account_id
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__bank_account_id
+msgid "Bank Account Number"
+msgstr "Tài khoản Ngân hàng"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_bank_account
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__x_bank_account
+msgid "Bank account"
+msgstr "Số tài khoản"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_bank_branch
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__x_bank_branch
+msgid "Bank branch"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_bank_name
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__x_bank_name
+msgid "Bank name"
+msgstr "Ngân hàng"
+
+#. module: hr
+#: model:ir.model,name:hr.model_base
+msgid "Base"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_config_settings__hr_presence_control_ip
+msgid "Based on IP Address"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_config_settings__module_hr_attendance
+msgid "Based on attendances"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_config_settings__hr_presence_control_email
+msgid "Based on number of emails sent"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_config_settings__hr_presence_control_login
+msgid "Based on user status in system"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_recruit_request__english_requires__basic
+msgid "Basic"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model,name:xhr.model_hr_employee_base
+msgid "Basic Employee"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_has_birth_cert
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__x_has_birth_cert
+msgid "Birth certificate"
+msgstr "Giấy khai sinh"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_department__x_block_id
+msgid "Block"
+msgstr "Khối"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__budget_reason
+msgid "Budget reason"
+msgstr "Giải thích ngân sách tuyển dụng"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__source_buy
+msgid "Buy source"
+msgstr "Nguồn mua ngoài"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__x_degree
+msgid "Bằng cấp"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_cv_code
+msgid "CV ứng tuyển"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_users__can_edit
+msgid "Can Edit"
+msgstr "Có thể sửa"
+
+#. modules: xhr_recruitment, hr
+#: model_terms:ir.ui.view,arch_db:hr.plan_wizard
+#: model_terms:ir.ui.view,arch_db:xhr_recruitment.view_hr_recruit_request_form
+msgid "Cancel"
+msgstr "Hủy"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_recruit_request__state__canceled
+msgid "Canceled"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.actions.act_window,name:xhr_recruitment.report_recruitment_candidates_act
+msgid "Candidate Report"
+msgstr "Tổng hợp ứng viên cần lưu tâm"
+
+#. module: xhr_recruitment
+#: model:ir.model,name:xhr_recruitment.model_recruitment_candidate_report
+msgid "Candidates Report"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_certificate__diploma
+msgid "Diploma"
+msgstr "Cao đẳng"
+
+#. modules: hr, xhr
+#: model:ir.model.fields,field_description:hr.field_res_users__certificate
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__certificate
+msgid "Certificate Level"
+msgstr "Cấp chứng chỉ"
+
+#. module: hr
+#: model:ir.actions.act_window,name:hr.res_users_action_my
+msgid "Change my Preferences"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_form
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_kanban
+#: model_terms:ir.ui.view,arch_db:hr.hr_kanban_view_employees
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Chat"
+msgstr "Nhắn tin"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__child_ids
+msgid "Child Departments"
+msgstr "Phòng ban cấp dưới"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Citizenship"
+msgstr ""
+
+#. module: xhr
+#: model:ir.actions.act_window,name:xhr.report_classification_act
+#: model:ir.ui.menu,name:xhr.report_classification_menu
+#: model_terms:ir.ui.view,arch_db:xhr.report_classification_view
+msgid "Classification"
+msgstr "Báo cáo số lượng nhân sự"
+
+#. module: xhr
+#: model:ir.model,name:xhr.model_report_classification_monthly
+msgid "Classification Monthly"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__coach_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__coach_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__coach_id
+#: model:ir.model.fields,field_description:hr.field_res_users__coach_id
+#: model:ir.model.fields.selection,name:hr.selection__hr_plan_activity_type__responsible__coach
+msgid "Coach"
+msgstr "Người huấn luyện"
+
+#. module: hr
+#: code:addons/hr/models/hr_plan.py:0
+#, python-format
+msgid "Coach of employee %s is not set."
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields.selection,name:xhr.selection__hr_contract__x_type_employee__2
+#: model:ir.model.fields.selection,name:xhr.selection__report_classification_monthly__type_employee__2
+msgid "Collaborators"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__color
+#: model:ir.model.fields,field_description:hr.field_hr_employee__color
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__color
+#: model:ir.model.fields,field_description:hr.field_hr_employee_category__color
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__color
+msgid "Color Index"
+msgstr "Mã màu"
+
+#. module: hr
+#: model:ir.model,name:hr.model_res_company
+#: model_terms:ir.ui.view,arch_db:hr.view_department_tree
+msgid "Companies"
+msgstr "Công ty"
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__company_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee__company_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__company_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__company_id
+#: model:ir.model.fields,field_description:hr.field_hr_job__company_id
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__company_id
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_search
+#: model_terms:ir.ui.view,arch_db:hr.view_job_filter
+msgid "Company"
+msgstr "Công ty"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.print_employee_badge
+msgid "Company Logo"
+msgstr "Logo Công ty"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_config_settings__resource_calendar_id
+msgid "Company Working Hours"
+msgstr "Khung giờ làm việc mặc định"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_users__employee_id
+msgid "Company employee"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__complete_name
+msgid "Complete Name"
+msgstr "Tên đầy đủ"
+
+#. module: hr
+#: model:ir.model,name:hr.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: hr
+#: model:ir.ui.menu,name:hr.menu_human_resources_configuration
+#: model_terms:ir.ui.view,arch_db:hr.hr_department_view_kanban
+msgid "Configuration"
+msgstr "Cấu hình"
+
+#. module: xhr_recruitment
+#: model_terms:ir.ui.view,arch_db:xhr_recruitment.view_hr_recruit_request_form
+msgid "Confirm"
+msgstr "Xác nhận"
+
+#. module: xhr_recruitment
+#: model_terms:ir.ui.view,arch_db:xhr_recruitment.view_hr_recruit_request_form
+msgid "Confirm cancel this item?"
+msgstr "Xác nhận hủy phiếu này?"
+
+#. module: xhr_recruitment
+#: model_terms:ir.ui.view,arch_db:xhr_recruitment.view_hr_recruit_request_form
+msgid ""
+"Confirm reject this item? \tRemember to note reason to Log panel after "
+"reject!"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_recruit_request__state__confirm
+msgid "Confirmed"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields.selection,name:xhr.selection__hr_employee__x_training_form__2
+#: model:ir.model.fields.selection,name:xhr.selection__hr_employee_public__x_training_form__2
+msgid "Connected"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_employment_status__3
+msgid "Consider"
+msgstr ""
+
+#. module: hr
+#: model:ir.model,name:hr.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+msgid "Contact Information"
+msgstr "Thông tin liên hệ"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_job_mission__content
+#: model:ir.model.fields,field_description:xhr.field_hr_job_require__content
+msgid "Content"
+msgstr "Nội dung"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_contract__x_contract_duration
+msgid "Contract duration"
+msgstr "Thời hạn hợp đồng"
+
+#. modules: xhr_recruitment, xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_contract__x_contract_type
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__contract_type
+msgid "Contract type"
+msgstr "Loại hợp đồng"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__country_of_birth
+#: model:ir.model.fields,field_description:hr.field_res_users__country_of_birth
+msgid "Country of Birth"
+msgstr "Nơi sinh (quốc gia)"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__create_date
+msgid "Create Date"
+msgstr "Ngày tạo"
+
+#. module: hr
+#: model_terms:ir.actions.act_window,help:hr.hr_department_kanban_action
+#: model_terms:ir.actions.act_window,help:hr.hr_department_tree_action
+msgid "Create a new department"
+msgstr "Thêm phòng ban mới"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form
+msgid "Create employee"
+msgstr ""
+
+#. modules: xhr_recruitment, hr, xhr
+#: model:ir.model.fields,field_description:hr.field_hr_department__create_uid
+#: model:ir.model.fields,field_description:hr.field_hr_departure_wizard__create_uid
+#: model:ir.model.fields,field_description:hr.field_hr_employee__create_uid
+#: model:ir.model.fields,field_description:hr.field_hr_employee_category__create_uid
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__create_uid
+#: model:ir.model.fields,field_description:hr.field_hr_job__create_uid
+#: model:ir.model.fields,field_description:hr.field_hr_plan__create_uid
+#: model:ir.model.fields,field_description:hr.field_hr_plan_activity_type__create_uid
+#: model:ir.model.fields,field_description:hr.field_hr_plan_wizard__create_uid
+#: model:ir.model.fields,field_description:xhr.field_hr_department_block__create_uid
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_depend__create_uid
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_emergency__create_uid
+#: model:ir.model.fields,field_description:xhr.field_hr_job_mission__create_uid
+#: model:ir.model.fields,field_description:xhr.field_hr_job_require__create_uid
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__create_uid
+msgid "Created by"
+msgstr "Tạo bởi"
+
+#. modules: xhr_recruitment, hr, xhr
+#: model:ir.model.fields,field_description:hr.field_hr_department__create_date
+#: model:ir.model.fields,field_description:hr.field_hr_departure_wizard__create_date
+#: model:ir.model.fields,field_description:hr.field_hr_employee__create_date
+#: model:ir.model.fields,field_description:hr.field_hr_employee_category__create_date
+#: model:ir.model.fields,field_description:hr.field_hr_job__create_date
+#: model:ir.model.fields,field_description:hr.field_hr_plan__create_date
+#: model:ir.model.fields,field_description:hr.field_hr_plan_activity_type__create_date
+#: model:ir.model.fields,field_description:hr.field_hr_plan_wizard__create_date
+#: model:ir.model.fields,field_description:xhr.field_hr_department_block__create_date
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_depend__create_date
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_emergency__create_date
+#: model:ir.model.fields,field_description:xhr.field_hr_job_mission__create_date
+#: model:ir.model.fields,field_description:xhr.field_hr_job_require__create_date
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__create_date
+msgid "Created on"
+msgstr "Thời điểm tạo"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_job__no_of_employee
+msgid "Current Number of Employees"
+msgstr "Số nhân viên hiện tại"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_has_cv
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__x_has_cv
+msgid "Curriculum vitae"
+msgstr "Sơ yếu lí lịch"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_certificate__bachelor
+msgid "Cử nhân"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__birthday
+#: model:ir.model.fields,field_description:hr.field_res_users__birthday
+msgid "Date of Birth"
+msgstr "Ngày sinh"
+
+#. modules: xhr_recruitment, xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_depend__dob
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_emergency__dob
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_applicant__x_dob
+msgid "Date of birth"
+msgstr "Ngày sinh"
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_employee__resource_calendar_id
+msgid "Define the schedule of resource"
+msgstr "Định nghĩa lịch hoạt động cho nguồn lực"
+
+#. modules: xhr_recruitment, xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_has_degree
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__x_has_degree
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__degree
+msgid "Degree"
+msgstr "Bằng cấp"
+
+#. modules: xhr_recruitment, hr, xhr
+#: model:ir.model,name:xhr.model_hr_department
+#: model:ir.model.fields,field_description:hr.field_hr_employee__department_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__department_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__department_id
+#: model:ir.model.fields,field_description:hr.field_res_users__department_id
+#: model:ir.model.fields,field_description:xhr.field_hr_job__department_id
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__department_id
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_search
+#: model_terms:ir.ui.view,arch_db:hr.view_department_filter
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_filter
+#: model_terms:ir.ui.view,arch_db:hr.view_job_filter
+msgid "Department"
+msgstr "Phòng/Ban"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_recruit_request__state__approval_department
+msgid "Department Approved"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__name
+msgid "Department Name"
+msgstr "Tên phòng/ban"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__is_department_approvable
+msgid "Department approvable?"
+msgstr "Trưởng bộ phận có thể phê duyệt?"
+
+#. module: xhr_recruitment
+#: model_terms:ir.ui.view,arch_db:xhr_recruitment.view_hr_recruit_request_form
+msgid "Department approve"
+msgstr "Trưởng bộ phận phê duyệt"
+
+#. module: xhr
+#: model:ir.model,name:xhr.model_hr_department_block
+msgid "Department block"
+msgstr ""
+
+#. module: hr
+#: model:ir.actions.act_window,name:hr.hr_department_kanban_action
+#: model:ir.actions.act_window,name:hr.hr_department_tree_action
+#: model:ir.ui.menu,name:hr.menu_hr_department_kanban
+#: model:ir.ui.menu,name:hr.menu_hr_department_tree
+#: model_terms:ir.ui.view,arch_db:hr.view_department_filter
+msgid "Departments"
+msgstr "Phòng/Ban"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Departure"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_departure_wizard__departure_date
+#: model:ir.model.fields,field_description:hr.field_hr_employee__departure_date
+#: model_terms:ir.ui.view,arch_db:hr.hr_departure_wizard_view_form
+msgid "Departure Date"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_departure_wizard_view_form
+msgid "Departure Info"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_departure_wizard__departure_reason
+#: model:ir.model.fields,field_description:hr.field_hr_employee__departure_reason
+msgid "Departure Reason"
+msgstr "Lý do kỷ luật"
+
+#. module: hr
+#: model:ir.model,name:hr.model_hr_departure_wizard
+msgid "Departure Wizard"
+msgstr ""
+
+#. modules: hr, xhr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+#: model_terms:ir.ui.view,arch_db:xhr.view_employee_form
+msgid "Dependant"
+msgstr "Người phụ thuộc"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_depend_ids
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__x_depend_ids
+msgid "Dependants"
+msgstr "Thông tin gia đình"
+
+#. module: xhr
+#: model:ir.model.fields.selection,name:xhr.selection__hr_employee__certificate__diploma
+msgid "Diploma"
+msgstr "Cao đẳng"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__child_ids
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__child_ids
+msgid "Direct subordinates"
+msgstr "Cấp dưới trực tiếp"
+
+#. module: hr
+#: model:ir.model,name:hr.model_mail_channel
+msgid "Discussion Channel"
+msgstr ""
+
+#. modules: xhr_recruitment, hr, xhr
+#: model:ir.model.fields,field_description:hr.field_hr_departure_wizard__display_name
+#: model:ir.model.fields,field_description:hr.field_hr_employee_category__display_name
+#: model:ir.model.fields,field_description:hr.field_hr_plan__display_name
+#: model:ir.model.fields,field_description:hr.field_hr_plan_activity_type__display_name
+#: model:ir.model.fields,field_description:hr.field_hr_plan_wizard__display_name
+#: model:ir.model.fields,field_description:hr.field_mail_alias__display_name
+#: model:ir.model.fields,field_description:hr.field_mail_channel__display_name
+#: model:ir.model.fields,field_description:hr.field_res_company__display_name
+#: model:ir.model.fields,field_description:hr.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:hr.field_res_partner__display_name
+#: model:ir.model.fields,field_description:hr.field_res_users__display_name
+#: model:ir.model.fields,field_description:hr.field_resource_resource__display_name
+#: model:ir.model.fields,field_description:xhr.field_hr_contract__display_name
+#: model:ir.model.fields,field_description:xhr.field_hr_department__display_name
+#: model:ir.model.fields,field_description:xhr.field_hr_department_block__display_name
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__display_name
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_base__display_name
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_depend__display_name
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_emergency__display_name
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__display_name
+#: model:ir.model.fields,field_description:xhr.field_hr_job_mission__display_name
+#: model:ir.model.fields,field_description:xhr.field_hr_job_require__display_name
+#: model:ir.model.fields,field_description:xhr.field_report_classification_monthly__display_name
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_applicant__display_name
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_job__display_name
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__display_name
+#: model:ir.model.fields,field_description:xhr_recruitment.field_recruitment_candidate_report__display_name
+#: model:ir.model.fields,field_description:xhr_recruitment.field_recruitment_inquiry_position_report__display_name
+msgid "Display Name"
+msgstr "Tên hiển thị"
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__marital__divorced
+msgid "Divorced"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields.selection,name:xhr.selection__hr_employee__certificate__doctor
+msgid "Doctor"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_recruit_request__state__doing
+msgid "Doing"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_recruit_request__state__done
+msgid "Done"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_recruit_request__state__draft
+msgid "Draft"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_contract__x_drafting_department_id
+msgid "Drafting department"
+msgstr "Bộ phận soạn thảo"
+
+#. module: xhr
+#: model:ir.model.fields.selection,name:xhr.selection__hr_employee__x_calendar_type__dynamic
+#: model:ir.model.fields.selection,name:xhr.selection__hr_employee_public__x_calendar_type__dynamic
+msgid "Dynamic input"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Education"
+msgstr "Trình độ"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Email"
+msgstr ""
+
+#. module: hr
+#: model:ir.model,name:hr.model_mail_alias
+msgid "Email Aliases"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_emergency_ids
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__x_emergency_ids
+msgid "Emergencies"
+msgstr "Liên hệ khẩn cấp"
+
+#. modules: hr, xhr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+#: model_terms:ir.ui.view,arch_db:xhr.view_employee_form
+msgid "Emergency"
+msgstr "Liên hệ khẩn cấp"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__emergency_contact
+#: model:ir.model.fields,field_description:hr.field_res_users__emergency_contact
+msgid "Emergency Contact"
+msgstr "Liên hệ khẩn cấp"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__emergency_phone
+#: model:ir.model.fields,field_description:hr.field_res_users__emergency_phone
+msgid "Emergency Phone"
+msgstr "Số điện thoại khẩn"
+
+#. modules: hr, xhr
+#: model:ir.model,name:xhr.model_hr_employee
+#: model:ir.model.fields,field_description:hr.field_hr_departure_wizard__employee_id
+#: model:ir.model.fields,field_description:hr.field_hr_plan_wizard__employee_id
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_depend__employee_id
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_emergency__employee_id
+#: model:ir.model.fields.selection,name:hr.selection__hr_plan_activity_type__responsible__employee
+#: model:ir.model.fields.selection,name:xhr.selection__hr_employee__x_employee_type__employee
+#: model:ir.model.fields.selection,name:xhr.selection__hr_employee_public__x_employee_type__employee
+#: model:ir.ui.menu,name:hr.menu_human_resources_configuration_employee
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_form
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_filter
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+#: model:ir.model.fields.selection,name:xhr.selection__report_classification_monthly__type_employee__employee
+msgid "Employee"
+msgstr "Nhân viên"
+
+#. module: hr
+#: model:ir.model,name:hr.model_hr_employee_category
+msgid "Employee Category"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model,name:xhr.model_hr_contract
+msgid "Employee Contract"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_users__employee_count
+msgid "Employee Count"
+msgstr ""
+
+#. module: hr
+#: model:ir.ui.menu,name:hr.menu_hr_employee
+msgid "Employee Directory"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_config_settings__hr_employee_self_edit
+msgid "Employee Editing"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.print_employee_badge
+msgid "Employee Image"
+msgstr "Hình nhân viên"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__name
+msgid "Employee Name"
+msgstr "Tên Nhân viên"
+
+#. module: hr
+#: model:ir.actions.act_window,name:hr.open_view_categ_form
+#: model:ir.model.fields,field_description:hr.field_res_users__category_ids
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_category_form
+msgid "Employee Tags"
+msgstr "Từ khóa nhân sự"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
+msgid "Employee Update Rights"
+msgstr ""
+
+#. modules: hr, xhr
+#: model:ir.model.fields,help:hr.field_res_users__employee_bank_account_id
+#: model:ir.model.fields,help:xhr.field_hr_employee__bank_account_id
+#: model:ir.model.fields,help:xhr.field_hr_employee_public__bank_account_id
+msgid "Employee bank salary account"
+msgstr "Tài khoản ngân hàng để trả lương nhân viên"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_code
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__x_code
+msgid "Employee code"
+msgstr "Mã nhân viên"
+
+#. module: xhr
+#: model:ir.model,name:xhr.model_hr_employee_depend
+msgid "Employee dependant"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model,name:xhr.model_hr_employee_emergency
+msgid "Employee emergency"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_employee_type
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__x_employee_type
+msgid "Employee type"
+msgstr "Loại nhân viên"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_users__employee_bank_account_id
+msgid "Employee's Bank Account Number"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_users__employee_country_id
+msgid "Employee's Country"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_form
+#: model_terms:ir.ui.view,arch_db:hr.hr_kanban_view_employees
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Employee's Name"
+msgstr "Tên nhân viên"
+
+#. module: xhr
+#: model:ir.model.fields,help:xhr.field_hr_contract__x_insurance_wage
+msgid "Employee's insurance wage."
+msgstr "Lương đóng bảo hiểm"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form
+msgid "Employee(s)"
+msgstr "Nhân viên"
+
+#. module: hr
+#: model:ir.actions.act_window,name:hr.act_employee_from_department
+#: model:ir.actions.act_window,name:hr.hr_employee_action_from_user
+#: model:ir.actions.act_window,name:hr.hr_employee_public_action
+#: model:ir.actions.act_window,name:hr.open_view_employee_list
+#: model:ir.actions.act_window,name:hr.open_view_employee_list_my
+#: model:ir.model.fields,field_description:hr.field_hr_employee_category__employee_ids
+#: model:ir.model.fields,field_description:hr.field_hr_job__employee_ids
+#: model:ir.ui.menu,name:hr.menu_hr_employee_payroll
+#: model:ir.ui.menu,name:hr.menu_hr_employee_user
+#: model:ir.ui.menu,name:hr.menu_hr_root
+#: model_terms:ir.ui.view,arch_db:hr.hr_department_view_kanban
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_search
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_tree
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_view_activity
+#: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_filter
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_tree
+#: model_terms:ir.ui.view,arch_db:hr.view_partner_tree2
+msgid "Employees"
+msgstr "Nhân viên"
+
+#. module: hr
+#: model:ir.actions.act_window,name:hr.open_view_employee_tree
+msgid "Employees Structure"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_category_list
+msgid "Employees Tags"
+msgstr "Tag nhân viên"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_applicant__x_employment_status
+msgid "Employment Status"
+msgstr "Trạng thái tuyển dụng"
+
+#. module: xhr
+#: model:ir.model.fields.selection,name:xhr.selection__hr_employee__certificate__engineer
+msgid "Engineer"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__english_requires
+msgid "English requires"
+msgstr "Tiếng Anh"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
+msgid "Enrich employee profiles with skills and resumes"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_employee__address_home_id
+#: model:ir.model.fields,help:hr.field_res_users__address_home_id
+msgid ""
+"Enter here the private address of the employee, not the one linked to your "
+"company."
+msgstr ""
+"Nhập vào đây địa chỉ riêng của nhân viên, chứ không phải địa chỉ liên hệ với"
+" công ty của bạn."
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_ethnic
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__x_ethnic
+msgid "Ethnic"
+msgstr "Dân tộc"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_job__no_of_recruitment
+msgid "Expected New Employees"
+msgstr "Nhân viên mới dự kiến"
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_job__expected_employees
+msgid ""
+"Expected number of employees for this job position after new recruitment."
+msgstr ""
+"Số lượng nhân viên dự kiến cho vị trí công việc này sau khi tuyển dụng."
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_applicant__x_eval_experience
+msgid "Experience"
+msgstr "Kinh nghiệm"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_applicant__x_eval_experience_note
+msgid "Experience note"
+msgstr "Ghi chú kinh nghiệm"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__experience_required
+msgid "Experience required"
+msgstr "Kinh nghiệm"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__experience_value
+msgid "Experience year"
+msgstr "Số năm kinh nghiệm"
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__gender__female
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_recruit_request__gender__female
+msgid "Female"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__study_field
+#: model:ir.model.fields,field_description:hr.field_res_users__study_field
+msgid "Field of Study"
+msgstr "Lĩnh vực nghiên cứu"
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_departure_wizard__departure_reason__fired
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__departure_reason__fired
+msgid "Fired"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields.selection,name:xhr.selection__hr_employee__x_calendar_type__fix
+#: model:ir.model.fields.selection,name:xhr.selection__hr_employee_public__x_calendar_type__fix
+msgid "Fix by calendar"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields.selection,name:xhr.selection__hr_employee__x_calendar_type__plan
+#: model:ir.model.fields.selection,name:xhr.selection__hr_employee_public__x_calendar_type__plan
+msgid "Fix by plan"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_recruit_request__english_requires__fluent
+msgid "Fluent"
+msgstr ""
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__message_follower_ids
+#: model:ir.model.fields,field_description:hr.field_hr_employee__message_follower_ids
+#: model:ir.model.fields,field_description:hr.field_hr_job__message_follower_ids
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__message_follower_ids
+msgid "Followers"
+msgstr "Người theo dõi"
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__message_channel_ids
+#: model:ir.model.fields,field_description:hr.field_hr_employee__message_channel_ids
+#: model:ir.model.fields,field_description:hr.field_hr_job__message_channel_ids
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Người theo dõi (Kênh)"
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__message_partner_ids
+#: model:ir.model.fields,field_description:hr.field_hr_employee__message_partner_ids
+#: model:ir.model.fields,field_description:hr.field_hr_job__message_partner_ids
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Người theo dõi (Đối tác)"
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,help:hr.field_hr_employee__activity_type_icon
+#: model:ir.model.fields,help:xhr_recruitment.field_hr_recruit_request__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Font biểu tượng ví dụ: fa-tasks"
+
+#. module: xhr_recruitment
+#: model_terms:ir.ui.view,arch_db:xhr_recruitment.view_hr_recruit_request_form
+msgid "For HR department"
+msgstr "Dành cho phòng HR"
+
+#. module: xhr_recruitment
+#: model_terms:ir.ui.view,arch_db:xhr_recruitment.view_hr_recruit_request_form
+msgid "For requested department"
+msgstr "Dành cho bộ phận yêu cầu tuyển dụng"
+
+#. module: xhr
+#: model:ir.model.fields.selection,name:xhr.selection__hr_employee__x_training_form__1
+#: model:ir.model.fields.selection,name:xhr.selection__hr_employee_public__x_training_form__1
+msgid "Formal"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_training_form
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__x_training_form
+msgid "Forms of training"
+msgstr "Hình thức đào tạo"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_recruit_request__contract_type__full_time
+msgid "Full time"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_filter
+msgid "Future Activities"
+msgstr "Hoạt động tương lai"
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__gender
+#: model:ir.model.fields,field_description:hr.field_res_users__gender
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__gender
+msgid "Gender"
+msgstr "Giới tính"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Generate"
+msgstr "Tạo"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__remark
+msgid "Ghi chú"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_search
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_filter
+#: model_terms:ir.ui.view,arch_db:hr.view_job_filter
+msgid "Group By"
+msgstr "Nhóm theo"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__hr_uid
+msgid "HR"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_recruit_request__state__approval_hr
+msgid "HR Approved"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_mail_channel__subscription_department_ids
+msgid "HR Departments"
+msgstr "Phòng nhân sự"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "HR Settings"
+msgstr "Thiết lập nhân lực"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__is_hr_approvable
+msgid "HR approvable?"
+msgstr "HR được phê duyệt?"
+
+#. module: xhr_recruitment
+#: model_terms:ir.ui.view,arch_db:xhr_recruitment.view_hr_recruit_request_form
+msgid "HR approve"
+msgstr "HR phê duyệt"
+
+#. module: hr
+#: code:addons/hr/models/mail_alias.py:0
+#, python-format
+msgid ""
+"Hi,<br/>\n"
+"Your document has not been created because your email address is not recognized.<br/>\n"
+"Please send emails with the email address recorded on your employee information, or contact your HR manager."
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields.selection,name:xhr.selection__hr_employee__certificate__bachelor
+msgid "High School"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_job__no_of_hired_employee
+msgid "Hired Employees"
+msgstr "Nhân viên được tuyển"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_salary_hold
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__x_salary_hold
+msgid "Hold salary"
+msgstr "Giữ lương"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_contract__x_allowance_home
+msgid "Home allowance"
+msgstr "Phụ cấp nhà ở"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__km_home_work
+#: model:ir.model.fields,field_description:hr.field_res_users__km_home_work
+msgid "Home-Work Distance"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_household_address
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__x_household_address
+msgid "Household address"
+msgstr "Hộ khẩu thường trú"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__hr_icon_display
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__hr_icon_display
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__hr_icon_display
+msgid "Hr Icon Display"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__hr_presence_state
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__hr_presence_state
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__hr_presence_state
+#: model:ir.model.fields,field_description:hr.field_res_users__hr_presence_state
+msgid "Hr Presence State"
+msgstr ""
+
+#. module: hr
+#: model:ir.ui.menu,name:hr.menu_hr_main
+msgid "Human Resources"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields.selection,name:xhr.selection__hr_contract__x_contract_type__hddv
+msgid "HĐDV"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields.selection,name:xhr.selection__hr_contract__x_contract_type__hdkt
+msgid "HĐKT"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields.selection,name:xhr.selection__hr_contract__x_contract_type__hdth
+msgid "HĐLĐ có thời hạn"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields.selection,name:xhr.selection__hr_contract__x_contract_type__hdldvth
+msgid "HĐLĐ vô thời hạn"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields.selection,name:xhr.selection__hr_contract__x_contract_type__hdnt
+msgid "HĐNT"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields.selection,name:xhr.selection__hr_contract__x_contract_type__hdtv
+msgid "HĐTV"
+msgstr ""
+
+#. modules: xhr_recruitment, hr, xhr
+#: model:ir.model.fields,field_description:hr.field_hr_departure_wizard__id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_category__id
+#: model:ir.model.fields,field_description:hr.field_hr_plan__id
+#: model:ir.model.fields,field_description:hr.field_hr_plan_activity_type__id
+#: model:ir.model.fields,field_description:hr.field_hr_plan_wizard__id
+#: model:ir.model.fields,field_description:hr.field_mail_alias__id
+#: model:ir.model.fields,field_description:hr.field_mail_channel__id
+#: model:ir.model.fields,field_description:hr.field_res_company__id
+#: model:ir.model.fields,field_description:hr.field_res_config_settings__id
+#: model:ir.model.fields,field_description:hr.field_res_partner__id
+#: model:ir.model.fields,field_description:hr.field_res_users__id
+#: model:ir.model.fields,field_description:hr.field_resource_resource__id
+#: model:ir.model.fields,field_description:xhr.field_hr_contract__id
+#: model:ir.model.fields,field_description:xhr.field_hr_department__id
+#: model:ir.model.fields,field_description:xhr.field_hr_department_block__id
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__id
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_base__id
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_depend__id
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_emergency__id
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__id
+#: model:ir.model.fields,field_description:xhr.field_hr_job_mission__id
+#: model:ir.model.fields,field_description:xhr.field_hr_job_require__id
+#: model:ir.model.fields,field_description:xhr.field_report_classification_monthly__id
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_applicant__id
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_job__id
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__id
+#: model:ir.model.fields,field_description:xhr_recruitment.field_recruitment_candidate_report__id
+#: model:ir.model.fields,field_description:xhr_recruitment.field_recruitment_inquiry_position_report__id
+msgid "ID"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_has_id_card
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__x_has_id_card
+msgid "ID card"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_employee__barcode
+#: model:ir.model.fields,help:hr.field_res_users__barcode
+msgid "ID used for employee identification."
+msgstr "ID được sử dụng để xác định nhân viên."
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__activity_exception_icon
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__activity_exception_icon
+msgid "Icon"
+msgstr "Biểu tượng"
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,help:hr.field_hr_employee__activity_exception_icon
+#: model:ir.model.fields,help:xhr_recruitment.field_hr_recruit_request__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Biểu tượng để chỉ ra một hoạt động ngoại lệ."
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__identification_id
+#: model:ir.model.fields,field_description:hr.field_res_users__identification_id
+msgid "Identification No"
+msgstr "Số CMND"
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,help:hr.field_hr_department__message_needaction
+#: model:ir.model.fields,help:hr.field_hr_department__message_unread
+#: model:ir.model.fields,help:hr.field_hr_employee__message_needaction
+#: model:ir.model.fields,help:hr.field_hr_employee__message_unread
+#: model:ir.model.fields,help:hr.field_hr_job__message_needaction
+#: model:ir.model.fields,help:hr.field_hr_job__message_unread
+#: model:ir.model.fields,help:xhr_recruitment.field_hr_recruit_request__message_needaction
+#: model:ir.model.fields,help:xhr_recruitment.field_hr_recruit_request__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "Nếu chọn, các tin nhắn mới yêu cầu sự có mặt của bạn."
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,help:hr.field_hr_department__message_has_error
+#: model:ir.model.fields,help:hr.field_hr_employee__message_has_error
+#: model:ir.model.fields,help:hr.field_hr_job__message_has_error
+#: model:ir.model.fields,help:xhr_recruitment.field_hr_recruit_request__message_has_error
+#: model:ir.model.fields,help:xhr_recruitment.field_hr_recruit_request__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Nếu đánh dấu thì một số thông điệp có lỗi."
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_employee__active
+msgid ""
+"If the active field is set to False, it will allow you to hide the resource "
+"record without removing it."
+msgstr ""
+"Nếu bỏ chọn trường Hiệu lực, sẽ cho phép bạn ẩn nguồn lực mà không cần xóa "
+"bỏ nó."
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__image_1920
+msgid "Image"
+msgstr "Hình ảnh"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__image_1024
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__image_1024
+msgid "Image 1024"
+msgstr "Hình 1024"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__image_128
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__image_128
+msgid "Image 128"
+msgstr "Ảnh 128"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__image_256
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__image_256
+msgid "Image 256"
+msgstr "Hình 256"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__image_512
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__image_512
+msgid "Image 512"
+msgstr "Hình 512"
+
+#. module: hr
+#: code:addons/hr/models/hr_employee.py:0
+#, python-format
+msgid "Import Template for Employees"
+msgstr "Nhập mẫu nhân viên"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_job_filter
+msgid "In Position"
+msgstr "Theo vị trí"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_job_filter
+msgid "In Recruitment"
+msgstr "Đang tuyển dụng"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_recruit_request__budget__in
+msgid "In budget"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields.selection,name:xhr.selection__hr_employee__x_training_form__3
+#: model:ir.model.fields.selection,name:xhr.selection__hr_employee_public__x_training_form__3
+msgid "In office"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__income
+msgid "Income"
+msgstr "Mức thu nhập mong muốn"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__income_probation
+msgid "Income probation"
+msgstr "Hệ số lương thử việc"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__income_type
+msgid "Income type"
+msgstr "Loại thu nhập"
+
+#. module: xhr_recruitment
+#: model:ir.actions.act_window,name:xhr_recruitment.recruitment_inquiry_position_report_act
+#: model:ir.model,name:xhr_recruitment.model_recruitment_inquiry_position_report
+#: model:ir.ui.menu,name:xhr_recruitment.recruitment_inquiry_position_report_menu
+msgid "Inquiry Position Report"
+msgstr "Báo cáo tình trạng tuyển dụng theo từng vị trí"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_contract__x_insurance_wage
+msgid "Insurance wage"
+msgstr "Lương đóng bảo hiểm"
+
+#. module: xhr
+#: model:ir.model.fields.selection,name:xhr.selection__hr_employee__x_training_form__4
+#: model:ir.model.fields.selection,name:xhr.selection__hr_employee_public__x_training_form__4
+msgid "Intermediate"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields.selection,name:xhr.selection__hr_employee__certificate__intermediate
+msgid "Intermediate School"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields.selection,name:xhr.selection__hr_employee__x_employee_type__intern
+#: model:ir.model.fields.selection,name:xhr.selection__hr_employee_public__x_employee_type__intern
+msgid "Intern"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__source_internal
+msgid "Internal source"
+msgstr "Nguồn nội bộ"
+
+#. module: xhr_recruitment
+#: model_terms:ir.ui.view,arch_db:xhr_recruitment.hr_applicant_view_form
+msgid "Interview"
+msgstr "Phỏng vấn"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_applicant__x_interview_result
+msgid "Interview results"
+msgstr "Kết quả phỏng vấn"
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__message_is_follower
+#: model:ir.model.fields,field_description:hr.field_hr_employee__message_is_follower
+#: model:ir.model.fields,field_description:hr.field_hr_job__message_is_follower
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__message_is_follower
+msgid "Is Follower"
+msgstr "Trở thành người theo dõi"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_identification_issue_by
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__x_identification_issue_by
+msgid "Issue by"
+msgstr "Cấp tại"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_identification_issue_date
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__x_identification_issue_date
+msgid "Issue date"
+msgstr "Ngày cấp"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_filter
+#: model_terms:ir.ui.view,arch_db:hr.view_hr_job_form
+#: model_terms:ir.ui.view,arch_db:hr.view_hr_job_tree
+msgid "Job"
+msgstr "Chức vụ"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_job__description
+#: model_terms:ir.ui.view,arch_db:hr.view_hr_job_form
+msgid "Job Description"
+msgstr "Mô tả công việc"
+
+#. module: xhr
+#: model:ir.actions.server,name:xhr.action_print_job_description
+msgid "Job Description (.docx)"
+msgstr ""
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model,name:xhr_recruitment.model_hr_job
+#: model:ir.model.fields,field_description:hr.field_hr_employee__job_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__job_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__job_id
+#: model:ir.model.fields,field_description:hr.field_hr_job__name
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+#: model_terms:ir.ui.view,arch_db:hr.view_job_filter
+msgid "Job Position"
+msgstr "Chức vụ"
+
+#. module: hr
+#: model:ir.actions.act_window,name:hr.action_hr_job
+#: model:ir.ui.menu,name:hr.menu_view_hr_job
+msgid "Job Positions"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__job_title
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__job_title
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__job_title
+#: model:ir.model.fields,field_description:hr.field_res_users__job_title
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_form
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_search
+msgid "Job Title"
+msgstr "Chức danh công việc"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__jobs_ids
+#: model_terms:ir.ui.view,arch_db:hr.view_job_filter
+msgid "Jobs"
+msgstr "Tuyển dụng"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_recruitment_candidate_report__archived
+msgid "KQ phỏng vấn có thể phù hợp, lưu hồ sơ"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_recruitment_candidate_report__interview_fail
+msgid "KQ phỏng vấn loại"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_recruitment_candidate_report__interview_pass
+msgid "KQ phỏng vấn tuyển"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_certificate__other
+msgid "Khác"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_applicant__x_experience
+msgid "Kinh nghiệm"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_certificate__engineer
+msgid "Kĩ sư"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_applicant__x_eval_language
+msgid "Language and Communication"
+msgstr "Ngôn ngữ và giao tiếp"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_applicant__x_eval_language_note
+msgid "Language and Communication note"
+msgstr "Ghi chú về ngôn ngữ và giao tiếp"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__last_activity
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__last_activity
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__last_activity
+#: model:ir.model.fields,field_description:hr.field_res_users__last_activity
+msgid "Last Activity"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__last_activity_time
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__last_activity_time
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__last_activity_time
+#: model:ir.model.fields,field_description:hr.field_res_users__last_activity_time
+msgid "Last Activity Time"
+msgstr ""
+
+#. modules: xhr_recruitment, hr, xhr
+#: model:ir.model.fields,field_description:hr.field_hr_departure_wizard____last_update
+#: model:ir.model.fields,field_description:hr.field_hr_employee_category____last_update
+#: model:ir.model.fields,field_description:hr.field_hr_plan____last_update
+#: model:ir.model.fields,field_description:hr.field_hr_plan_activity_type____last_update
+#: model:ir.model.fields,field_description:hr.field_hr_plan_wizard____last_update
+#: model:ir.model.fields,field_description:hr.field_mail_alias____last_update
+#: model:ir.model.fields,field_description:hr.field_mail_channel____last_update
+#: model:ir.model.fields,field_description:hr.field_res_company____last_update
+#: model:ir.model.fields,field_description:hr.field_res_config_settings____last_update
+#: model:ir.model.fields,field_description:hr.field_res_partner____last_update
+#: model:ir.model.fields,field_description:hr.field_res_users____last_update
+#: model:ir.model.fields,field_description:hr.field_resource_resource____last_update
+#: model:ir.model.fields,field_description:xhr.field_hr_contract____last_update
+#: model:ir.model.fields,field_description:xhr.field_hr_department____last_update
+#: model:ir.model.fields,field_description:xhr.field_hr_department_block____last_update
+#: model:ir.model.fields,field_description:xhr.field_hr_employee____last_update
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_base____last_update
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_depend____last_update
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_emergency____last_update
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public____last_update
+#: model:ir.model.fields,field_description:xhr.field_hr_job_mission____last_update
+#: model:ir.model.fields,field_description:xhr.field_hr_job_require____last_update
+#: model:ir.model.fields,field_description:xhr.field_report_classification_monthly____last_update
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_applicant____last_update
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_job____last_update
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request____last_update
+#: model:ir.model.fields,field_description:xhr_recruitment.field_recruitment_candidate_report____last_update
+#: model:ir.model.fields,field_description:xhr_recruitment.field_recruitment_inquiry_position_report____last_update
+msgid "Last Modified on"
+msgstr "Sửa lần cuối vào"
+
+#. modules: xhr_recruitment, hr, xhr
+#: model:ir.model.fields,field_description:hr.field_hr_department__write_uid
+#: model:ir.model.fields,field_description:hr.field_hr_departure_wizard__write_uid
+#: model:ir.model.fields,field_description:hr.field_hr_employee__write_uid
+#: model:ir.model.fields,field_description:hr.field_hr_employee_category__write_uid
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__write_uid
+#: model:ir.model.fields,field_description:hr.field_hr_job__write_uid
+#: model:ir.model.fields,field_description:hr.field_hr_plan__write_uid
+#: model:ir.model.fields,field_description:hr.field_hr_plan_activity_type__write_uid
+#: model:ir.model.fields,field_description:hr.field_hr_plan_wizard__write_uid
+#: model:ir.model.fields,field_description:xhr.field_hr_department_block__write_uid
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_depend__write_uid
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_emergency__write_uid
+#: model:ir.model.fields,field_description:xhr.field_hr_job_mission__write_uid
+#: model:ir.model.fields,field_description:xhr.field_hr_job_require__write_uid
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__write_uid
+msgid "Last Updated by"
+msgstr "Cập nhật lần cuối bởi"
+
+#. modules: xhr_recruitment, hr, xhr
+#: model:ir.model.fields,field_description:hr.field_hr_department__write_date
+#: model:ir.model.fields,field_description:hr.field_hr_departure_wizard__write_date
+#: model:ir.model.fields,field_description:hr.field_hr_employee__write_date
+#: model:ir.model.fields,field_description:hr.field_hr_employee_category__write_date
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__write_date
+#: model:ir.model.fields,field_description:hr.field_hr_job__write_date
+#: model:ir.model.fields,field_description:hr.field_hr_plan__write_date
+#: model:ir.model.fields,field_description:hr.field_hr_plan_activity_type__write_date
+#: model:ir.model.fields,field_description:hr.field_hr_plan_wizard__write_date
+#: model:ir.model.fields,field_description:xhr.field_hr_department_block__write_date
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_depend__write_date
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_emergency__write_date
+#: model:ir.model.fields,field_description:xhr.field_hr_job_mission__write_date
+#: model:ir.model.fields,field_description:xhr.field_hr_job_require__write_date
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__write_date
+msgid "Last Updated on"
+msgstr "Cập nhật lần cuối vào"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_filter
+msgid "Late Activities"
+msgstr "Hoạt động trễ"
+
+#. module: hr
+#: model:ir.actions.act_window,name:hr.plan_wizard_action
+#: model_terms:ir.ui.view,arch_db:hr.plan_wizard
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Launch Plan"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__marital__cohabitant
+msgid "Legal Cohabitant"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.actions.act_window,help:hr.action_hr_job
+msgid "Let's create a job position."
+msgstr "Hãy tạo một vị trí công việc."
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_form
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Location"
+msgstr "Địa điểm"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_contract__x_allowance_lunch
+msgid "Lunch allowance"
+msgstr "Phụ cấp ăn trưa"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_report_classification_monthly__m1
+msgid "M1"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_report_classification_monthly__m10
+msgid "M10"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_report_classification_monthly__m11
+msgid "M11"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_report_classification_monthly__m12
+msgid "M12"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_report_classification_monthly__m2
+msgid "M2"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_report_classification_monthly__m3
+msgid "M3"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_report_classification_monthly__m4
+msgid "M4"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_report_classification_monthly__m5
+msgid "M5"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_report_classification_monthly__m6
+msgid "M6"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_report_classification_monthly__m7
+msgid "M7"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_report_classification_monthly__m8
+msgid "M8"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_report_classification_monthly__m9
+msgid "M9"
+msgstr ""
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__message_main_attachment_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee__message_main_attachment_id
+#: model:ir.model.fields,field_description:hr.field_hr_job__message_main_attachment_id
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Tệp đính kèm chính"
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__gender__male
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_recruit_request__gender__male
+msgid "Male"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__manager_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee__parent_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__parent_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__parent_id
+#: model:ir.model.fields,field_description:hr.field_res_users__employee_parent_id
+#: model:ir.model.fields.selection,name:hr.selection__hr_plan_activity_type__responsible__manager
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_search
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_filter
+msgid "Manager"
+msgstr "Người quản lý"
+
+#. module: hr
+#: code:addons/hr/models/hr_plan.py:0
+#, python-format
+msgid "Manager of employee %s is not set."
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__marital
+#: model:ir.model.fields,field_description:hr.field_res_users__marital
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Marital Status"
+msgstr "Tình trạng hôn nhân"
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__marital__married
+msgid "Married"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields.selection,name:xhr.selection__hr_employee__certificate__master
+msgid "Master"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_has_medical_exam
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__x_has_medical_exam
+msgid "Medical examination certificate"
+msgstr "Giấy khám sức khỏe"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__member_ids
+msgid "Members"
+msgstr "Thành viên"
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__message_has_error
+#: model:ir.model.fields,field_description:hr.field_hr_employee__message_has_error
+#: model:ir.model.fields,field_description:hr.field_hr_job__message_has_error
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__message_has_error
+msgid "Message Delivery error"
+msgstr "Thông báo gửi đi gặp lỗi"
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__message_ids
+#: model:ir.model.fields,field_description:hr.field_hr_employee__message_ids
+#: model:ir.model.fields,field_description:hr.field_hr_job__message_ids
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__message_ids
+msgid "Messages"
+msgstr "Thông báo"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_job__x_mission_ids
+msgid "Missions"
+msgstr "Nhiệm vụ chính"
+
+#. modules: hr, xhr
+#: model:ir.model.fields,field_description:hr.field_res_users__mobile_phone
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__mobile_phone
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_base__mobile_phone
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__mobile_phone
+msgid "Mobile Phone"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_applicant__x_eval_motivation
+msgid "Motivation"
+msgstr "Khả năng gắn bó"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_applicant__x_eval_motivation_note
+msgid "Motivation note"
+msgstr "Ghi chú về khả năng gắn bó"
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__my_activity_date_deadline
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Deadline cho hoạt động của tôi"
+
+#. module: hr
+#. openerp-web
+#: code:addons/hr/static/src/xml/hr_templates.xml:0
+#, python-format
+msgid "My Profile"
+msgstr ""
+
+#. modules: xhr_recruitment, hr, xhr
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__name
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__name
+#: model:ir.model.fields,field_description:hr.field_hr_plan__name
+#: model:ir.model.fields,field_description:xhr.field_hr_department_block__name
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_depend__name
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_emergency__name
+#: model:ir.model.fields,field_description:xhr.field_hr_job_mission__name
+#: model:ir.model.fields,field_description:xhr.field_hr_job_require__name
+#: model:ir.model.fields,field_description:xhr.field_report_classification_monthly__name
+#: model:ir.model.fields,field_description:xhr_recruitment.field_recruitment_inquiry_position_report__name
+msgid "Name"
+msgstr "Tên"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__country_id
+msgid "Nationality (Country)"
+msgstr "Quốc tịch"
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__activity_date_deadline
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Hạn chót cho hành động kế tiếp"
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__activity_summary
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__activity_summary
+msgid "Next Activity Summary"
+msgstr "Tóm tắt hoạt động tiếp theo"
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__activity_type_id
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__activity_type_id
+msgid "Next Activity Type"
+msgstr "Kiểu hoạt động kế tiếp"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_applicant__x_submission_date
+msgid "Ngày nộp hồ sơ"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__income_value
+msgid "Ngân sách tuyển dụng"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_recruit_request__english_requires__no
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_recruit_request__experience_required__0
+msgid "No"
+msgstr ""
+
+#. module: hr
+#: code:addons/hr/models/hr_plan.py:0
+#, python-format
+msgid "No specific user given on activity %s."
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_job__state__open
+msgid "Not Recruiting"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Not available"
+msgstr "Không sẵn sàng"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_interview_result__3
+msgid "Not come"
+msgstr ""
+
+#. modules: hr, xhr
+#: model:ir.model.fields,field_description:hr.field_hr_department__note
+#: model:ir.model.fields,field_description:hr.field_hr_plan_activity_type__note
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_note
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__x_note
+msgid "Note"
+msgstr "Ghi chú"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__notes
+msgid "Notes"
+msgstr "Ghi chú"
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__message_needaction_counter
+#: model:ir.model.fields,field_description:hr.field_hr_employee__message_needaction_counter
+#: model:ir.model.fields,field_description:hr.field_hr_job__message_needaction_counter
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Số lượng hành động"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__children
+#: model:ir.model.fields,field_description:hr.field_res_users__children
+msgid "Number of Children"
+msgstr "Số lượng con"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__employee_count
+msgid "Number of employee"
+msgstr "Số lượng nhân viên"
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_job__no_of_employee
+msgid "Number of employees currently occupying this job position."
+msgstr "Số lượng nhân viên hiện có của vị trí công việc này."
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__message_has_error_counter
+#: model:ir.model.fields,field_description:hr.field_hr_employee__message_has_error_counter
+#: model:ir.model.fields,field_description:hr.field_hr_job__message_has_error_counter
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__message_has_error_counter
+msgid "Number of errors"
+msgstr "Số lỗi"
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_job__no_of_hired_employee
+msgid ""
+"Number of hired employees for this job position during recruitment phase."
+msgstr ""
+"Số lượng nhân viên đã thuê cho vị trí công việc này trong suốt giai đoạn "
+"tuyển dụng."
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,help:hr.field_hr_department__message_needaction_counter
+#: model:ir.model.fields,help:hr.field_hr_employee__message_needaction_counter
+#: model:ir.model.fields,help:hr.field_hr_job__message_needaction_counter
+#: model:ir.model.fields,help:xhr_recruitment.field_hr_recruit_request__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Số thông báo cần xử lý"
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,help:hr.field_hr_department__message_has_error_counter
+#: model:ir.model.fields,help:hr.field_hr_employee__message_has_error_counter
+#: model:ir.model.fields,help:hr.field_hr_job__message_has_error_counter
+#: model:ir.model.fields,help:xhr_recruitment.field_hr_recruit_request__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Số lượng tin gửi đi bị lỗi"
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_job__no_of_recruitment
+msgid "Number of new employees you expect to recruit."
+msgstr "Số lượng nhân viên mới mà bạn dự kiến tuyển dụng."
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,help:hr.field_hr_department__message_unread_counter
+#: model:ir.model.fields,help:hr.field_hr_employee__message_unread_counter
+#: model:ir.model.fields,help:hr.field_hr_job__message_unread_counter
+#: model:ir.model.fields,help:xhr_recruitment.field_hr_recruit_request__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Số tin chưa đọc"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_contract__x_ot_allowed
+msgid "OT Salary?"
+msgstr "Tính lương làm thêm giờ?"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_recruit_request__income_type__ot_extra
+msgid "OT income"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.actions.act_window,help:hr.hr_department_tree_action
+msgid ""
+"Odoo's department structure is used to manage all documents\n"
+"                    related to employees by departments: expenses, timesheets,\n"
+"                    leaves, recruitments, etc."
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.actions.act_window,help:hr.hr_department_kanban_action
+msgid ""
+"Odoo's department structure is used to manage all documents\n"
+"                related to employees by departments: expenses, timesheets,\n"
+"                time off, recruitments, etc."
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_interview_result__0
+msgid "Of no further interest"
+msgstr ""
+
+#. module: hr
+#: model:res.groups,name:hr.group_hr_user
+msgid "Officer"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__work_location_official
+msgid "Official location"
+msgstr "Văn phòng"
+
+#. module: xhr
+#: model:ir.model.fields.selection,name:xhr.selection__hr_contract__x_type_employee__1
+#: model:ir.model.fields.selection,name:xhr.selection__report_classification_monthly__type_employee__1
+msgid "Official staff"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__allowance_oil
+msgid "Oil allowance"
+msgstr "Phụ cấp xăng xe"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__allowance_oil_value
+msgid "Oil allowance value"
+msgstr "Mức phụ cấp xăng xe"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_onboard_date
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__x_onboard_date
+msgid "Onboard date"
+msgstr "Ngày bắt đầu làm việc"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_departure_wizard_view_form
+msgid "Only Employee"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__image_1920
+msgid "Original Image"
+msgstr ""
+
+#. modules: hr, xhr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__gender__other
+#: model:ir.model.fields.selection,name:hr.selection__hr_plan_activity_type__responsible__other
+#: model:ir.model.fields.selection,name:xhr.selection__hr_employee__certificate__other
+#: model_terms:ir.ui.view,arch_db:xhr.view_employee_form
+msgid "Other"
+msgstr "Khác"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__allowance_other
+msgid "Other allowance"
+msgstr "Các loại phụ cấp khác"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__allowance_other_note
+msgid "Other allowance note"
+msgstr "Ghi chú phụ cấp khác"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__allowance_other_value
+msgid "Other allowance value"
+msgstr "Mức phụ cấp khác"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__other_requires
+msgid "Other requires"
+msgstr "Các yêu cầu khác"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_recruit_request__budget__out
+msgid "Out of budget"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_eval_degree__3
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_eval_experience__3
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_eval_language__3
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_eval_motivation__3
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_eval_overall__3
+msgid "Outstanding"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_recruit_request__state__over_deadline
+msgid "Over deadline"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_applicant__x_eval_overall
+msgid "Overall impression"
+msgstr "Đánh giá chung"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_applicant__x_eval_overall_note
+msgid "Overall impression note"
+msgstr "Ghi chú về đánh giá chung"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__pin
+#: model:ir.model.fields,field_description:hr.field_res_users__pin
+msgid "PIN"
+msgstr "MÃ SỐ"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "PIN Code"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_employee__pin
+#: model:ir.model.fields,help:hr.field_res_users__pin
+msgid "PIN used to Check In/Out in Kiosk Mode (if enabled in Configuration)."
+msgstr ""
+"PIN được sử dụng để đăng nhập/ đăng xuất trong chế độ Ki-ốt (nếu được kích "
+"hoạt ở Cấu hình)."
+
+#. module: xhr
+#: model:ir.model.fields.selection,name:xhr.selection__hr_contract__x_contract_type__plhd
+msgid "PLHĐ"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__parent_id
+msgid "Parent Department"
+msgstr "Phòng/Ban cấp trên"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_recruit_request__contract_type__part_time
+msgid "Part time"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_employee__user_partner_id
+#: model:ir.model.fields,help:hr.field_hr_employee_public__user_partner_id
+msgid "Partner-related data of the user"
+msgstr "Đối tác liên hệ dữ liệu với tài khoản"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__passport_id
+#: model:ir.model.fields,field_description:hr.field_res_users__passport_id
+msgid "Passport No"
+msgstr "Số hộ chiếu"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_interview_result__4
+msgid "Pending"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_tax_number
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__x_tax_number
+msgid "Personal tax number"
+msgstr "Mã số thuế cá nhân"
+
+#. modules: hr, xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_emergency__phone
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Phone"
+msgstr "Số điện thoại"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__allowance_phone
+msgid "Phone allowance"
+msgstr "Phụ cấp điện thoại"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__allowance_phone_value
+msgid "Phone allowance value"
+msgstr "Mức phụ cấp điện thoại"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__place_of_birth
+#: model:ir.model.fields,field_description:hr.field_res_users__place_of_birth
+msgid "Place of Birth"
+msgstr "Nơi sinh"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_living
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__x_living
+msgid "Place of living"
+msgstr "Nơi ở hiện tại"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_insurance_place
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__x_insurance_place
+msgid "Place of social insurance book"
+msgstr "Nơi cấp sổ BHXH"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_plan_wizard__plan_id
+#: model_terms:ir.ui.view,arch_db:hr.hr_plan_view_search
+msgid "Plan"
+msgstr "Lập kế hoạch"
+
+#. module: hr
+#: model:ir.model,name:hr.model_hr_plan_wizard
+msgid "Plan Wizard"
+msgstr ""
+
+#. module: hr
+#: model:ir.model,name:hr.model_hr_plan_activity_type
+msgid "Plan activity type"
+msgstr ""
+
+#. module: hr
+#: model:ir.actions.act_window,name:hr.hr_plan_action
+#: model_terms:ir.ui.view,arch_db:hr.hr_plan_view_form
+#: model_terms:ir.ui.view,arch_db:hr.hr_plan_view_tree
+msgid "Planning"
+msgstr "Kế hoạch"
+
+#. module: hr
+#: model:ir.actions.act_window,name:hr.hr_plan_activity_type_action
+#: model:ir.ui.menu,name:hr.menu_config_plan_types
+msgid "Planning Types"
+msgstr ""
+
+#. module: hr
+#: model:ir.ui.menu,name:hr.menu_config_plan_plan
+msgid "Plans"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_mail_alias__alias_contact
+#: model:ir.model.fields,help:hr.field_mail_alias_mixin__alias_contact
+#: model:ir.model.fields,help:hr.field_mail_channel__alias_contact
+msgid ""
+"Policy to post a message on the document using the mailgateway.\n"
+"- everyone: everyone can post\n"
+"- partners: only authenticated partners\n"
+"- followers: only followers of the related document or members of following channels\n"
+msgstr ""
+"Chính sách cho phép đăng tin nhắn lên tài liệu sử dụng cổng email.\n"
+"- mọi người: Mọi người có thể đăng\n"
+"- đối tác: Chỉ các đối tác đã xác thực\n"
+"- người theo dõi: Chỉ những người ở trong danh sách dõi theo của tài liệu hoặc thành viên của các kênh sau đây\n"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_has_portrait
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__x_has_portrait
+msgid "Portrait"
+msgstr "Ảnh chân dung"
+
+#. modules: xhr_recruitment, xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_job_mission__job_id
+#: model:ir.model.fields,field_description:xhr.field_hr_job_require__job_id
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__job_id
+msgid "Position"
+msgstr "Chức danh"
+
+#. module: xhr
+#: model:ir.model,name:xhr.model_hr_job_mission
+msgid "Position mission"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model,name:xhr.model_hr_job_require
+msgid "Position require"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
+msgid "Presence of employees"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
+msgid "Presence reporting screen, email and IP address control."
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__hr_icon_display__presence_present
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__hr_presence_state__present
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_base__hr_icon_display__presence_present
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_base__hr_presence_state__present
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_public__hr_icon_display__presence_present
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_public__hr_presence_state__present
+msgid "Present"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__hr_icon_display__presence_absent_active
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_base__hr_icon_display__presence_absent_active
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_public__hr_icon_display__presence_absent_active
+msgid "Present but not active"
+msgstr ""
+
+#. module: hr
+#: model:ir.actions.report,name:hr.hr_employee_print_badge
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Print Badge"
+msgstr "In Thẻ"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Private Contact"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__private_email
+#: model:ir.model.fields,field_description:hr.field_res_users__private_email
+msgid "Private Email"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Private Information"
+msgstr "Thông tin riêng tư"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__phone
+#: model:ir.model.fields,field_description:hr.field_res_users__employee_phone
+msgid "Private Phone"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields.selection,name:xhr.selection__hr_contract__x_type_employee__3
+#: model:ir.model.fields.selection,name:xhr.selection__report_classification_monthly__type_employee__3
+msgid "Probationary staff"
+msgstr ""
+
+#. module: xhr
+#: model_terms:ir.ui.view,arch_db:xhr.view_employee_form
+msgid "Profile"
+msgstr ""
+
+#. modules: xhr_recruitment, xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_project_id
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__x_project_id
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__project_id
+msgid "Project"
+msgstr "Dự án"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__work_location_project
+msgid "Project location"
+msgstr "Địa điểm của dự án"
+
+#. module: xhr
+#: model:ir.model,name:xhr.model_hr_employee_public
+msgid "Public Employee"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_applicant__x_eval_degree
+msgid "Qualifications"
+msgstr "Trình độ"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_applicant__x_eval_degree_note
+msgid "Qualifications note"
+msgstr "Ghi chú về trình độ"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_quit_date
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__x_quit_date
+msgid "Quit date"
+msgstr "Ngày thôi việc"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_recruitment_inquiry_position_report__delay
+msgid "Quá hạn"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_applicant__x_state_id
+msgid "Quê quán"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_report_classification_monthly__ratio
+msgid "Ratio"
+msgstr "Tỷ lệ"
+
+#. module: xhr
+#: model_terms:ir.ui.view,arch_db:xhr.report_classification_view
+msgid "Ratio %"
+msgstr "Tỷ lệ %"
+
+#. module: hr
+#: model_terms:ir.actions.act_window,help:hr.action_hr_job
+msgid "Ready to recruit more efficiently?"
+msgstr "Bạn đã sẵn sàng để tuyển dụng một cách hiệu quả chưa?"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__source_website
+msgid "Recruiment website source"
+msgstr "Nguồn trang web tuyển dụng"
+
+#. module: xhr_recruitment
+#: model:ir.actions.server,name:xhr_recruitment.ir_cron_hr_recruit_request_ir_actions_server
+#: model:ir.cron,cron_name:xhr_recruitment.ir_cron_hr_recruit_request
+#: model:ir.cron,name:xhr_recruitment.ir_cron_hr_recruit_request
+msgid "Recruit request: update state"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_hr_job_form
+msgid "Recruitment"
+msgstr "Tuyển dụng"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__budget
+msgid "Recruitment budget"
+msgstr "Ngân sách tuyển dụng"
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_job__state__recruit
+msgid "Recruitment in Progress"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model_terms:ir.ui.view,arch_db:xhr_recruitment.view_hr_recruit_request_form
+msgid "Recruitment method"
+msgstr "Phương thức tuyển dụng"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__quantity
+msgid "Recruitment quantity"
+msgstr "Số lượng tuyển dụng"
+
+#. module: xhr_recruitment
+#: model_terms:ir.ui.view,arch_db:xhr_recruitment.view_hr_recruit_request_form
+msgid "Recruitment reason"
+msgstr "Lý do tuyển dụng"
+
+#. module: xhr_recruitment
+#: model:ir.model,name:xhr_recruitment.model_hr_recruit_request
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_applicant__recruit_rq_id
+msgid "Recruitment request"
+msgstr "Yêu cầu tuyển dụng"
+
+#. module: xhr_recruitment
+#: model:ir.actions.act_window,name:xhr_recruitment.action_hr_recruit_request
+#: model:ir.ui.menu,name:xhr_recruitment.menu_hr_recruit_request
+msgid "Recruitment requests"
+msgstr "Yêu cầu tuyển dụng"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_employment_status__2
+msgid "Refuse"
+msgstr ""
+
+#. module: hr
+#: code:addons/hr/models/hr_employee.py:0
+#: model:ir.actions.act_window,name:hr.hr_departure_wizard_action
+#, python-format
+msgid "Register Departure"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_has_registration_book
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__x_has_registration_book
+msgid "Registration book"
+msgstr "Sổ hộ khẩu"
+
+#. module: xhr_recruitment
+#: model_terms:ir.ui.view,arch_db:xhr_recruitment.view_hr_recruit_request_form
+msgid "Reject"
+msgstr "Từ chối"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Related User"
+msgstr "TK dùng liên kết"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_users__employee_ids
+msgid "Related employee"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_employee__user_id
+#: model:ir.model.fields,help:hr.field_resource_resource__user_id
+msgid "Related user name for the resource to manage its access."
+msgstr "Người dùng liên quan đến nguồn lực để quản lý sự truy cập."
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_depend__relation
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_emergency__relation
+msgid "Relationship"
+msgstr "Mối quan hệ"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__reason_replace
+msgid "Replace"
+msgstr "Thay thế"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__report_to_id
+msgid "Report to"
+msgstr "Báo cáo tới"
+
+#. module: hr
+#: model:ir.ui.menu,name:hr.hr_menu_hr_reports
+#: model:ir.ui.menu,name:hr.menu_hr_reporting_timesheet
+msgid "Reporting"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model_terms:ir.ui.view,arch_db:xhr_recruitment.recruitment_inquiry_position_report_view
+msgid "Requested Position"
+msgstr "Chức danh của người yêu cầu"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__requester_uid
+msgid "Requester"
+msgstr "Người yêu cầu"
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,field_description:hr.field_hr_job__requirements
+#: model_terms:ir.ui.view,arch_db:xhr_recruitment.view_hr_recruit_request_form
+msgid "Requirements"
+msgstr "Yêu cầu"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_job__x_require_ids
+msgid "Requires"
+msgstr "Yêu cầu"
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_departure_wizard__departure_reason__resigned
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__departure_reason__resigned
+msgid "Resigned"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__resource_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__resource_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__resource_id
+msgid "Resource"
+msgstr "Nguồn lực"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__resource_calendar_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__resource_calendar_id
+msgid "Resource Calendar"
+msgstr "Lịch Nguồn lực"
+
+#. module: hr
+#: model:ir.model,name:hr.model_resource_resource
+msgid "Resources"
+msgstr ""
+
+#. modules: hr, xhr
+#: model:ir.model.fields,field_description:hr.field_hr_plan_activity_type__responsible
+#: model:ir.model.fields,field_description:xhr.field_hr_job__x_responsible_id
+msgid "Responsible"
+msgstr "Người phụ trách"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_plan_activity_type__responsible_id
+msgid "Responsible Person"
+msgstr ""
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__activity_user_id
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__activity_user_id
+msgid "Responsible User"
+msgstr "Người phụ trách"
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_departure_wizard__departure_reason__retired
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__departure_reason__retired
+msgid "Retired"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__sinid
+msgid "SIN No"
+msgstr "Số bảo hiểm xã hội"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Lỗi gửi tin nhắn"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__source_sps_web
+msgid "SPS web source"
+msgstr "Nguồn trang web SPS"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__ssnid
+msgid "SSN No"
+msgstr "Số an sinh xã hội"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_eval_degree__2
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_eval_experience__2
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_eval_language__2
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_eval_motivation__2
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_eval_overall__2
+msgid "Satisfactory"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_departure_wizard_view_form
+msgid "Save"
+msgstr "Lưu"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_form
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Schedule"
+msgstr "Ấn định (thời gian)"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__study_school
+#: model:ir.model.fields,field_description:hr.field_res_users__study_school
+msgid "School"
+msgstr "Trường học"
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_employee__coach_id
+#: model:ir.model.fields,help:hr.field_hr_employee_base__coach_id
+#: model:ir.model.fields,help:hr.field_hr_employee_public__coach_id
+#: model:ir.model.fields,help:hr.field_res_users__coach_id
+msgid ""
+"Select the \"Employee\" who is the coach of this employee.\n"
+"The \"Coach\" has no specific rights or responsibilities by default."
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_depend__sequence
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_emergency__sequence
+#: model:ir.model.fields,field_description:xhr.field_hr_job_mission__sequence
+#: model:ir.model.fields,field_description:xhr.field_hr_job_require__sequence
+msgid "Sequence"
+msgstr "Số thứ tự"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
+msgid "Set default company schedule to manage your employees working time"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_job__state
+msgid ""
+"Set whether the recruitment process is open or closed for this job position."
+msgstr "Thiết lập quy trình tuyển dụng mở hay đóng cho vị trí công việc này."
+
+#. module: hr
+#: model:ir.actions.act_window,name:hr.hr_config_settings_action
+#: model:ir.ui.menu,name:hr.hr_menu_configuration
+msgid "Settings"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_contract__x_sign_job_id
+msgid "Signer"
+msgstr "Người ký"
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__marital__single
+msgid "Single"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_config_settings__module_hr_skills
+msgid "Skills Management"
+msgstr "Quản lý Kỹ năng"
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_employee__sinid
+msgid "Social Insurance Number"
+msgstr "Số bảo hiểm xã hội"
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_employee__ssnid
+msgid "Social Security Number"
+msgstr "Số an sinh xã hội"
+
+#. module: xhr
+#: model_terms:ir.ui.view,arch_db:xhr.view_employee_form
+msgid "Social insurance"
+msgstr "Bảo hiểm xã hội"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_insurance_number
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__x_insurance_number
+msgid "Social insurance book number"
+msgstr "Số sổ BHXH"
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_plan_activity_type__responsible_id
+msgid "Specific responsible of activity if not linked to the employee."
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__spouse_birthdate
+#: model:ir.model.fields,field_description:hr.field_res_users__spouse_birthdate
+msgid "Spouse Birthdate"
+msgstr "Ngày sinh vợ/ chồng"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__spouse_complete_name
+#: model:ir.model.fields,field_description:hr.field_res_users__spouse_complete_name
+msgid "Spouse Complete Name"
+msgstr "Tên đầy đủ vợ/ chồng"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_contract__x_gasoline_standard
+msgid "Standard gasoline (liter)"
+msgstr "Định mức xăng xe (lít)"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_hr_job_form
+msgid "Start Recruitment"
+msgstr "Khởi động tuyển dụng"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__date_start
+msgid "Start working date"
+msgstr "Ngày bắt đầu làm việc"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__state
+msgid "State"
+msgstr "Trạng thái"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_job__state
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+#: model_terms:ir.ui.view,arch_db:hr.view_job_filter
+msgid "Status"
+msgstr "Trạng thái"
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,help:hr.field_hr_employee__activity_state
+#: model:ir.model.fields,help:xhr_recruitment.field_hr_recruit_request__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Trạng thái dựa trên hoạt động\n"
+"Quá hạn: Ngày đến hạn phải được chuyển\n"
+"Hôm nay: Hôm nay là ngày phải thực hiện\n"
+"Kế hoạch: Các hoạt động trong tương lai."
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_hr_job_form
+msgid "Stop Recruitment"
+msgstr "Dừng tuyển dụng"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_plan_activity_type__summary
+msgid "Summary"
+msgstr "Tổng kết"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_recruitment_candidate_report__reject
+msgid "Số hồ sơ không đạt đạt"
+msgstr "Số hồ sơ không đạt"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_recruitment_candidate_report__apply
+msgid "Số hồ sơ đạt"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee_category__name
+msgid "Tag Name"
+msgstr "Tên Từ khóa"
+
+#. module: hr
+#: model:ir.model.constraint,message:hr.constraint_hr_employee_category_name_uniq
+msgid "Tag name already exists !"
+msgstr "Tên thẻ đã tồn tại!"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__category_ids
+#: model:ir.ui.menu,name:hr.menu_view_employee_category_form
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Tags"
+msgstr "Tag"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_depend__tax_number
+msgid "Tax number"
+msgstr "Mã số thuế"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_contract__x_allowance_phone
+msgid "Telephone allowance"
+msgstr "Phụ cấp điện thoại"
+
+#. module: hr
+#: model:ir.model.constraint,message:hr.constraint_hr_employee_barcode_uniq
+msgid ""
+"The Badge ID must be unique, this one is already assigned to another "
+"employee."
+msgstr ""
+"Mã số thẻ phải là duy nhất, mã này đã được cấp phát cho một nhân viên khác "
+"rồi."
+
+#. module: hr
+#: code:addons/hr/models/hr_employee.py:0
+#, python-format
+msgid "The PIN must be a sequence of digits."
+msgstr "Mã PIN phải là một dãy số."
+
+#. module: xhr
+#: model:ir.model.constraint,message:xhr.constraint_hr_employee_x_code_uniq
+msgid "The code of the employee must be unique per company!"
+msgstr "Mã nhân viên đã tồn tại"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__is_address_home_a_company
+#: model:ir.model.fields,field_description:hr.field_res_users__is_address_home_a_company
+msgid "The employee address has a company linked"
+msgstr ""
+
+#. module: hr
+#: code:addons/hr/models/hr_employee.py:0
+#, python-format
+msgid ""
+"The fields \"%s\" you try to read is not available on the public employee "
+"profile."
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.constraint,message:xhr.constraint_hr_department_name_uniq
+msgid "The name of the department must be unique per company!"
+msgstr "Tên phòng ban đã tồn tại"
+
+#. module: hr
+#: model:ir.model.constraint,message:hr.constraint_hr_job_name_company_uniq
+msgid "The name of the job position must be unique per department in company!"
+msgstr ""
+"Tên của vị trí công việc phải là duy nhất đối với mỗi phòng ban trong công "
+"ty!"
+
+#. module: hr
+#: model:res.groups,comment:hr.group_hr_user
+msgid "The user will be able to approve document created by employees."
+msgstr "Người sẽ phê chuẩn văn bản mà nhân viên tạo."
+
+#. module: hr
+#: model:res.groups,comment:hr.group_hr_manager
+msgid ""
+"The user will have access to the human resources configuration as well as "
+"statistic reports."
+msgstr ""
+"Người có thể thiết lập cấu hình của chức năng HR, cũng như là các báo cáo "
+"thống kê."
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_employee__tz
+#: model:ir.model.fields,help:hr.field_hr_employee_base__tz
+#: model:ir.model.fields,help:hr.field_hr_employee_public__tz
+msgid ""
+"This field is used in order to define in which timezone the resources will "
+"work."
+msgstr "Trường này được sử dụng để xác định múi giờ sẽ làm việc."
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_certificate__master
+msgid "Thạc sĩ"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__tz
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__tz
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__tz
+msgid "Timezone"
+msgstr "Múi giờ"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_certificate__doctor
+msgid "Tiến sĩ"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_certificate__diploma
+msgid "Diploma"
+msgstr "Cao đẳng"
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__hr_presence_state__to_define
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_base__hr_presence_state__to_define
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_public__hr_presence_state__to_define
+msgid "To Define"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__hr_icon_display__presence_to_define
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_base__hr_icon_display__presence_to_define
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_public__hr_icon_display__presence_to_define
+msgid "To define"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_filter
+msgid "Today Activities"
+msgstr "Các oạt động hôm nay"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_report_classification_monthly__total
+msgid "Total"
+msgstr "Tổng cộng"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_job__expected_employees
+msgid "Total Forecasted Employees"
+msgstr "Tổng số nhân viên dự kiến"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_recruitment_inquiry_position_report__ongoing
+msgid "Trong thời hạn"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_certificate__intermediate
+msgid "Trung cấp"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_applicant__x_certificate
+msgid "Trình độ"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_contract__x_type_employee
+#: model:ir.model.fields,field_description:xhr.field_report_classification_monthly__type_employee
+msgid "Type Employee"
+msgstr "Loại nhân viên"
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,help:hr.field_hr_employee__activity_exception_decoration
+#: model:ir.model.fields,help:xhr_recruitment.field_hr_recruit_request__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Loại hoạt động ngoại lệ trên hồ sơ."
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_certificate__graduate
+msgid "Tốt nghiệp"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_recruitment_candidate_report__total
+msgid "Tổng hồ sơ"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.ui.menu,name:xhr_recruitment.report_recruitment_candidates_menu
+msgid "Tổng hợp ứng viên cần lưu tâm"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_recruitment_candidate_report__reject_job
+msgid "Từ chối nhận việc"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__hr_icon_display__presence_undetermined
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_base__hr_icon_display__presence_undetermined
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_public__hr_icon_display__presence_undetermined
+msgid "Undetermined"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields.selection,name:xhr.selection__hr_employee__certificate__university
+msgid "University"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields.selection,name:xhr.selection__hr_employee__certificate__diploma
+msgid "Diploma"
+msgstr "Cao đẳng"
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__message_unread
+#: model:ir.model.fields,field_description:hr.field_hr_employee__message_unread
+#: model:ir.model.fields,field_description:hr.field_hr_job__message_unread
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__message_unread
+#: model_terms:ir.ui.view,arch_db:hr.view_department_filter
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_filter
+#: model_terms:ir.ui.view,arch_db:hr.view_job_filter
+msgid "Unread Messages"
+msgstr "Tin chưa đọc"
+
+#. modules: xhr_recruitment, hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__message_unread_counter
+#: model:ir.model.fields,field_description:hr.field_hr_employee__message_unread_counter
+#: model:ir.model.fields,field_description:hr.field_hr_job__message_unread_counter
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Bộ đếm tin chưa đọc"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_eval_degree__1
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_eval_experience__1
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_eval_language__1
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_eval_motivation__1
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_eval_overall__1
+msgid "Unsatisfactory"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__user_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__user_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__user_id
+#: model:ir.model.fields,field_description:hr.field_resource_resource__user_id
+msgid "User"
+msgstr "Người dùng"
+
+#. module: hr
+#: code:addons/hr/models/hr_plan.py:0
+#, python-format
+msgid "User linked to employee %s is required."
+msgstr ""
+
+#. module: hr
+#: code:addons/hr/models/hr_plan.py:0
+#, python-format
+msgid "User of coach of employee %s is not set."
+msgstr ""
+
+#. module: hr
+#: code:addons/hr/models/hr_plan.py:0
+#, python-format
+msgid "User of manager of employee %s is not set."
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__user_partner_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__user_partner_id
+msgid "User's partner"
+msgstr ""
+
+#. module: hr
+#: model:ir.model,name:hr.model_res_users
+msgid "Users"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_job_view_kanban
+msgid "Vacancies :"
+msgstr "Cần tuyển:"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_company__hr_presence_control_ip_list
+#: model:ir.model.fields,field_description:hr.field_res_config_settings__hr_presence_control_ip_list
+msgid "Valid IP addresses"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__verifier_uid
+msgid "Verifier"
+msgstr "Người xác nhận"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__visa_expire
+#: model:ir.model.fields,field_description:hr.field_res_users__visa_expire
+msgid "Visa Expire Date"
+msgstr "Ngày hết hạn Visa"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__visa_no
+#: model:ir.model.fields,field_description:hr.field_res_users__visa_no
+msgid "Visa No"
+msgstr "Số Visa"
+
+#. module: xhr
+#: model:ir.model.fields.selection,name:xhr.selection__hr_employee__certificate__graduate
+msgid "Vocational School"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_recruitment_candidate_report__name
+msgid "Vị trí"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__website_message_ids
+msgid "Website Messages"
+msgstr "Tin nhắn trang web"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,help:xhr_recruitment.field_hr_recruit_request__website_message_ids
+msgid "Website communication history"
+msgstr "Lịch sử trang web"
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__marital__widower
+msgid "Widower"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.actions.act_window,help:hr.act_employee_from_department
+#: model_terms:ir.actions.act_window,help:hr.hr_employee_public_action
+msgid ""
+"With just a quick glance on the Odoo employee screen, you\n"
+"                can easily find all the information you need for each person;\n"
+"                contact data, job position, availability, etc."
+msgstr ""
+"Chỉ với một cái nhìn nhanh trên màn hình nhân viên của hệ thống, bạn\n"
+"                 có thể dễ dàng tìm thấy tất cả thông tin bạn cần cho mỗi người;\n"
+"                 thông tin liên lạc, vị trí công việc, tính khả dụng, v.v."
+
+#. module: hr
+#: model_terms:ir.actions.act_window,help:hr.open_view_employee_list_my
+msgid ""
+"With just a quick glance on the Odoo employee screen, you\n"
+"               can easily find all the information you need for each person;\n"
+"               contact data, job position, availability, etc."
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__address_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__address_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__address_id
+#: model:ir.model.fields,field_description:hr.field_res_users__address_id
+msgid "Work Address"
+msgstr "Địa chỉ làm việc"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__work_email
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__work_email
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__work_email
+#: model:ir.model.fields,field_description:hr.field_res_users__work_email
+msgid "Work Email"
+msgstr "Email công việc"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_form
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Work Information"
+msgstr "Thông tin công việc"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__work_location
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__work_location
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__work_location
+#: model:ir.model.fields,field_description:hr.field_res_users__work_location
+msgid "Work Location"
+msgstr "Địa điểm làm việc"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
+msgid "Work Organization"
+msgstr "Tổ chức công việc"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Work Permit"
+msgstr "Giấy phép LĐ"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__permit_no
+#: model:ir.model.fields,field_description:hr.field_res_users__permit_no
+msgid "Work Permit No"
+msgstr "Số giấy phép LĐ"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__work_phone
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__work_phone
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__work_phone
+#: model:ir.model.fields,field_description:hr.field_res_users__work_phone
+msgid "Work Phone"
+msgstr "Điện thoại công ty"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_employee__x_calendar_type
+#: model:ir.model.fields,field_description:xhr.field_hr_employee_public__x_calendar_type
+msgid "Work hour type"
+msgstr "Loại giờ làm việc"
+
+#. module: xhr
+#: model:ir.model.fields,field_description:xhr.field_hr_job__x_work_location
+msgid "Work location"
+msgstr "Nơi làm việc"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__resource_calendar_id
+msgid "Working Hours"
+msgstr "Giờ làm việc"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_hr_recruit_request__working_hours
+msgid "Working hours"
+msgstr "Giờ làm việc"
+
+#. module: xhr_recruitment
+#: model_terms:ir.ui.view,arch_db:xhr_recruitment.view_hr_recruit_request_form
+msgid "Working place"
+msgstr "Địa điểm làm việc"
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_recruit_request__experience_required__1
+msgid "Yes"
+msgstr ""
+
+#. module: hr
+#: code:addons/hr/models/res_users.py:0
+#, python-format
+msgid ""
+"You are only allowed to update your preferences. Please contact a HR officer"
+" to update other information."
+msgstr ""
+
+#. module: hr
+#. openerp-web
+#: code:addons/hr/static/src/models/employee/employee.js:0
+#, python-format
+msgid "You can only chat with employees that have a dedicated user."
+msgstr ""
+
+#. module: hr
+#: code:addons/hr/models/hr_department.py:0
+#, python-format
+msgid "You cannot create recursive departments."
+msgstr "Bạn không thể tạo phòng ban đệ quy."
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.print_employee_badge
+msgid "barcode"
+msgstr "mã vạch"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_department_form
+msgid "department"
+msgstr "phòng/ban"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_hr_job_form
+msgid "e.g. Sales Manager"
+msgstr "vd Quản lý bán hàng"
+
+#. module: hr
+#: model:ir.model,name:hr.model_hr_plan
+msgid "plan"
+msgstr ""
+
+#. module: hr
+#: code:addons/hr/models/models.py:0
+#, python-format
+msgid "restricted to employees"
+msgstr ""
+
+#. module: xhr
+#: model_terms:ir.ui.view,arch_db:xhr.report_classification_view
+msgid "total m1"
+msgstr ""
+
+#. module: xhr
+#: model_terms:ir.ui.view,arch_db:xhr.report_classification_view
+msgid "total m10"
+msgstr ""
+
+#. module: xhr
+#: model_terms:ir.ui.view,arch_db:xhr.report_classification_view
+msgid "total m11"
+msgstr ""
+
+#. module: xhr
+#: model_terms:ir.ui.view,arch_db:xhr.report_classification_view
+msgid "total m12"
+msgstr ""
+
+#. module: xhr
+#: model_terms:ir.ui.view,arch_db:xhr.report_classification_view
+msgid "total m2"
+msgstr ""
+
+#. module: xhr
+#: model_terms:ir.ui.view,arch_db:xhr.report_classification_view
+msgid "total m3"
+msgstr ""
+
+#. module: xhr
+#: model_terms:ir.ui.view,arch_db:xhr.report_classification_view
+msgid "total m4"
+msgstr ""
+
+#. module: xhr
+#: model_terms:ir.ui.view,arch_db:xhr.report_classification_view
+msgid "total m5"
+msgstr ""
+
+#. module: xhr
+#: model_terms:ir.ui.view,arch_db:xhr.report_classification_view
+msgid "total m6"
+msgstr ""
+
+#. module: xhr
+#: model_terms:ir.ui.view,arch_db:xhr.report_classification_view
+msgid "total m7"
+msgstr ""
+
+#. module: xhr
+#: model_terms:ir.ui.view,arch_db:xhr.report_classification_view
+msgid "total m8"
+msgstr ""
+
+#. module: xhr
+#: model_terms:ir.ui.view,arch_db:xhr.report_classification_view
+msgid "total m9"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_recruitment_candidate_report__pending
+msgid "Đang xem xét"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields.selection,name:xhr_recruitment.selection__hr_applicant__x_certificate__university
+msgid "Đại học"
+msgstr ""
+
+#. module: xhr_recruitment
+#: model:ir.model.fields,field_description:xhr_recruitment.field_recruitment_candidate_report__approved
+msgid "Đồng ý nhận việc"
+msgstr ""
+
+#. module: xhr
+#: model:ir.model.fields.selection,name:xhr.selection__report_classification_monthly__type_employee__intern
+msgid "Intern"
+msgstr "Thực tập"

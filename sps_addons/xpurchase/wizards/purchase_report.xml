@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="purchase_report_data" model="ir.ui.view">
+            <field name="name">Báo cáo data mua hàng</field>
+            <field name="model">purchase.data.report</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Báo cáo data mua hàng">
+                    <footer>
+                        <button string="Báo cáo" name="purchase_report_data" type="object" class="btn-primary"/>
+                        <button string="Huỷ" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_purchase_report_data" model="ir.actions.act_window">
+            <field name="name">Báo cáo data mua hàng</field>
+            <field name="res_model">purchase.data.report</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="domain">[]</field>
+        </record>
+        <menuitem action="action_purchase_report_data"
+                  name="Báo cáo mua hàng"
+                  parent="purchase.purchase_report"
+                  id="menu_purchase_report_data"
+                  sequence="13"/>
+    </data>
+</odoo>

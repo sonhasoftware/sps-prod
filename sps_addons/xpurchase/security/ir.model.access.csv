@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cost_type,cost_type,model_cost_type,base.group_user,1,1,1,1
+access_category_list_01,category.supplier,model_category_supplier,base.group_user,1,1,1,1
+access_category_list_02,product.group,model_product_group,base.group_user,1,1,1,1
+access_category_list_03,buying.frequency,model_buying_frequency,base.group_user,1,1,1,1
+access_category_list_04,purchase.form,model_purchase_form,base.group_user,1,1,1,1
+access_category_list_05,delivery.form,model_delivery_form,base.group_user,1,1,1,1
+access_purchase_report, purchase_report_data,model_purchase_data_report,base.group_user,1,1,1,1
+access_model_purchase_quotation_report,model_purchase_quotation_report,model_purchase_quotation_report,base.group_user,1,1,1,1
+access_change_requisition_qty_wizard,change_requisition_qty_wizard,model_purchase_requisition_line_qty_wizard,base.group_user,1,1,1,1

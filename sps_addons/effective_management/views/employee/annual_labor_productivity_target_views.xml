@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="annual_labor_productivity_target_tree" model="ir.ui.view">
+        <field name="name">annual.labor.productivity.target.tree</field>
+        <field name="model">annual.labor.productivity.target</field>
+        <field name="arch" type="xml">
+            <tree string="Target HSLĐ năm" editable="top">
+                <field name="employee_id"/>
+                <field name="year"/>
+                <field name="target"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="annual_labor_productivity_target_search" model="ir.ui.view">
+        <field name="name">annual.labor.productivity.target.search</field>
+        <field name="model">annual.labor.productivity.target</field>
+        <field name="arch" type="xml">
+            <search string="Target HSLĐ năm">
+                <field name="employee_id"/>
+                <field name="year"/>
+                <field name="target"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="annual_labor_productivity_target_action" model="ir.actions.act_window">
+        <field name="name">Target HSLĐ năm</field>
+        <field name="res_model">annual.labor.productivity.target</field>
+        <field name="view_mode">tree</field>
+        <field name="search_view_id" ref="effective_management.annual_labor_productivity_target_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Target HSLĐ năm!
+            </p>
+            <p>
+                Set productivity targets for employees by year.
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="annual_labor_productivity_target_menu"
+        name="Target HSLĐ năm"
+        action="annual_labor_productivity_target_action"
+        parent="hr.menu_human_resources_configuration"
+        sequence="120"/>
+
+</odoo> 

@@ -1,0 +1,76 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record id="product_product_penaty_fee" model="product.product">
+        <field name="name">Phạt hợp đồng</field>
+        <field name="type">service</field>
+        <field name="is_penalty_fee">True</field>
+        <field name="sale_ok">False</field>
+        <field name="purchase_ok">True</field>
+<!--        <field name="taxes_ids">[]</field>-->
+    </record>
+
+    <data noupdate="1">
+
+        <record id="sequence_invoice_incoming_name" model="ir.sequence">
+            <field name="name">sequence_name_incoming_invoice</field>
+            <field name="code">xaccount.sequence_name_incoming_invoice</field>
+            <field name="prefix">MH%(range_y)s/%(range_month)s/</field>
+            <field name="padding">3</field>
+            <field name="number_increment">1</field>
+            <field name="implementation">no_gap</field>
+            <field name="use_date_range" eval="True"/>
+        </record>
+
+        <record id="sequence_invoice_incoming_reverse_name" model="ir.sequence">
+            <field name="name">sequence_name_incoming_reverse_invoice</field>
+            <field name="code">xaccount.sequence_name_incoming_reverse_invoice</field>
+            <field name="prefix">AMH%(range_y)s/%(range_month)s/</field>
+            <field name="padding">3</field>
+            <field name="number_increment">1</field>
+            <field name="implementation">no_gap</field>
+            <field name="use_date_range" eval="True"/>
+        </record>
+
+        <record id="sequence_payment_cash_in_name" model="ir.sequence">
+            <field name="name">sequence_payment_cash_in_name</field>
+            <field name="code">xaccount.sequence_payment_cash_in_name</field>
+            <field name="prefix">PT%(range_y)s/%(range_month)s/</field>
+            <field name="padding">3</field>
+            <field name="number_increment">1</field>
+            <field name="implementation">no_gap</field>
+            <field name="use_date_range" eval="True"/>
+        </record>
+
+        <record id="sequence_payment_cash_out_name" model="ir.sequence">
+            <field name="name">sequence_payment_cash_out_name</field>
+            <field name="code">xaccount.sequence_payment_cash_out_name</field>
+            <field name="prefix">PC%(range_y)s/%(range_month)s/</field>
+            <field name="padding">3</field>
+            <field name="number_increment">1</field>
+            <field name="implementation">no_gap</field>
+            <field name="use_date_range" eval="True"/>
+        </record>
+
+        <record id="sequence_payment_bank_in_name" model="ir.sequence">
+            <field name="name">sequence_payment_bank_in_name</field>
+            <field name="code">xaccount.sequence_payment_bank_in_name</field>
+            <field name="prefix">BC%(range_y)s/%(range_month)s/</field>
+            <field name="padding">3</field>
+            <field name="number_increment">1</field>
+            <field name="implementation">no_gap</field>
+            <field name="use_date_range" eval="True"/>
+        </record>
+
+        <record id="sequence_payment_bank_out_name" model="ir.sequence">
+            <field name="name">sequence_payment_bank_out_name</field>
+            <field name="code">xaccount.sequence_payment_bank_out_name</field>
+            <field name="prefix">BN%(range_y)s/%(range_month)s/</field>
+            <field name="padding">3</field>
+            <field name="number_increment">1</field>
+            <field name="implementation">no_gap</field>
+            <field name="use_date_range" eval="True"/>
+        </record>
+
+    </data>
+</odoo>

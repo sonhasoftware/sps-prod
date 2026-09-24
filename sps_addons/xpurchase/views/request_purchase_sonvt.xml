@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="purchase_requisition_form_views">
+            <field name="name">purchase_requisition</field>
+            <field name="model">purchase.requisition</field>
+            <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="before">
+                    <link rel="stylesheet" href="/xpurchase/static/src/custom.css"/>
+                </xpath>
+                <xpath expr="//form" position="attributes">
+                    <attribute name="class">custom_sheet</attribute>
+                </xpath>
+                <xpath expr="//field[@name='state']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_draft']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_draft']" position="after">
+                    <button name="action_reset_draft" type="object" string="Chuyển về nháp" attrs="{'invisible': [('x_state','not in',('pending', 'official'))]}"/>
+                </xpath>
+                <xpath expr="//button[@name='action_cancel']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//div[@name='button_box']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='state']" position="after">
+                    <field name="x_state" widget="statusbar"
+                           statusbar_visible="draft,pending,official,going,done,cancel,pause"/>
+                </xpath>
+                <xpath expr="//group/field[@name='user_id']" position="after">
+                    <field name="x_check_user" invisible="1"/>
+                    <field name="x_purpose" widget="radio" options="{'horizontal': true}" attrs="{'readonly': [('x_state','!=','draft')]}"/>
+                    <field name="x_code_project_id"/>
+                    <field name="x_name_project" force_save="1" readonly="1"/>
+                    <field name="x_estimator" force_save="1" readonly="1"/>
+                    <field name="x_cost_project" attrs="{'invisible': [('x_purpose','!=','project')],'readonly': [('x_state','!=','draft')]}"/>
+                    <field name="x_cost_other" attrs="{'invisible': [('x_purpose','not in',('other','replenish_inventory'))],'readonly': [('x_state','!=','draft')]}"/>
+                    <field name="x_cost_source" invisible="1"/>
+                    <field name="x_reason"
+                           attrs="{'invisible': [('x_cost_project','!=','out_of_budget'),('x_cost_other','!=','offer')],'readonly': [('x_state','!=','draft')]}"/>
+                </xpath>
+                <xpath expr="//field[@name='date_end']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='vendor_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='product_uom_id']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                    <attribute name="force_save">1</attribute>
+                </xpath>
+                <field name="line_ids" position="attributes">
+                    <attribute name="attrs">{'readonly': [('x_state', '!=', 'draft')]}</attribute>
+                </field>
+                <xpath expr="//field[@name='product_id']" position="after">
+                    <field name="x_cost_classification_id" options="{'no_create': True}"/>
+                    <field name="x_default_code" force_save="1" />
+                    <field name="x_brand" />
+                    <field name="x_origin" />
+                    <xpath expr="//tree/field[@name='product_uom_id']" position="move"/>
+                    <xpath expr="//tree/field[@name='product_qty']" position="move"/>
+                    <field name="x_note"/>
+                    <xpath expr="//tree/field[@name='schedule_date']" position="move"/>
+                    <field name="x_source" />
+                    <xpath expr="//tree/field[@name='price_unit']" position="move"/>
+                    <xpath expr="//tree/field[@name='qty_ordered']" position="move"/>
+                </xpath>
+                <xpath expr="//field[@name='qty_ordered']" position="before">
+                    <field name="x_po_ids" widget="many2many_tags" readonly="1"/>
+                </xpath>
+                <xpath expr="//field[@name='qty_ordered']" position="after">
+                    <field name="qty_done"/>
+                    <button name="action_open_change_qty_wizard" type="object" string="Sửa SL"
+                            icon="fa-pencil-square-o"
+                            attrs="{'invisible': [('parent.x_state','in',('draft','cancel','done'))]}"/>
+                </xpath>
+                <xpath expr="//field[@name='product_description_variants']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='type_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='origin']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_in_progress']" position="after">
+                    <button name="action_send_browsing" string="Gửi duyệt" type="object" class="oe_highlight"
+                            attrs="{'invisible': [('x_state','!=','draft')]}"/>
+                    <button name="action_approve" string="Phê duyệt" type="object" class="oe_highlight" groups="base.group_erp_manager"
+                            attrs="{'invisible': [('x_state','!=','pending')]}"/>
+                    <button name="action_refuse" string="Từ chối" type="object" groups="base.group_erp_manager"
+                            attrs="{'invisible': [('x_state','!=','pending')]}"/>
+                    <button name="action_back_draft" string="Chuyển về nháp" type="object"
+                            attrs="{'invisible': [('x_state','in',['done','draft','pause','official','going'])]}"/>
+                    <button name="action_pause" string="Tạm hoãn" type="object"
+                            attrs="{'invisible': [('x_state','in',['done','pause','draft','pending','cancel'])]}"/>
+                    <button name="action_continue" string="Tiếp tục" type="object"
+                            attrs="{'invisible': [('x_state','!=','pause')]}"/>
+                </xpath>
+                <xpath expr="//button[@name='action_in_progress']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='schedule_date']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('x_state','=','pending')]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='ordering_date']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('x_state','!=','draft')]}</attribute>
+                </xpath>
+                <xpath expr="//notebook" position="after">
+                    <group>
+                        <field name="x_request_address" attrs="{'readonly': [('x_state','!=','draft')]}"/>
+                        <field name="x_address_ship" attrs="{'readonly': [('x_state','!=','draft')]}" />
+                        <field name="x_info_receiver" attrs="{'readonly': [('x_state','!=','draft')]}" />
+                    </group>
+                </xpath>
+                <xpath expr="//separator" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//page/field[@name='description']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='user_id']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('x_state','not in',('draft','pending','pause'))]}</attribute>
+                </xpath>
+                <xpath expr="//div[@class='oe_chatter']" position="replace">
+                    <sheet>
+                        <div class="oe_chatter">
+                            <field name="message_follower_ids"/>
+                            <field name="activity_ids"/>
+                            <field name="message_ids"/>
+                        </div>
+                    </sheet>
+                </xpath>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="purchase_requisition_tree_views">
+            <field name="name">purchase_requisition_tree</field>
+            <field name="model">purchase.requisition</field>
+            <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='ordering_date']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="before">
+                    <field name="name"/>
+                    <field name="x_purpose"/>
+                    <field name="x_code_project_id"/>
+                    <field name="x_name_project" readonly="1"/>
+                    <field name="x_cost_source" force_save="1"/>
+                    <field name="x_reason"/>
+                    <field name="ordering_date" />
+                    <field name="schedule_date" />
+                    <field name="x_request_address"/>
+                    <field name="x_address_ship"/>
+                    <field name="x_info_receiver"/>
+                </xpath>
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="x_state" widget="badge" optional="show"
+                           decoration-success="x_state == 'done'"
+                           decoration-info="x_state not in ('done', 'cancel')"/>
+                </xpath>
+                <xpath expr="//field[@name='state']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='user_id']" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </xpath>
+                <xpath expr="//field[@name='state']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='date_end']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='origin']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+        <record id="purchase_requisition_filter_inherit" model="ir.ui.view">
+            <field name="name">purchase.requisition.list.select</field>
+            <field name="model">purchase.requisition</field>
+            <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='draft']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//filter[@name='confirmed']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//filter[@name='done']" position="before">
+                    <filter string="Hủy" name="cancel" domain="[('x_state', '=', 'cancel')]"/>
+                    <filter string="Tạm hoãn" name="pause" domain="[('x_state', '=', 'pause')]"/>
+                    <filter string="Yêu cầu cần xử lý" name="my_PA" domain="[('x_state', 'not in', ['done', 'cancel', 'pause'])]"/>
+                </xpath>
+                <!--<xpath expr="//filter[@name='done']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>-->
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="purchase_requisition.action_purchase_requisition">
+            <field name="name">Purchase Agreements</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.requisition</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="context">{'search_default_my_PA':1}</field>
+    <!--        <field name="search_view_id" ref="view_purchase_requisition_filter"/>-->
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Start a new purchase agreement
+              </p><p>
+                Example of purchase agreements include call for tenders and blanket orders.
+              </p><p>
+                In a call for tenders, you can record the products you need to buy
+                and generate the creation of RfQs to vendors. Once the tenders have
+                been registered, you can review and compare them and you can
+                validate some and cancel others.
+              </p><p>
+                For a blanket order, you can record an agreement for a specifc period
+                (e.g. a year) and you order products within this agreement, benefiting
+                from the negotiated prices.
+              </p>
+            </field>
+        </record>
+    </data>
+</odoo>

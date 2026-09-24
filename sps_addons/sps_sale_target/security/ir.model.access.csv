@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_target_all,sale.target.all,model_sale_target,,1,0,0,0
+access_sale_target_sale_manager,sale.target.sale.manager,model_sale_target,sales_team.group_sale_manager,1,1,1,1
+access_res_partner_status_all,res.partner.status.all,model_res_partner_status,,1,0,0,0
+access_res_partner_status_group_sale_salesman,res.partner.status.group.sale.salesman,model_res_partner_status,sales_team.group_sale_salesman,1,1,1,0
+
+access_sale_turnover_wiz_group_sale_salesman,sale.turnover.wiz.group.sale.salesman,model_sale_turnover_wiz,sales_team.group_sale_salesman,1,1,1,0
+access_annual_sale_report_group_sale_manager,annual.sale.report.group.sale.manager,model_annual_sale_report,sales_team.group_sale_manager,1,1,1,0
+
+access_sale_project_line_group_sale_salesman,sale.project.line.group.sale.salesman,model_sale_project_line,sales_team.group_sale_salesman,1,1,1,0
+access_sale_project_line_group_sale_manager,sale.project.line.group.sale.manager,model_sale_project_line,sales_team.group_sale_manager,1,1,1,1
+
+access_sale_frequency_all,sale.frequency.all,model_sale_frequency,,1,0,0,0
+access_sale_frequency_sale_manager,sale.frequency.sale.manager,model_sale_frequency,sales_team.group_sale_manager,1,1,1,1
+
+access_profit_formula_config_all,profit.formula.config.all,model_profit_formula_config,,1,0,0,0
+access_profit_formula_config_sale_manager,profit.formula.config.sale.manager,model_profit_formula_config,sales_team.group_sale_manager,1,1,1,1

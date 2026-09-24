@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <record id="ir_cron_update_history_job" model="ir.cron">
+        <field name="name">Cập nhật lịch sử chức vụ của nhân viên dựa theo hợp đồng</field>
+        <field name="model_id" ref="model_hr_contract"/>
+        <field name="state">code</field>
+        <field name="code">model.update_history_job()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="active">False</field>
+    </record>
+
+    <data noupdate="1">
+
+        <record id="action_print_job_description" model="ir.actions.server">
+            <field name="name">Job Description (.docx)</field>
+            <field name="model_id" ref="hr.model_hr_job"/>
+            <field name="binding_model_id" ref="hr.model_hr_job"/>
+            <field name="x_print_menu" eval="True"/>
+            <field name="state">code</field>
+            <field name="code">
+            if records:
+                attachment_id = records.get_job_description()
+                action = {
+                    'type': 'ir.actions.act_url',
+                    'url': '/web/content/' + str(attachment_id.id) + '?download=true',
+                    'url': "web/content/?model=ir.attachment&amp;id=" + str(attachment_id.id) + "&amp;filename_field=name&amp;field=datas&amp;download=true&amp;name=" + attachment_id.name,
+                    'target': 'new',
+                }
+            </field>
+        </record>
+
+  </data>
+</odoo>

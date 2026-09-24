@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_change_requisition_qty_wizard_form" model="ir.ui.view">
+            <field name="name">Thay đổi số lượng cần mua</field>
+            <field name="model">purchase.requisition.line.qty.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Thay đổi số lượng cần mua">
+                    <field name="line_id" invisible="1"/>
+                    <field name="product_uom_id" invisible="1"/>
+                    <group>
+                        <field name="requisition_id"/>
+                        <field name="product_id"/>
+                        <field name="current_qty"/>
+                        <field name="qty_ordered"/>
+                        <field name="qty_done"/>
+                        <field name="new_qty"/>
+                        <field name="reason" placeholder="Nhập lý do thay đổi số lượng..."/>
+                    </group>
+                    <footer>
+                        <button string="Xác nhận" name="action_change_qty" type="object" class="btn-primary"/>
+                        <button string="Huỷ" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

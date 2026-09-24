@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="report_debit_tree" model="ir.ui.view">
+            <field name="name">Báo cáo tổng hợp công nợ khách hàng / nhà cung cấp</field>
+            <field name="model">report.debit</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false" class="hide_o_list_record_selector">
+                    <field name="stt"/>
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="tk"/>
+                    <field name="first_debit" sum="Tổng cộng"/>
+                    <field name="first_credit" sum="Tổng cộng"/>
+                    <field name="debt" sum="Tổng cộng"/>
+                    <field name="credit" sum="Tổng cộng"/>
+                    <field name="last_debit" sum="Tổng cộng"/>
+                    <field name="last_credit" sum="Tổng cộng"/>
+                    <button string="Xem chi tiết" class="btn btn-link" type="object" name="action_view_detail"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_report_debit" model="ir.actions.act_window">
+            <field name="name">Báo cáo tổng hợp công nợ khách hàng / nhà cung cấp</field>
+            <field name="res_model">report.debit</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree</field>
+        </record>
+    </data>
+</odoo>

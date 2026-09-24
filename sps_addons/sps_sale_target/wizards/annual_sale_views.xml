@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="annual_sale_report_view_form" model="ir.ui.view">
+        <field name="name">annual.sale.report.view.form</field>
+        <field name="model">annual.sale.report</field>
+        <field name="arch" type="xml">
+            <form string="Annual Sale">
+                <sheet>
+                    <group name="year" string="Report Year">
+                        <field name="year" />
+                    </group>
+                </sheet>
+                <footer>
+                    <button string="Ok" name="ok" type="object" class="oe_highlight" />
+                    <button string="Cancel" special="cancel" class="btn-secondary" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="annual_sale_report_action" model="ir.actions.act_window">
+        <field name="name">Annual Sale Report</field>
+        <field name="res_model">annual.sale.report</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="sps_sale_target.annual_sale_report_view_form" />
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        id="annual_sale_report_menu"
+        name="Annual Sale Report"
+        action="annual_sale_report_action"
+        groups="sales_team.group_sale_manager"
+        parent="sale.menu_sale_report"
+        sequence="100"/>
+
+</odoo>

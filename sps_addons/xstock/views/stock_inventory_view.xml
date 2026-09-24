@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="inherit_stock_inventory_line" model="ir.ui.view">
+            <field name="name">stock.inventory.line.tree</field>
+            <field name="model">stock.inventory.line</field>
+            <field name="inherit_id" ref="stock.stock_inventory_line_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='difference_qty']" position="after">
+                    <field name="x_note"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="inherit_view_move_line_tree" model="ir.ui.view">
+            <field name="name">stock.move.line.tree</field>
+            <field name="model">stock.move.line</field>
+            <field name="inherit_id" ref="stock.view_move_line_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_uom_id']" position="after">
+                    <field name="x_note"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="inherit_view_move_line" model="ir.ui.view">
+            <field name="name">stock.move.line.view</field>
+            <field name="model">stock.move.line</field>
+            <field name="inherit_id" ref="stock.view_move_line_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='owner_id']" position="after">
+                    <field name="x_note"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_search_product_tree" model="ir.ui.view">
+            <field name="name">product.search.tree.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_product_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="default_code" position="after">
+                    <field name="x_code_brand"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Tree -->
+    <record id="view_hr_kpi_evaluation_tree" model="ir.ui.view">
+        <field name="name">hr.kpi.evaluation.tree</field>
+        <field name="model">hr.kpi.evaluation</field>
+        <field name="arch" type="xml">
+            <tree string="Đánh giá KPI" editable="bottom" create="false">
+                <field name="employee_id" readonly="1"/>
+                <field name="contract_id" optional="hide" readonly="1"/>
+                <field name="date_from" optional="hide" readonly="1"/>
+                <field name="date_to" optional="hide" readonly="1"/>
+                <field name="kpi_norm" readonly="1"/>
+                <field name="paid_hours" readonly="1"/>
+                <field name="standard_hours" readonly="1"/>
+                <field name="coefficient" readonly="1"/>
+                <field name="score"/>
+                <field name="kpi_salary" readonly="1" sum="Tổng"/>
+                <field name="currency_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form -->
+    <record id="view_hr_kpi_evaluation_form" model="ir.ui.view">
+        <field name="name">hr.kpi.evaluation.form</field>
+        <field name="model">hr.kpi.evaluation</field>
+        <field name="arch" type="xml">
+            <form string="Đánh giá KPI">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id" readonly="1"/>
+                            <field name="contract_id" readonly="1"/>
+                            <field name="payslip_run_id" readonly="1"/>
+                            <field name="date_from" readonly="1"/>
+                            <field name="date_to" readonly="1"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="kpi_norm" readonly="1"/>
+                            <field name="paid_hours" readonly="1"/>
+                            <field name="standard_hours" readonly="1"/>
+                            <field name="coefficient" readonly="1"/>
+                            <field name="score"/>
+                            <field name="kpi_salary" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search -->
+    <record id="view_hr_kpi_evaluation_search" model="ir.ui.view">
+        <field name="name">hr.kpi.evaluation.search</field>
+        <field name="model">hr.kpi.evaluation</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="employee_id"/>
+                <field name="payslip_run_id"/>
+                <group expand="0" string="Nhóm theo">
+                    <filter name="group_run" string="Đợt lương" context="{'group_by': 'payslip_run_id'}"/>
+                    <filter name="group_employee" string="Nhân viên" context="{'group_by': 'employee_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_hr_kpi_evaluation" model="ir.actions.act_window">
+        <field name="name">Đánh giá KPI</field>
+        <field name="res_model">hr.kpi.evaluation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu "Đánh giá KPI" đã ẩn theo yêu cầu: chỉ xem/sửa KPI trong tab của đợt lương. -->
+
+    <!-- Page trên form đợt lương -->
+    <record id="hr_payslip_run_form_inherit_kpi" model="ir.ui.view">
+        <field name="name">hr.payslip.run.form.kpi</field>
+        <field name="model">hr.payslip.run</field>
+        <field name="inherit_id" ref="hr_payroll.hr_payslip_run_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_refresh_kpi" type="object"
+                        string="Cập nhật KPI"
+                        class="btn-secondary"
+                        attrs="{'invisible': [('state', '=', 'close')]}"/>
+            </xpath>
+            <xpath expr="//sheet" position="inside">
+                <notebook>
+                    <page string="Đánh giá KPI" name="kpi_evaluation">
+                        <field name="kpi_evaluation_ids" nolabel="1"
+                               attrs="{'readonly': [('state', '=', 'close')]}">
+                            <tree editable="bottom" create="false">
+                                <field name="employee_id" readonly="1"/>
+                                <field name="kpi_norm" readonly="1"/>
+                                <field name="paid_hours" readonly="1"/>
+                                <field name="standard_hours" readonly="1"/>
+                                <field name="coefficient" readonly="1"/>
+                                <field name="score" attrs="{'readonly': [('parent.state', '=', 'close')]}"/>
+                                <field name="kpi_salary" readonly="1" sum="Tổng"/>
+                                <field name="currency_id" invisible="1"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_hr_recruit_request_tree" model="ir.ui.view">
+            <field name="name">hr.recruit.request.tree</field>
+            <field name="model">hr.recruit.request</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="job_id"/>
+                    <field name="department_id"/>
+                    <field name="project_id"/>
+                    <field name="quantity"/>
+                    <field name="budget"/>
+                    <field name="contract_type"/>
+                    <field name="income_value"/>
+                    <field name="date_start"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_hr_recruit_request_form" model="ir.ui.view">
+            <field name="name">hr.recruit.request.form</field>
+            <field name="model">hr.recruit.request</field>
+            <field name="arch" type="xml">
+                <form>
+                    <field name="is_department_approvable" invisible="1"/>
+                    <field name="is_hr_approvable" invisible="1"/>
+                    <header>
+                        <button type="object" name="action_confirm" string="Confirm" class="oe_highlight"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                        <button type="object" name="action_approval_department" string="Department approve" class="oe_highlight"
+                                attrs="{'invisible': ['|', ('state', '!=', 'confirm'), ('is_department_approvable', '!=', True)]}"/>
+                        <button type="object" name="action_approval_hr" string="HR approve" class="oe_highlight"
+                                groups="hr.group_hr_manager"
+                                attrs="{'invisible': [('is_hr_approvable', '!=', True)]}"/>
+                        <button type="object" name="action_approval_bod" string="BOD approve" class="oe_highlight"
+                                groups="base.group_erp_manager"
+                                attrs="{'invisible': [('state', '!=', 'approval_hr')]}"/>
+                        <button type="object" name="action_reject" string="Reject"
+                                confirm="Confirm reject this item? &#009;Remember to note reason to Log panel after reject!"
+                                attrs="{'invisible': [('state', 'not in', ['confirm', 'approval_department', 'approval_hr'])]}"/>
+                        <button type="object" name="action_cancel" string="Cancel" confirm="Confirm cancel this item?"
+                            attrs="{'invisible': [('state', 'in', ['draft', 'canceled'])]}"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,doing"/>
+                    </header>
+                    <sheet>
+                        <h2>For requested department</h2>
+                        <div>
+                            <group>
+                                <group>
+                                    <field name="job_id" required="1"/>
+                                    <field name="department_id"/>
+                                    <field name="project_id"/>
+                                    <field name="budget" required="1" widget="radio" options="{'horizontal': true}"/>
+                                    <field name="company_id" groups="base.group_multi_company"/>
+                                </group>
+                                <group>
+                                    <field name="quantity"/>
+                                    <field name="report_to_id"/>
+                                    <field name="employee_count"/>
+                                    <field name="remark"/>
+                                </group>
+                            </group>
+                            <div attrs="{'invisible': [('budget', '!=', 'out')]}">
+                                <label for="budget_reason"/>
+                                <field name="budget_reason" attrs="{'required': [('budget', '=', 'out')]}"/>
+                            </div>
+
+                            <group>
+                                <group>
+                                    <label for="reason_replace" string="Recruitment reason"/>
+                                    <div>
+                                        <label for="reason_replace"/>
+                                        <field name="reason_replace" class="oe_inline"/>
+                                        <label for="reason_add"/>
+                                        <field name="reason_add" class="oe_inline"/>
+                                    </div>
+                                </group>
+                                <group>
+                                    <field name="contract_type" widget="radio" options="{'horizontal': true}"/>
+                                </group>
+                            </group>
+
+                            <group>
+                                <group>
+                                    <label for="reason_replace" string="Working place"/>
+                                    <div>
+                                        <label for="work_location_official"/>
+                                        <field name="work_location_official" class="oe_inline"/>
+                                        <label for="work_location_project"/>
+                                        <field name="work_location_project" class="oe_inline"/>
+                                    </div>
+                                </group>
+                                <group>
+                                    <field name="working_hours" widget="radio" options="{'horizontal': true}"/>
+                                </group>
+                            </group>
+
+                            <separator string="Allowances"/>
+                            <group col="4">
+                                <group col="1">
+                                    <field name="allowance_phone"/>
+                                    <field name="allowance_oil"/>
+                                    <field name="allowance_other"/>
+                                </group>
+                                <group col="3" colspan="3">
+                                    <field name="allowance_phone_value" attrs="{'readonly': [('allowance_phone', '=', False)], 'required': [('allowance_phone', '!=', False)]}"/>
+                                    <field name="allowance_oil_value" attrs="{'readonly': [('allowance_oil', '=', False)], 'required': [('allowance_oil', '!=', False)]}"/>
+                                    <field name="allowance_other_note" attrs="{'readonly': [('allowance_other', '=', False)], 'required': [('allowance_other', '!=', False)]}"/>
+                                    <field name="allowance_other_value" attrs="{'readonly': [('allowance_other', '=', False)], 'required': [('allowance_other', '!=', False)]}"/>
+                                </group>
+                            </group>
+
+                            <group>
+                                <group>
+                                    <field name="income_value"/>
+                                    <field name="income_type"/>
+                                </group>
+                                <group>
+                                    <field name="income_probation"/>
+                                    <field name="date_start"/>
+                                </group>
+                            </group>
+
+                            <separator string="Requirements"/>
+                            <group>
+                                <field name="gender" widget="radio" options="{'horizontal': true}"/>
+                                <label for="age_from" string="Age range"/>
+                                <div>
+                                    <field name="age_from" class="oe_inline"/>
+                                    <span class="fa fa-arrow-right" style="padding: 0 6px 0 6px;" title="Age range"/>
+                                    <field name="age_to" class="oe_inline"/>
+                                </div>
+                                <field name="x_degree"/>
+                                <label for="experience_required"/>
+                                <div>
+                                    <field name="experience_required" widget="radio" options="{'horizontal': true}" class="oe_inline"/>
+                                    <field name="experience_value" class="oe_inline" attrs="{'invisible': [('experience_required', '!=', '1')], 'required': [('experience_required', '=', '1')]}"/>
+                                    <span attrs="{'invisible': [('experience_required', '!=', '1')]}"> years</span>
+                                </div>
+                                <field name="english_requires" widget="radio" options="{'horizontal': true}"/>
+                                <field name="other_requires"/>
+                            </group>
+                        </div>
+
+                        <h2>For HR department</h2>
+                        <div>
+                            <group>
+                                <label for="source_internal" string="Recruitment method"/>
+                                <div>
+                                    <label for="source_internal"/>
+                                    <field name="source_internal" class="oe_inline"/>
+                                    <label for="source_sps_web"/>
+                                    <field name="source_sps_web" class="oe_inline"/>
+                                    <label for="source_buy"/>
+                                    <field name="source_buy" class="oe_inline"/>
+                                    <label for="source_website"/>
+                                    <field name="source_website" class="oe_inline"/>
+                                </div>
+                            </group>
+                        </div>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_hr_recruit_request" model="ir.actions.act_window">
+            <field name="name">Recruitment requests</field>
+            <field name="res_model">hr.recruit.request</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            id="menu_hr_recruit_request"
+            name="Recruitment requests"
+            action="action_hr_recruit_request"
+            parent="hr_recruitment.menu_crm_case_categ0_act_job"
+            sequence="10"/>
+
+  </data>
+</odoo>

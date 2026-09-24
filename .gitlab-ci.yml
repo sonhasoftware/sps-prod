@@ -1,0 +1,83 @@
+stages:
+  - push
+  - deploy
+variables:
+  LANG: en_US.UTF-8
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_TLS_CERTDIR: ""
+
+push-job-stage:
+  stage: push
+  image: docker:28.3.2
+  services:
+    - docker:28.3.2-dind
+  before_script:
+    - git config --global http.postBuffer 1048576000
+    - git config --global http.version HTTP/1.1
+    - git config --global http.lowSpeedLimit 0
+    - git config --global http.lowSpeedTime 999999
+    - echo "$SERVER_PASSWORD" | docker login --username $SERVER_USERNAME --password-stdin
+  script:
+    - docker build -t cuongntt/odoo-sps-stage:14-${CI_COMMIT_SHORT_SHA} .
+    - docker push cuongntt/odoo-sps-stage:14-${CI_COMMIT_SHORT_SHA}
+  only:
+    refs:
+      - stage
+    variables:
+      - $CI_PIPELINE_SOURCE == "web"
+
+deploy-job-stage:
+  stage: deploy
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache git bash curl sed
+    - git config --global user.name "bmstech"
+    - git config --global user.email "bms@bmstech.com.vn"
+  script:
+    - git clone https://git.bms:${GITOPS_TOKEN}@gitlab.com/bms-stage-env/k8s-stage.git
+    - cd k8s-stage/sps-stage
+    - 'sed -i "s#image: cuongntt/odoo-sps-stage:.*#image: cuongntt/odoo-sps-stage:14-${CI_COMMIT_SHORT_SHA}#" odoo-sps-stage-deployment.yaml'
+    - git add odoo-sps-stage-deployment.yaml
+    - git commit -m "Update image tag to ${CI_COMMIT_SHORT_SHA}" || echo "Nothing to commit"
+    - git push origin main
+  only:
+    refs:
+      - stage
+    variables:
+      - $CI_PIPELINE_SOURCE == "web"
+
+push-job-prod:
+  stage: push
+  image: docker:28.3.2
+  services:
+    - docker:28.3.2-dind
+  before_script:
+    - echo "$SERVER_PASSWORD" | docker login --username $SERVER_USERNAME --password-stdin
+  script:
+    - docker build -t cuongntt/odoo-sps:14-${CI_COMMIT_SHORT_SHA} .
+    - docker push cuongntt/odoo-sps:14-${CI_COMMIT_SHORT_SHA}
+  only:
+    refs:
+      - production_hot_fix
+    variables:
+      - $CI_PIPELINE_SOURCE == "web"
+
+deploy-job-prod:
+  stage: deploy
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache git bash curl sed
+    - git config --global user.name "bmstech"
+    - git config --global user.email "bms@bmstech.com.vn"
+  script:
+    - git clone https://git.bms:${GITOPS_TOKEN}@gitlab.com/git.bms-group/app-odoo/odoo-manifest.git
+    - cd odoo-manifest/odoo-sps
+    - 'sed -i "s#image: cuongntt/odoo-sps:.*#image: cuongntt/odoo-sps:14-${CI_COMMIT_SHORT_SHA}#" odoo-sps-deployment.yaml'
+    - git add odoo-sps-deployment.yaml
+    - git commit -m "Update image tag to ${CI_COMMIT_SHORT_SHA}" || echo "Nothing to commit"
+    - git push origin main
+  only:
+    refs:
+      - production_hot_fix
+    variables:
+      - $CI_PIPELINE_SOURCE == "web"

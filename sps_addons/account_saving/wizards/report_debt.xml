@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+        <record id="wizard_cash_debt_popup" model="ir.ui.view">
+            <field name="name">Báo cáo tổng hợp công nợ khách hàng / nhà cung cấp</field>
+            <field name="model">cash.debt.popup</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Báo cáo tổng hợp công nợ khách hàng / nhà cung cấp">
+                    <group>
+                        <field name="from_date"/>
+                        <field name="to_date"/>
+                        <field name="account_ids" domain="[('reconcile','!=',False)]" widget="many2many_tags"/>
+                    </group>
+                    <footer>
+                        <button string="Xác nhận" name="action_cash_debt_popup" type="object" class="btn-primary"/>
+                        <button string="Huỷ" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_cash_debt_popup" model="ir.actions.act_window">
+            <field name="name">Báo cáo tổng hợp công nợ khách hàng / nhà cung cấp</field>
+            <field name="res_model">cash.debt.popup</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="domain">[]</field>
+        </record>
+        <menuitem action="action_cash_debt_popup"
+                  name="Báo cáo tổng hợp công nợ khách hàng / nhà cung cấp"
+                  parent="account.menu_finance_reports"
+                  id="menu_cash_debt_popup"
+                  sequence="1"/>
+    </data>
+</odoo>

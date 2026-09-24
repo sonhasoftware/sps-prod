@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="stock_picking_form" model="ir.ui.view">
+            <field name="name">stock.picking.form.view</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_done']" position="replace">
+                    <field name='date_done' readonly="0"/>
+                </xpath>
+                <xpath expr="//field[@name='origin']" position="after">
+                    <!--<field name="x_picking_type_code" invisible="1"/>-->
+                    <field name="x_receiver_id"
+                           attrs="{'invisible': [('x_picking_type','in',['type_2','type_8','type_6'])] , 'readonly':[('x_picking_type','=','type_5'),('x_type_5_state','in',('wait_receiver','confirmed'))]}"/>
+                    <field name="is_receiver" invisible="1"/>
+                    <field name="x_payer_id"
+                           attrs="{'invisible': [('x_picking_type','in',['type_1','type_3','type_4'])],'readonly':[('x_picking_type','=','type_5'),('x_type_5_state','in',('wait_receiver','confirmed'))]}"/>
+                    <field name="create_uid"/>
+                    <field name="x_to_the_project_id" invisible="1"/>
+                    <field name="x_type_code" invisible="1"/>
+                    <field name="x_picking_type" invisible="1" force_save="1"/>
+                    <field name="x_check" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('x_picking_type','not in',['type_1'])]}</attribute>
+                    <attribute name="nolabel">0</attribute>
+                    <attribute name="string">Nhập từ</attribute>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="x_type_5_state" force_save="1" attrs="{'invisible': [('x_picking_type','not in',['type_5'])]}"/>
+                    <field name="x_valuation_layer" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='move_line_ids_without_package']" position="attributes">
+                    <attribute name="context">{'tree_view_ref': 'stock.view_stock_move_line_detailed_operation_tree', 'default_picking_id': id, 'default_location_id': location_id, 'default_location_dest_id': location_dest_id, 'default_company_id': company_id, 'default_project': x_to_the_project_id,'picking_type':x_picking_type,'code_type':x_type_code}</attribute>
+                    <attribute name="attrs">{'readonly': ['|','|', '|', ('show_operations', '=', False), ('state', '=', 'cancel'), '&amp;', ('state', '=', 'done'), ('is_locked', '=', True),'&amp;',('x_picking_type','in',['type_5']),('x_type_5_state','in',['confirmed','wait_receiver'])]}</attribute>
+                </xpath>
+                 <xpath expr="//field[@name='move_ids_without_package']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+                <xpath expr="//div[@class='o_td_label']" position="replace"/>
+                <xpath expr="//field[@name='location_dest_id']/." position="attributes">
+                    <attribute name="attrs">{'invisible': [('x_picking_type','in',['type_4','type_5','type_3'])]}</attribute>
+                    <attribute name="context">{'picking_type': x_picking_type, 'location_dest_id':True}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='location_dest_id']" position="after">
+                    <field name="x_paid" attrs="{'invisible': [('x_picking_type','!=','type_6')]}"/>
+                </xpath>
+                <xpath expr="//field[@name='location_id']/." position="attributes">
+                    <attribute name="attrs">{'invisible':
+                        [('x_picking_type','in',['type_5','type_8','type_2','type_1','type_6'])]}
+                    </attribute>
+                    <attribute name="context">{'picking_type': x_picking_type,'location_id' : True}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='origin']" position="attributes">
+                    <attribute name="attrs">{'invisible':
+                        [('x_picking_type','in',['type_2','type_3','type_7','type_8','type_4','type_5','type_6'])]}
+                    </attribute>
+                </xpath>
+                <xpath expr="//field[@name='scheduled_date']/.." position="attributes">
+                    <attribute name="attrs">{'invisible':
+                        [('x_picking_type','in',['type_2','type_3','type_7','type_8','type_4','type_5','type_6'])]}
+                    </attribute>
+                </xpath>
+                <xpath expr="//label[@for='scheduled_date']" position="attributes">
+                    <attribute name="attrs">{'invisible':
+                        [('x_picking_type','in',['type_2','type_3','type_7','type_8','type_4','type_5','type_6'])]}
+                    </attribute>
+                </xpath>
+                <xpath expr="//field[@name='picking_type_id']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='quantity_done']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='product_uom']" position="after">
+                    <field name="product_uom_qty"/>
+                    <field name="quantity_done"/>
+                    <field name="x_valuation_layer" optional="hide"/>
+                </xpath>
+
+                <xpath expr="//button[@name='action_confirm']" position="after">
+                    <button name="act_payer_confirm" string="Người bàn giao xác nhận" type="object"
+                            attrs="{'invisible': ['|','|',(('state', 'not in', ['draft','assigned'])),('x_picking_type','not in',['type_5']),('x_type_5_state','!=','wait_payer')]}"/>
+                </xpath>
+                <xpath expr="//button[@name='action_confirm']" position="after">
+                     <button name="act_receiver_confirm" string="Người nhận xác nhận" type="object"
+                            attrs="{'invisible':['|','|',('state', 'in', ['draft','done','cancel']), ('x_picking_type','not in',['type_5']),'|',('x_type_5_state','!=','wait_receiver'),('is_receiver','=',False)]}"
+                    />
+                    <button name="act_refuse" string="Từ chối xác nhận" type="object"
+                            attrs="{'invisible':['|','|',('state', 'in', ['draft','done','cancel']), ('x_picking_type','not in',['type_5']),'|',('x_type_5_state','!=','wait_receiver'),('is_receiver','=',False)]}"
+                    />
+                </xpath>
+                <xpath expr="//button[@name='action_confirm']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//button[@name='button_scrap']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+<!--                <xpath expr="//button[@name='action_cancel']" position="attributes">-->
+<!--                    <attribute name="invisible">1</attribute>-->
+<!--                </xpath>-->
+                <xpath expr="//button[@name='button_validate'][2]" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|','|', ('state', 'not in', ('waiting', 'confirmed')), ('show_validate', '=', False),'&amp;',('state','in',('draft','confirmed','assigned')),('x_picking_type','in',['type_5'])]}
+                    </attribute>
+                </xpath>
+                <xpath expr="//button[@name='button_validate'][1]" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|','|','|',('x_check','=',False),('state', 'in', ('waiting')), ('show_validate', '=', False),'|','&amp;',('x_picking_type','in',['type_5']),('state','in',('draft')),'&amp;',('x_picking_type','in',['type_5']),('x_type_5_state','!=','confirmed')]}
+                    </attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_toggle_is_locked']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//page[@name='extra']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//button[@name='do_print_picking']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <button name="%(stock.action_report_delivery)d" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </button>
+
+                <xpath expr="//field[@name='state']" position="attributes">
+                    <attribute name="statusbar_visible">"draft,confirmed,done,cancel"</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="vpicktree" model="ir.ui.view">
+            <field name="name">stock.picking.tree</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.vpicktree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='location_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='location_dest_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='user_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='scheduled_date']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='date_deadline']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='origin']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='backorder_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='picking_type_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='state']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="scheduled_date"/>
+                    <field name="date_done"/>
+                    <field name="x_payer_id"/>
+                    <field name="x_receiver_id"/>
+                    <field name="x_valuation_layer" optional="hide"/>
+                    <field name="location_id"/>
+                    <field name="location_dest_id"/>
+                    <field name="partner_id"/>
+                    <field name="origin"/>
+                    <field name="state"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_stock_move_line_detailed_operation_tree_expiry" model="ir.ui.view">
+            <field name="name">stock.move.line.operations.inherit.tree</field>
+            <field name="model">stock.move.line</field>
+            <field name="inherit_id" ref="stock.view_stock_move_line_detailed_operation_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_id']" position="after">
+                    <field name="x_location_stock"/>
+                </xpath>
+                <xpath expr="//field[@name='location_dest_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='location_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='qty_done']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='product_id']" position="attributes">
+                    <attribute name="context">{'default_type': 'product', 'type' : x_picking_type}</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='lot_id']" position="attributes">
+                    <attribute name="context">{'default_product_id': product_id, 'default_company_id': company_id,'active_picking_id': picking_id ,'payer_id': x_payer_id, 'x_project_by_payer': True, 'product_id': product_id,'type' : x_picking_type ,'code_type': x_type_code,'location_id':location_id}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='product_uom_id']" position="after">
+                    <field name="x_picking_type"/>
+                    <field name="x_type_code"/>
+                    <field name="x_payer_id"/>
+                    <field name="x_from_the_project_id"
+                           attrs="{'invisible': [('x_picking_type','in',['type_1','type_3','type_7','type_8','type_4'])]
+                           ,'required': [('x_picking_type','in',['type_2', 'type_5', 'type_6'])]}"
+                            context="{'payer_id': x_payer_id, 'x_project_by_payer': True, 'product_id': product_id, 'lot_id': lot_id ,'type' : x_picking_type}"
+                    />
+                    <field name="is_return" invisible="1"/>
+                    <field name="x_to_the_project_id"
+                           attrs="{'invisible': [('x_picking_type','in',['type_1', 'type_2', 'type_7','type_8','type_6'])]
+                           ,'required': [('x_picking_type','in',['type_3', 'type_4', 'type_5']),('is_return','=',False)]}"/>
+                    <field name="x_qty_delivered" force_save="1"
+                           attrs="{'invisible': [('x_picking_type','in',['type_1', 'type_2','type_3', 'type_7','type_8','type_4'])]}"/>
+                    <field name="x_qty_available"  attrs="{'invisible': [('x_type_code','not in',['outgoing', 'internal'])]}"/>
+                    <field name="x_qty_done_t1" attrs="{'column_invisible': [('parent.x_picking_type','!=','type_1')]}" force_save="1"/>
+                    <field name="x_qty_done_t2" attrs="{'column_invisible': [('parent.x_picking_type','!=','type_2')]}" force_save="1"/>
+                    <field name="x_qty_done_t3" attrs="{'column_invisible': [('parent.x_picking_type','!=','type_3')]}" force_save="1"/>
+                    <field name="x_qty_done_t4" attrs="{'column_invisible': [('parent.x_picking_type','!=','type_4')]}" force_save="1"/>
+                    <field name="x_qty_done_t5" attrs="{'column_invisible': [('parent.x_picking_type','!=','type_5')]}" force_save="1"/>
+                    <field name="x_qty_done_t6" attrs="{'column_invisible': [('parent.x_picking_type','!=','type_6')]}" force_save="1"/>
+                    <field name="x_qty_done_t7" attrs="{'column_invisible': [('parent.x_picking_type','!=','type_7')]}" force_save="1"/>
+                    <field name="x_qty_done_t8" attrs="{'column_invisible': [('parent.x_picking_type','!=','type_8')]}" force_save="1"/>
+                    <field name="x_qty_done_t9" attrs="{'column_invisible': [('parent.x_picking_type','!=','type_9')]}" force_save="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_picking_type_form" model="ir.ui.view">
+            <field name="name">Operation Types</field>
+            <field name="model">stock.picking.type</field>
+            <field name="inherit_id" ref="stock.view_picking_type_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='show_operations']" position="after">
+                    <field name="x_type" force_save="1" groups="base.group_no_one"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+    <data>
+          <record id="view_stock_move_line_form_inherited_mobile" model="ir.ui.view">
+            <field name="name">stock.move.line.form.inherited.mobile</field>
+            <field name="model">stock.move.line</field>
+            <field name="inherit_id" ref="stock.view_move_line_form"/>
+            <field name="arch" type="xml">
+<!--                view mobile-->
+                <xpath expr="//field[@name='product_id']" position="attributes">
+                    <attribute name="context">{'default_type': 'product', 'type' : x_picking_type}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='lot_id']" position="attributes">
+                    <attribute name="context">{'default_product_id': product_id, 'default_company_id': company_id,'active_picking_id': picking_id ,'payer_id': x_payer_id, 'x_project_by_payer': True, 'product_id': product_id,'type' : x_picking_type ,'code_type': x_type_code,'location_id':location_id}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='location_dest_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='location_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='product_id']" position="after">
+                    <field name="x_location_stock"/>
+                    <field name="x_picking_type"/>
+                    <field name="x_type_code"/>
+                    <field name="x_payer_id"/>
+                    <field name="x_from_the_project_id"
+                           attrs="{'invisible': [('x_picking_type','in',['type_1','type_3','type_7','type_8','type_4'])]
+                           ,'required': [('x_picking_type','in',['type_2'])]}"
+                            context="{'payer_id': x_payer_id, 'x_project_by_payer': True, 'product_id': product_id, 'lot_id': lot_id ,'type' : x_picking_type}"
+                    />
+                    <field name="is_return" invisible="1"/>
+                    <field name="x_to_the_project_id"
+                           attrs="{'invisible': [('x_picking_type','in',['type_1', 'type_2', 'type_7','type_8','type_6'])]
+                           ,'required': [('x_picking_type','in',['type_3']),('is_return','=',False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='lot_id']" position="before">
+                     <field name="x_qty_delivered" force_save="1"
+                           attrs="{'invisible': [('x_picking_type','in',['type_1', 'type_2','type_3', 'type_7','type_8','type_4'])]}"/>
+                     <field name="x_qty_available"  attrs="{'invisible': [('x_type_code','not in',['outgoing', 'internal'])]}"/>
+                </xpath>
+            </field>
+        </record>
+
+          <record id="action_report_payment_receipt_warehouse" model="ir.actions.server">
+                <field name="name">Báo cáo phiếu xuất/trả kho</field>
+                <field name="model_id" ref="model_stock_picking"/>
+                <field name="binding_model_id" ref="model_stock_picking"/>
+                <field name="binding_view_types">form</field>
+                <field name="state">code</field>
+                <field name="code">
+                    if records:
+                        action = records.action_report_payment_receipt_warehouse()
+                </field>
+
+          </record>
+    </data>
+</odoo>

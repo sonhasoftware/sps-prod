@@ -1,0 +1,45 @@
+<odoo>
+    <record model="ir.ui.view" id="report_recruitment_monthly_view">
+        <field name="name">Monthly</field>
+        <field name="model">report.recruitment.monthly</field>
+        <field name="arch" type="xml">
+            <tree create="false" delete="false" edit="false">
+                <field name="name" string="Classification"/>
+                <field name="m1"/>
+                <field name="m2"/>
+                <field name="m3"/>
+                <field name="m4"/>
+                <field name="m5"/>
+                <field name="m6"/>
+                <field name="m7"/>
+                <field name="m8"/>
+                <field name="m9"/>
+                <field name="m10"/>
+                <field name="m11"/>
+                <field name="m12"/>
+                <field name="total"/>
+                <field name="master_key" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="report_recruitment_monthly_act">
+        <field name="name">Báo cáo tình trạng tuyển dụng</field>
+        <field name="res_model">report.recruitment.monthly</field>
+        <field name="domain">[('master_key','=', uid)]</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem
+            id="report_recruitment_monthly_menu_hr"
+            name="Báo cáo tình trạng tuyển dụng"
+            action="report_recruitment_monthly_act"
+            parent="hr_recruitment.report_hr_recruitment"
+            sequence="2"/>
+<!--    <menuitem-->
+<!--            id="report_recruitment_monthly_menu"-->
+<!--            name="Báo cáo tình trạng tuyển dụng"-->
+<!--            action="report_recruitment_monthly_act"-->
+<!--            parent="effective_management.effective_hr"-->
+<!--            sequence="1"/>-->
+</odoo>

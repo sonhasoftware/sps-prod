@@ -1,0 +1,30 @@
+<odoo>
+    <data>
+        <record id="wizard_savings_deposit_popup" model="ir.ui.view">
+            <field name="name">Báo cáo tổng hợp tiền gửi tiết kiệm</field>
+            <field name="model">savings.deposit.popup</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Báo cáo tổng hợp tiền gửi tiết kiệm">
+                    <footer>
+                        <button string="Xác nhận" name="action_report_deposit" type="object" class="btn-primary"/>
+                        <button string="Huỷ" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_savings_deposit_popup" model="ir.actions.act_window">
+            <field name="name">Báo cáo tổng hợp tiền gửi tiết kiệm</field>
+            <field name="res_model">savings.deposit.popup</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="domain">[]</field>
+        </record>
+        <menuitem action="action_savings_deposit_popup"
+                  name="Báo cáo tổng hợp tiền gửi tiết kiệm"
+                  parent="account.account_reports_legal_statements_menu"
+                  id="menu_savings_deposit_popup"
+                  sequence="22"/>
+    </data>
+</odoo>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="savings_deposit_report_tree" model="ir.ui.view">
+            <field name="name">Báo cáo tổng hợp tiền gửi tiết kiệm</field>
+            <field name="model">savings.deposit.report</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false" class="hide_o_list_record_selector">
+                    <field name="sent_date"/>
+                    <field name="content"/>
+                    <field name="number_contract"/>
+                    <field name="value_money" sum="Tổng cộng"/>
+                    <field name="interest_rate"/>
+                    <field name="settlement_date"/>
+                    <field name="money_settlement" sum="Tổng cộng"/>
+                    <field name="bank"/>
+                    <field name="note"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_savings_deposit_report" model="ir.actions.act_window">
+            <field name="name">Báo cáo tổng hợp tiền gửi tiết kiệm</field>
+            <field name="res_model">savings.deposit.report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree</field>
+        </record>
+    </data>
+</odoo>

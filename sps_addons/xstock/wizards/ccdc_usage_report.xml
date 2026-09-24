@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="wizard_ccdc_usage_report" model="ir.ui.view">
+            <field name="name">Báo cáo giờ sử dụng CCDC</field>
+            <field name="model">ccdc.usage.report</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Báo cáo giờ sử dụng CCDC">
+                    <group string="1. Xuất báo cáo">
+                        <field name="so_nam"/>
+                    </group>
+                    <div class="text-muted">
+                        Xuất tổng giờ mượn, số lượng sở hữu (tồn kho nội bộ) và giờ/năm
+                        trung bình cho từng CCDC. Để <b>Số năm = 0</b> thì mỗi sản phẩm tự
+                        chia theo số năm trải dữ liệu của nó.
+                    </div>
+                    <group string="2. Cập nhật cấu hình từ file đã sửa">
+                        <field name="import_file" filename="import_filename"/>
+                        <field name="import_filename" invisible="1"/>
+                    </group>
+                    <div class="text-muted">
+                        Tải lên file Excel (đã xuất ở trên rồi chỉnh sửa) và bấm
+                        <b>Cập nhật cấu hình</b>. Hệ thống khớp theo cột <b>Mã SP</b> và ghi
+                        cột <b>Giờ/năm cấu hình</b> → "Số giờ dự kiến trong năm", cột
+                        <b>Số năm KH</b> → "Số năm khấu hao dự kiến".
+                    </div>
+                    <footer>
+                        <button string="Xuất Excel" name="action_export_xlsx" type="object" class="btn-primary"/>
+                        <button string="Cập nhật cấu hình" name="action_import_xlsx" type="object" class="btn-success"
+                                confirm="Cập nhật cấu hình giờ/năm và số năm khấu hao cho các CCDC theo file đã tải lên?"/>
+                        <button string="Huỷ" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_ccdc_usage_report" model="ir.actions.act_window">
+            <field name="name">Báo cáo giờ sử dụng CCDC</field>
+            <field name="res_model">ccdc.usage.report</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem action="action_ccdc_usage_report"
+                  name="Báo cáo giờ sử dụng CCDC"
+                  parent="stock.menu_stock_config_settings"
+                  id="menu_ccdc_usage_report"
+                  sequence="50"/>
+    </data>
+</odoo>

@@ -1,0 +1,38 @@
+<odoo>
+    <record model="ir.ui.view" id="report_classification_view">
+        <field name="name">Classification</field>
+        <field name="model">report.classification.monthly</field>
+        <field name="arch" type="xml">
+            <tree create="false" edit="false" delete="false">
+                <field name="type_employee" string="Classification"/>
+                <field name="m1" sum="total m1"/>
+                <field name="m2" sum="total m2"/>
+                <field name="m3" sum="total m3"/>
+                <field name="m4" sum="total m4"/>
+                <field name="m5" sum="total m5"/>
+                <field name="m6" sum="total m6"/>
+                <field name="m7" sum="total m7"/>
+                <field name="m8" sum="total m8"/>
+                <field name="m9" sum="total m9"/>
+                <field name="m10" sum="total m10"/>
+                <field name="m11" sum="total m11"/>
+                <field name="m12" sum="total m12"/>
+                <field name="ratio" string="Ratio %"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="report_classification_act" model="ir.actions.act_window">
+        <field name="name">Classification</field>
+        <field name="res_model">report.classification.monthly</field>
+        <field name="view_mode">tree</field>
+        <field name="context">{'group_by': 'name'}</field>
+    </record>
+
+    <menuitem
+            id="report_classification_menu"
+            name="Classification"
+            action="report_classification_act"
+            parent="hr.hr_menu_hr_reports"
+            sequence="7"/>
+</odoo>

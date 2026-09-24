@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+        <record model="ir.ui.view" id="purchase_order_view_tree">
+            <field name="name">Đơn mua hàng</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="xpurchase.purchase_order_view_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='amount_total']" position="after">
+                    <field name="remaining_amount"/>
+<!--                    <field name="advance_ids" widget="many2many_tags"/>-->
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+        <record id="wizard_cash_flow_popup" model="ir.ui.view">
+            <field name="name">Báo cáo dòng tiền</field>
+            <field name="model">cash.flow.popup</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Báo cáo dòng tiền">
+<!--                    <group>-->
+<!--                        <field name="year"/>-->
+<!--                    </group>-->
+                    <footer>
+                        <button string="Xem báo cáo" name="action_view_cash_flow" type="object" class="btn-primary"/>
+                        <button string="Xuất báo cáo" name="action_cash_flow" type="object" class="btn-primary"/>
+                        <button string="Huỷ" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_cash_flow_popup" model="ir.actions.act_window">
+            <field name="name">Báo cáo dòng tiền</field>
+            <field name="res_model">cash.flow.popup</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem action="action_cash_flow_popup"
+                  name="Báo cáo dòng tiền"
+                  parent="account.menu_finance_reports"
+                  id="menu_cash_flow_popup"
+                  sequence="23"/>
+    </data>
+</odoo>

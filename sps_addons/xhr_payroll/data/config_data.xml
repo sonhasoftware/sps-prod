@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Định mức hỗ trợ ăn ca / suất (đồng). Có thể chỉnh trong Cài đặt kỹ thuật. -->
+        <record id="param_meal_rate" model="ir.config_parameter">
+            <field name="key">hr_payroll.meal_rate</field>
+            <field name="value">40000</field>
+        </record>
+    </data>
+</odoo>

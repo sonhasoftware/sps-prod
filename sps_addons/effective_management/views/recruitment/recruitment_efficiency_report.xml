@@ -1,0 +1,39 @@
+<odoo>
+    <record model="ir.ui.view" id="recruitment_efficiency_report_view">
+        <field name="name">Monthly</field>
+        <field name="model">recruitment.efficiency.report</field>
+        <field name="arch" type="xml">
+            <tree create="false" delete="false" edit="false">
+                <field name="name" string="Phân loại"/>
+                <field name="m1"/>
+                <field name="m2"/>
+                <field name="m3"/>
+                <field name="m4"/>
+                <field name="m5"/>
+                <field name="m6"/>
+                <field name="m7"/>
+                <field name="m8"/>
+                <field name="m9"/>
+                <field name="m10"/>
+                <field name="m11"/>
+                <field name="m12"/>
+                <field name="total"/>
+                <field name="master_key" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="recruitment_efficiency_report_act">
+        <field name="name">Báo cáo hiệu quả tuyển dụng</field>
+        <field name="res_model">recruitment.efficiency.report</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+<!--    <menuitem-->
+<!--            id="recruitment_efficiency_report_menu"-->
+<!--            name="Báo cáo hiệu quả tuyển dụng"-->
+<!--            action="recruitment_efficiency_report_act"-->
+<!--            parent="effective_management.effective_hr"-->
+<!--            sequence="2"/>-->
+ 
+</odoo>

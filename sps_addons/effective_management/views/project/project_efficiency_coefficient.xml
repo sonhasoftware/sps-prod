@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="project_efficiency_coefficient_tree" model="ir.ui.view">
+            <field name="name">project_efficiency_coefficient_tree</field>
+            <field name="model">project.efficiency.coefficient</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false" class="hide_o_list_record_selector" default_order="resource_type" decoration-bf="hight_light == True" >
+                    <field name="resource_type" string="Phân loại" optional="show"/>
+                    <field name="classification" string="Tên nhân viên"/>
+                    <field name="t1"/>
+                    <field name="t2"/>
+                    <field name="t3"/>
+                    <field name="t4"/>
+                    <field name="t5"/>
+                    <field name="t6"/>
+                    <field name="t7"/>
+                    <field name="t8"/>
+                    <field name="t9"/>
+                    <field name="t10"/>
+                    <field name="t11"/>
+                    <field name="t12"/>
+                    <field name="total"/>
+                    <field name="master_key" invisible="1"/>
+                    <field name="hight_light" invisible="1"/>
+                    <field name="target"/>
+                    <field name="ratio"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_project_efficiency_coefficient_view" model="ir.actions.act_window">
+            <field name="name">Báo cáo tình trạng giao hàng</field>
+            <field name="res_model">project.efficiency.coefficient</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <record model="ir.ui.view" id="efficiency_coefficient_search_view">
+            <field name="name">Báo cáo hiệu xuất lao động search</field>
+            <field name="model">project.efficiency.coefficient</field>
+            <field name="arch" type="xml">
+                <search>
+                     <filter string='Loại nhân lực' name="resource_type" domain="[]" context="{'group_by': 'resource_type'}"/>
+                </search>
+            </field>
+        </record>
+
+    </data>
+</odoo>

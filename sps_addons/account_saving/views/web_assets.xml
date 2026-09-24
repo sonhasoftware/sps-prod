@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend" name="account_saving assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/account_saving/static/src/js/cash_flow_button.js"/>
+            <script type="text/javascript" src="/account_saving/static/src/js/list_renderer_extension.js"/>
+        </xpath>
+    </template>
+</odoo> 

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="account_deposit_tracking_form_view" model="ir.ui.view">
+            <field name="name">Theo dõi tiền gửi tiết kiệm</field>
+            <field name="model">account.deposit.tracking</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="state" widget="statusbar"/>
+                        <button string="Xác nhận" class="oe_highlight" type="object" name="action_done"/>
+                        <button string="Tất toán" class="oe_highlight" type="object" name="action_settlement"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="date_sent"/>
+                                <label for="period" string="Kì hạn"/>
+                                <div>
+                                    <field name="period" class="oe_inline"/>
+                                    <field name="date_type" class="oe_inline"/>
+                                </div>
+                                <field name="content"/>
+                                <field name="number_contract"/>
+                                <field name="user_create_id"/>
+                                <field name="diary_id"/>
+                                <field name="bank_id"/>
+                                <field name="code_money"/>
+                                <field name="license_type"/>
+                            </group>
+                            <group>
+                                <field name="deposit_value"/>
+                                <field name="interest_rate"/>
+                                <field name="date_settlement"/>
+                                <field name="amount_settlement"/>
+                                <field name="note"/>
+                                <field name="method_settlement"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="account_deposit_tracking_tree_view" model="ir.ui.view">
+            <field name="name">Theo dõi tiền gửi tiết kiệm</field>
+            <field name="model">account.deposit.tracking</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="date_sent"/>
+                    <field name="period"/>
+                    <field name="content"/>
+                    <field name="number_contract"/>
+                    <field name="user_create_id"/>
+                    <field name="diary_id"/>
+                    <field name="bank_id"/>
+                    <field name="code_money"/>
+                    <field name="license_type"/>
+                    <field name="deposit_value"/>
+                    <field name="interest_rate"/>
+                    <field name="date_settlement"/>
+                    <field name="amount_settlement"/>
+                    <field name="note"/>
+                    <field name="method_settlement"/>
+                </tree>
+            </field>
+        </record>
+        <record id="search_account_deposit_tracking" model="ir.ui.view">
+            <field name="name">account.deposit.tracking</field>
+            <field name="model">account.deposit.tracking</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="number_contract"/>
+                    <field name="user_create_id"/>
+                    <field name="code_money"/>
+                    <field name="method_settlement"/>
+                </search>
+            </field>
+        </record>
+        <record id="action_account_deposit_tracking" model="ir.actions.act_window">
+            <field name="name">Theo dõi tiền gửi tiết kiệm</field>
+            <field name="res_model">account.deposit.tracking</field>
+            <field name="view_mode">tree,form,search</field>
+            <field name="domain">[]</field>
+        </record>
+    </data>
+</odoo>

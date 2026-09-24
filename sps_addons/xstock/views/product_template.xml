@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="product_template_kanban_stock_sps_view">
+            <field name="name">Product Template Kanban Stock</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_kanban_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//kanban" position="inside">
+                    <field name="status_warning"/>
+                    <field name="use_expiration_date"/>
+                </xpath>
+                <xpath expr="//div[hasclass('oe_kanban_global_click')]" position="attributes">
+                    <attribute name="t-attf-style">#{record.use_expiration_date.raw_value ? (record.status_warning.raw_value == 'overdue' ? 'border-left: 4px solid #dc3545;' : record.status_warning.raw_value == 'warning' ? 'border-left: 4px solid #ffc107;' : 'border-left: 4px solid #28a745;') : ''}</attribute>
+                </xpath>
+                <xpath expr="//div[hasclass('o_kanban_image')]" position="attributes">
+                    <attribute name="t-attf-style">#{record.use_expiration_date.raw_value ? (record.status_warning.raw_value == 'overdue' ? 'background-color: rgba(220, 53, 69, 0.1);' : record.status_warning.raw_value == 'warning' ? 'background-color: rgba(255, 193, 7, 0.1);' : '') : ''}</attribute>
+                </xpath>
+                <xpath expr="//strong[hasclass('o_kanban_record_title')]" position="after">
+                    <div t-if="record.use_expiration_date.raw_value" class="badge" t-attf-style="background-color: #{record.status_warning.raw_value == 'overdue' ? '#dc3545' : record.status_warning.raw_value == 'warning' ? '#ffc107' : '#28a745'}; color: white; font-size: 10px;">
+                        <t t-if="record.status_warning.raw_value == 'overdue'">Quá hạn</t>
+                        <t t-elif="record.status_warning.raw_value == 'warning'">Cảnh báo</t>
+                        <t t-else="">Bình thường</t>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_stock_product_sps_template_tree" model="ir.ui.view">
+            <field name="name">sps.product.template.stock.tree.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="stock.view_stock_product_template_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='virtual_available']" position="after">
+                     <field name="use_expiration_date" invisible="1"/>
+                     <field name="status_warning"
+                           decoration-danger="status_warning == 'overdue'"
+                           decoration-warning="status_warning == 'warning'"
+                           decoration-success="status_warning == 'normal'"
+                           widget="badge"
+                            attrs="{'invisible': [('use_expiration_date', '=', False)]}"
+                          />
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

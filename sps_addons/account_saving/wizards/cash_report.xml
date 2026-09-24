@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+        <record id="wizard_cash_popup" model="ir.ui.view">
+            <field name="name">Báo cáo Sổ quỹ tiền mặt</field>
+            <field name="model">cash.popup</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Báo cáo Sổ quỹ tiền mặt">
+                    <group>
+                        <field name="journal_ids" widget="many2many_tags"/>
+                    </group>
+                    <footer>
+                        <button string="Xác nhận" name="action_cash_popup" type="object" class="btn-primary"/>
+                        <button string="Huỷ" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_cash_popup" model="ir.actions.act_window">
+            <field name="name">Báo cáo Sổ quỹ tiền mặt</field>
+            <field name="res_model">cash.popup</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="domain">[]</field>
+        </record>
+        <menuitem action="action_cash_popup"
+                  name="Báo cáo Sổ quỹ tiền mặt"
+                  parent="account.menu_finance_reports"
+                  id="menu_cash_popup"
+                  sequence="24"/>
+    </data>
+</odoo>

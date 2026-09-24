@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_pricelist_view_tree_inherit_sps_sale_target" model="ir.ui.view">
+        <field name="name">product.pricelist.view.list.inherit</field>
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="product.product_pricelist_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="date_start" />
+                <field name="date_end" />
+            </xpath>
+            <xpath expr="//field[@name='discount_policy']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_pricelist_view_inherit_sps_sale_target" model="ir.ui.view">
+        <field name="name">product.pricelist.view.form.inherit</field>
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="product.product_pricelist_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='pricelist_settings']" position="inside">
+                <field name="date_start" />
+                <field name="date_end" />
+            </xpath>
+            <xpath expr="//page[@name='pricelist_config']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='item_ids']/tree/field[@name='min_quantity']" position="after">
+                <field name="material_price" />
+                <field name="worker_price" />
+                <field name="other_price" />
+            </xpath>
+            <xpath expr="//field[@name='item_ids']/tree/field[@name='fixed_price']" position="attributes">
+                <attribute name="string">Total Price</attribute>
+            </xpath>
+            <xpath expr="//field[@name='item_ids']/tree/field[@name='date_start']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath expr="//field[@name='item_ids']/tree/field[@name='date_end']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

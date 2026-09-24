@@ -1,0 +1,33 @@
+{
+    'name': 'Sales Target',
+    'version': '14.0.1.0.2',
+    'summary': 'Specify and manage sales target',
+    'description': '',
+    'author': 'THG',
+    'website': '',
+    'license': 'OPL-1',
+    'category': 'Sales/Sales',
+    'depends': [
+        'sales_team',
+        'sale_management',
+        'report_xlsx'
+    ],
+    'data': [
+        'data/action_server_data.xml',
+        'data/report_data.xml',
+        'data/sequence_data.xml',
+        'security/ir.model.access.csv',
+        'views/views.xml',
+        'views/product_pricelist_views.xml',
+        'views/product_template_views.xml',
+        'views/res_partner_views.xml',
+        'views/sale_target_views.xml',
+        'views/profit_formula_config_views.xml',
+        'views/sale_order_views.xml',
+        'views/uom_uom_views.xml',
+        'wizards/annual_sale_views.xml',
+        'wizards/sale_turnover_views.xml',
+    ],
+    'auto_install': False,
+    'application': False,
+}
