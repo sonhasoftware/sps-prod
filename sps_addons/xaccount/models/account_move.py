@@ -2,7 +2,6 @@
 import math
 import ast
 
-from datetime import datetime, date
 from dateutil.relativedelta import relativedelta
 
 from odoo import api, fields, models,_
@@ -537,20 +536,16 @@ class AccountMove(models.Model):
             self.sudo()._onchange_invoice_line_ids()
             self.sudo()._onchange_recompute_dynamic_lines()
 
-    def write(self, vals):
-        if 'date' in vals:
-            vals['name'] = '/'
-        return super().write(vals)
-
     def _compute_name(self):
         moves2reject = self.env['account.move'].browse()
-        force_compute = self._context.get('x_force_compute', False)
+        renumber_payment_voucher = self._context.get('x_renumber_payment_voucher')
         for r in self:
             if not isinstance(r.id, int):
                 continue
-            if r.name and len(r.name) > 1:
-                if not force_compute:
-                    continue
+            # A payment voucher number is normally stable.  It is regenerated only
+            # when account.payment explicitly changes the voucher date or journal.
+            if r.name and r.name != '/' and not (r.payment_id and renumber_payment_voucher):
+                continue
             if not r.date:
                 continue
             if r.move_type == 'in_invoice':
@@ -568,10 +563,10 @@ class AccountMove(models.Model):
                     sequence_code = 'xaccount.sequence_payment_cash_out_name' if journal_type == 'cash' else 'xaccount.sequence_payment_bank_out_name'
                 if sequence_code == '':
                     continue
-                time_post = datetime.now()
-                if (r.payment_id.name_history and r.payment_id.date and r.payment_id.date.year == time_post.year
-                        and r.payment_id.date.month == time_post.month):
-
+                # Keep the old number on a simple draft/repost.  A date or
+                # journal change explicitly requests a new number from the sequence,
+                # e.g. BN26/07/001 for an outbound bank payment in July 2026.
+                if r.payment_id.name_history and not renumber_payment_voucher:
                     r.name = r.payment_id.name_history
                 else:
                     r.name = self.env['ir.sequence'].next_by_code(sequence_code, sequence_date=r.date)
@@ -585,28 +580,6 @@ class AccountMove(models.Model):
         if 'move_type' in res and res['move_type'] == 'in_refund':
             res['name'] = self.env['ir.sequence'].next_by_code('xaccount.sequence_name_incoming_reverse_invoice')
         return res
-
-    def button_draft(self):
-        AccountMoveLine = self.env['account.move.line']
-        excluded_move_ids = []
-
-        if self._context.get('suspense_moves_mode'):
-            excluded_move_ids = AccountMoveLine.search(AccountMoveLine._get_suspense_moves_domain() + [('move_id', 'in', self.ids)]).mapped('move_id').ids
-
-        for move in self:
-            if move in move.line_ids.mapped('full_reconcile_id.exchange_move_id'):
-                raise UserError(_('You cannot reset to draft an exchange difference journal entry.'))
-            if move.tax_cash_basis_rec_id:
-                raise UserError(_('You cannot reset to draft a tax cash basis journal entry.'))
-            if move.restrict_mode_hash_table and move.state == 'posted' and move.id not in excluded_move_ids:
-                raise UserError(_('You cannot modify a posted entry of this journal because it is in strict mode.'))
-            # We remove all the analytics entries for this journal
-            move.mapped('line_ids.analytic_line_ids').unlink()
-
-        self.mapped('line_ids').remove_move_reconcile()
-        name = '/'
-        self.write({'state': 'draft', 'is_move_sent': False, 'name':name})
-
 
 
 class AccountMoveLine(models.Model):

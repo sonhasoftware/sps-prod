@@ -577,8 +577,11 @@ class AccountPayment(models.Model):
 
         if len(self) == 1 and vals.get('amount') and self.x_origin_move_id and not self.x_pay_cost:
             self._update_project_details_proportion(vals['amount'])
-            
-        if len(self) == 1 and len(vals) > 0 and vals.get('journal_id') and self.move_id:
+
+        renumber_voucher = len(self) == 1 and self.move_id and bool(
+            set(vals) & {'date', 'journal_id'}
+        )
+        if len(self) == 1 and vals.get('journal_id') and self.move_id:
             journal_update = self.env['account.journal'].browse(vals['journal_id'])
             del vals['journal_id']
             self._cr.execute(
@@ -586,18 +589,19 @@ class AccountPayment(models.Model):
             self._cr.execute(
                 f''' update account_move_line set journal_id = {journal_update.id} where move_id = {self.move_id.id}  ''')
             if self.payment_type == 'inbound':
-                self._cr.execute(f''' update account_move_line set account_id = {journal_update.default_account_id.id} 
+                self._cr.execute(f''' update account_move_line set account_id = {journal_update.default_account_id.id}
                                         where move_id = {self.move_id.id} and debit > 0 ''')
             if self.payment_type == 'outbound':
-                self._cr.execute(f''' update account_move_line set account_id = {journal_update.default_account_id.id} 
+                self._cr.execute(f''' update account_move_line set account_id = {journal_update.default_account_id.id}
                                                         where move_id = {self.move_id.id} and credit > 0 ''')
-            self.move_id.with_context(x_force_compute=True)._compute_name()
-            return super(AccountPayment, self).write(vals)
-        elif len(self) == 1 and len(vals) > 0 and vals.get('date') and self.move_id:
-            self.move_id.with_context(x_force_compute=True)._compute_name()
-            return super(AccountPayment, self).write(vals)
-        else:
-            return super(AccountPayment, self).write(vals)
+
+        res = super(AccountPayment, self).write(vals)
+        if renumber_voucher:
+            # The sequence uses the saved payment date, so BN is produced as
+            # BN<YY>/<MM>/<sequence>, never as an empty name.
+            self.move_id.invalidate_cache(['journal_id', 'name'])
+            self.move_id.with_context(x_renumber_payment_voucher=True)._compute_name()
+        return res
 
     @api.model
     def create(self, vals_list):
