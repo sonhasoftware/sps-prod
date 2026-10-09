@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'SPS Projects',
-    'version': '14.0.0.2.8',
+    'version': '14.0.0.2.9',
     'description': '',
     'author': 'THG',
     'website': '',

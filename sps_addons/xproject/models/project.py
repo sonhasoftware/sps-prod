@@ -316,9 +316,38 @@ class Project(models.Model):
     overhead_cost_amount = fields.Float('Overhead Cost', related='x_order_id.overhead_cost_amount')
     export_satisfaction_report = fields.Boolean('Xuất báo cáo chỉ số hài lòng')
     project_supporter_id = fields.Many2one('hr.employee',string='Người hỗ trợ')
-    is_export_project_efficiency_detail = fields.Boolean('Xuất báo cáo dự án hoàn thành và xem xét hiệu quả',default= True)
+    is_export_project_efficiency_detail = fields.Boolean(
+        'Xuất báo cáo dự án hoàn thành và xem xét hiệu quả', default=True,
+        help='Mặc định TÍCH cho dự án thường; tự động BỎ tích với dự án gộp '
+             '(is_merge_project) hoặc dự án chính (main_project).')
     update_cost = fields.Boolean()
     actual_completion_date = fields.Date(compute='_compute_actual_completion_date')
+
+    @api.onchange('main_project', 'is_merge_project')
+    def _onchange_is_export_project_efficiency_detail(self):
+        """Bỏ tích 'Xuất báo cáo dự án' ngay trên form khi người dùng đánh dấu
+        là dự án gộp hoặc dự án chính (các dự án này không xuất báo cáo riêng)."""
+        if self.main_project or self.is_merge_project:
+            self.is_export_project_efficiency_detail = False
+
+    @api.model
+    def create(self, vals):
+        # Mặc định TÍCH 'Xuất báo cáo dự án' cho dự án thường; BỎ tích cho dự án
+        # gộp/dự án chính. Áp dụng cho cả luồng tạo tự động từ báo giá
+        # (create_project_*) lẫn tạo thủ công trên form.
+        if vals.get('is_merge_project') or vals.get('main_project'):
+            vals['is_export_project_efficiency_detail'] = False
+        elif 'is_export_project_efficiency_detail' not in vals:
+            vals['is_export_project_efficiency_detail'] = True
+        return super().create(vals)
+
+    def write(self, vals):
+        # Khi đánh dấu dự án là gộp/dự án chính thì tự bỏ tích xuất báo cáo
+        # (trừ khi chính lần ghi này đã set tường minh giá trị).
+        if (vals.get('is_merge_project') or vals.get('main_project')) \
+                and 'is_export_project_efficiency_detail' not in vals:
+            vals['is_export_project_efficiency_detail'] = False
+        return super().write(vals)
 
     @api.model
     def _project_completion_dates(self, project_ids=None):
